@@ -39,7 +39,7 @@ public:
     QFrame *frame_2;
     QLineEdit *lineEdit_2;
     QLabel *label_3;
-    QPushButton *createaccount_button;
+    QPushButton *createAccount_Button;
     QPushButton *login_button;
     QLabel *label;
     QWidget *accounts_Page;
@@ -65,7 +65,7 @@ public:
     QFrame *frame_5;
     QLineEdit *confirmPassword_Line;
     QLabel *label_8;
-    QPushButton *createAccount_Button;
+    QPushButton *submitApplication_Button;
     QWidget *numpad_Page;
     QLCDNumber *lcdNumber;
     QWidget *gridLayoutWidget;
@@ -147,12 +147,13 @@ public:
 "font-size:15px;\n"
 "}"));
         label_3->setAlignment(Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter);
-        createaccount_button = new QPushButton(login_Page);
-        createaccount_button->setObjectName("createaccount_button");
-        createaccount_button->setGeometry(QRect(350, 390, 200, 29));
-        createaccount_button->setMaximumSize(QSize(200, 30));
-        createaccount_button->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+        createAccount_Button = new QPushButton(login_Page);
+        createAccount_Button->setObjectName("createAccount_Button");
+        createAccount_Button->setGeometry(QRect(350, 390, 200, 29));
+        createAccount_Button->setMaximumSize(QSize(200, 30));
+        createAccount_Button->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "font-size:15;\n"
+"background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, fx:0.331, fy:0.245, stop:0 rgba(4, 7, 255, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "}"));
         login_button = new QPushButton(login_Page);
         login_button->setObjectName("login_button");
@@ -160,7 +161,9 @@ public:
         login_button->setMaximumSize(QSize(200, 30));
         login_button->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "font-size:15;\n"
-"}"));
+"background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, fx:0.331, fy:0.245, stop:0 rgba(4, 7, 255, 255), stop:1 rgba(255, 255, 255, 255));\n"
+"}\n"
+""));
         label = new QLabel(login_Page);
         label->setObjectName("label");
         label->setGeometry(QRect(-20, 60, 917, 20));
@@ -245,9 +248,10 @@ public:
         label_8 = new QLabel(frame_5);
         label_8->setObjectName("label_8");
         label_8->setGeometry(QRect(0, 40, 181, 20));
-        createAccount_Button = new QPushButton(createUser_Page);
-        createAccount_Button->setObjectName("createAccount_Button");
-        createAccount_Button->setGeometry(QRect(340, 510, 181, 29));
+        submitApplication_Button = new QPushButton(createUser_Page);
+        submitApplication_Button->setObjectName("submitApplication_Button");
+        submitApplication_Button->setGeometry(QRect(340, 510, 181, 29));
+        submitApplication_Button->setStyleSheet(QString::fromUtf8("background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, fx:0.331, fy:0.245, stop:0 rgba(4, 7, 255, 255), stop:1 rgba(255, 255, 255, 255));"));
         stackedWidget->addWidget(createUser_Page);
         numpad_Page = new QWidget();
         numpad_Page->setObjectName("numpad_Page");
@@ -371,7 +375,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(3);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -382,7 +386,7 @@ public:
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
         label_2->setText(QCoreApplication::translate("MainWindow", "UserName:", nullptr));
         label_3->setText(QCoreApplication::translate("MainWindow", "Password:", nullptr));
-        createaccount_button->setText(QCoreApplication::translate("MainWindow", "Create New account", nullptr));
+        createAccount_Button->setText(QCoreApplication::translate("MainWindow", "Create New account", nullptr));
         login_button->setText(QCoreApplication::translate("MainWindow", "Login", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Bank al LUMS", nullptr));
         default_acc_button->setText(QCoreApplication::translate("MainWindow", "Default Account", nullptr));
@@ -399,7 +403,7 @@ public:
         label_4->setText(QCoreApplication::translate("MainWindow", "Enter UserName", nullptr));
         label_6->setText(QCoreApplication::translate("MainWindow", "Enter Password", nullptr));
         label_8->setText(QCoreApplication::translate("MainWindow", "Confirm Password", nullptr));
-        createAccount_Button->setText(QCoreApplication::translate("MainWindow", "Create account", nullptr));
+        submitApplication_Button->setText(QCoreApplication::translate("MainWindow", "Create account", nullptr));
         zero_Button->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         blank_Button_2->setText(QString());
         eight_Button->setText(QCoreApplication::translate("MainWindow", "8", nullptr));

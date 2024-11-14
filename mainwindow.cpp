@@ -5,14 +5,17 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QVariant>
+#include <QPropertyAnimation>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
+    , loginButtonAnimation(new QPropertyAnimation(ui->login_button, "styleSheet"))
 {
     ui->setupUi(this);
     ui->stackedWidget->setCurrentWidget(ui->login_Page);
 
+    // Set up the SQLite database
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("bankingApp.db");
 
@@ -27,6 +30,17 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
     connect(ui->login_button, &QPushButton::clicked, this, &MainWindow::login_button);
+
+    // Set initial solid color style for login_button
+    ui->login_button->setStyleSheet("background-color: rgb(0, 120, 215);");
+
+    // Configure animation properties for hover effect with solid colors
+    loginButtonAnimation->setDuration(300);  // Duration in milliseconds
+    loginButtonAnimation->setStartValue("background-color: rgb(0, 120, 215);");  // Original color
+    loginButtonAnimation->setEndValue("background-color: rgb(255, 85, 85);");    // Hover color
+
+    // Install event filter on login_button to handle hover animations
+    ui->login_button->installEventFilter(this);
 }
 
 MainWindow::~MainWindow()
@@ -35,6 +49,26 @@ MainWindow::~MainWindow()
     QSqlDatabase::database().close();
 }
 
+// Event filter to handle hover events specifically for login_button
+bool MainWindow::eventFilter(QObject *watched, QEvent *event)
+{
+    if (watched == ui->login_button) {
+        if (event->type() == QEvent::Enter) {
+            // Start animation on hover
+            loginButtonAnimation->setDirection(QPropertyAnimation::Forward);
+            loginButtonAnimation->start();
+            return true;
+        } else if (event->type() == QEvent::Leave) {
+            // Reverse animation when leaving the button area
+            loginButtonAnimation->setDirection(QPropertyAnimation::Backward);
+            loginButtonAnimation->start();
+            return true;
+        }
+    }
+    return QMainWindow::eventFilter(watched, event);
+}
+
+// Slot to handle login button click event
 void MainWindow::login_button()
 {
     QString uName = ui->lineEdit->text();
@@ -53,7 +87,23 @@ void MainWindow::login_button()
     }
 }
 
-void MainWindow::on_createAccount_Button_clicked()
+// Slot implementations for other button clicks
+void MainWindow::on_current_acc_button_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->dashboard_Page);
+}
+
+void MainWindow::on_savings_acc_button_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->dashboard_Page);
+}
+
+void MainWindow::on_default_acc_button_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->dashboard_Page);
+}
+
+void MainWindow::on_submitApplication_Button_clicked()
 {
     QString newUsername = ui->newUser_Line->text();
     QString newPassword = ui->newPassword_Line->text();
@@ -76,7 +126,22 @@ void MainWindow::on_createAccount_Button_clicked()
     }
 }
 
+void MainWindow::on_one_Button_clicked()
+{
+    // Placeholder for the one_Button functionality if needed
+}
+
+void MainWindow::on_login_button_pressed()
+{
+    // Placeholder for the login_button pressed event if needed
+}
+
 void MainWindow::on_lineEdit_2_returnPressed()
 {
     ui->login_button->click();
+}
+
+void MainWindow::on_createAccount_Button_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->createUser_Page);
 }

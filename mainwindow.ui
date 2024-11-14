@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="login_Page">
        <widget class="QFrame" name="frame">
@@ -166,7 +166,7 @@ font-size:15px;
          </property>
         </widget>
        </widget>
-       <widget class="QPushButton" name="createaccount_button">
+       <widget class="QPushButton" name="createAccount_Button">
         <property name="geometry">
          <rect>
           <x>350</x>
@@ -184,6 +184,7 @@ font-size:15px;
         <property name="styleSheet">
          <string notr="true">QPushButton{
 font-size:15;
+background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, fx:0.331, fy:0.245, stop:0 rgba(4, 7, 255, 255), stop:1 rgba(255, 255, 255, 255));
 }</string>
         </property>
         <property name="text">
@@ -208,7 +209,9 @@ font-size:15;
         <property name="styleSheet">
          <string notr="true">QPushButton{
 font-size:15;
-}</string>
+background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, fx:0.331, fy:0.245, stop:0 rgba(4, 7, 255, 255), stop:1 rgba(255, 255, 255, 255));
+}
+</string>
         </property>
         <property name="text">
          <string>Login</string>
@@ -513,7 +516,7 @@ font-size:75px;
          </property>
         </widget>
        </widget>
-       <widget class="QPushButton" name="createAccount_Button">
+       <widget class="QPushButton" name="submitApplication_Button">
         <property name="geometry">
          <rect>
           <x>340</x>
@@ -521,6 +524,9 @@ font-size:75px;
           <width>181</width>
           <height>29</height>
          </rect>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, fx:0.331, fy:0.245, stop:0 rgba(4, 7, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
         </property>
         <property name="text">
          <string>Create account</string>
