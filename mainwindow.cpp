@@ -26,10 +26,19 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
     QSqlQuery query;
-    if (!query.exec("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT UNIQUE, password TEXT)")) {
+    if (!query.exec(R"(
+        CREATE TABLE IF NOT EXISTS users (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT UNIQUE,
+            password TEXT,
+            balance REAL DEFAULT 0,
+            failed_attempts INTEGER DEFAULT 0,
+            is_locked INTEGER DEFAULT 0,
+            last_failed_login DATETIME
+        )
+    )")) {
         QMessageBox::critical(this, "Database Error", "Failed to create table: " + query.lastError().text());
     }
-
 
     currentInput = ""; // Start with an empty string
 
