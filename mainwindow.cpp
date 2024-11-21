@@ -30,6 +30,9 @@ MainWindow::MainWindow(QWidget *parent)
         QMessageBox::critical(this, "Database Error", "Failed to create table: " + query.lastError().text());
     }
 
+
+    currentInput = ""; // Start with an empty string
+
     connect(ui->login_button, &QPushButton::clicked, this, &MainWindow::login_button);
     //numpad connections
     connect(ui->zero_Button, &QPushButton::released, this, &MainWindow::num_pressed);
@@ -144,6 +147,28 @@ void MainWindow::on_two_Button_clicked()
 
 void MainWindow::num_pressed()
 {
-    qDebug() << "test";
+    // Cast sender to QPushButton (BANE OF MY EXISTANCE TO UNDERSTAND)
+    QPushButton *button = qobject_cast<QPushButton*>(sender());
+    if (!button) return; // Ensure sender is a QPushButton
+
+    // Use a member variable (QString) to accumulate input
+    currentInput += button->text(); // Append the button text (number) to the input
+
+    // Display the accumulated input in the LCD
+    ui->lcdNumber->display(currentInput.toDouble()); // Convert to double for display
+}
+
+
+void MainWindow::on_clear_Button_clicked()
+{
+    currentInput = 0;
+    ui->lcdNumber->display(currentInput.toDouble());
+}
+
+
+void MainWindow::on_cancel_Button_clicked()
+{
+    currentInput = 0;
+    ui->stackedWidget->setCurrentWidget(ui->dashboard_Page);
 }
 

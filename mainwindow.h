@@ -35,6 +35,8 @@ private slots:
 
     void num_pressed(); //numpad buttons
 
+    void on_clear_Button_clicked();
+
 protected:
 
 
@@ -42,6 +44,7 @@ private:
     Ui::MainWindow *ui;
     QMap<QString, QWidget*> screenMap;
     QString loggedInUsername;
+    QString currentInput;
 };
 
 #endif
