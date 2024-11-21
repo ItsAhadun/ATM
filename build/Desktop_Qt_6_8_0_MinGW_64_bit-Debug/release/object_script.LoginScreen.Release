@@ -1,0 +1,14 @@
+release/accounts_page.o
+release/create_user_page.o
+release/dashboard_page.o
+release/login_page.o
+release/main.o
+release/mainwindow.o
+release/numpad_page.o
+release/qrc_qmake_qmake_qm_files.o
+release/moc_accounts_page.o
+release/moc_dashboard_page.o
+release/moc_mainwindow.o
+release/moc_numpad_page.o
+release/moc_login_page.o
+release/moc_create_user_page.o

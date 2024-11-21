@@ -45,8 +45,11 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->login_Button, &QPushButton::clicked, this, &MainWindow::login_button);
     connect(ui->submitApplication_Button, &QPushButton::clicked, this, &MainWindow::on_submitApplication_Button_clicked);
     connect(ui->deposit_Button, &QPushButton::clicked, this, &MainWindow::on_deposit_Button_clicked);
-    connect(ui->withdraw_Button, &QPushButton::clicked, this, &MainWindow::on_withdraw_Button_clicked);
     connect(ui->checkBalance_Button, &QPushButton::clicked, this, &MainWindow::on_checkBalance_Button_clicked);
+    connect(ui->current_acc_Button, &QPushButton::clicked, this, &MainWindow::on_current_acc_button_clicked);
+    connect(ui->savings_acc_Button, &QPushButton::clicked, this, &MainWindow::on_savings_acc_button_clicked);
+    connect(ui->default_acc_Button, &QPushButton::clicked, this, &MainWindow::on_default_acc_button_clicked);
+    connect(ui->createAccount_Button, &QPushButton::clicked, this, &MainWindow::on_createAccount_Button_clicked);
 }
 
 MainWindow::~MainWindow()
@@ -144,30 +147,42 @@ void MainWindow::on_deposit_Button_clicked()
     }
 }
 
-void MainWindow::on_withdraw_Button_clicked()
+void MainWindow::on_current_acc_button_clicked()
 {
-    double amount = QInputDialog::getDouble(this, "Withdraw", "Enter withdrawal amount:");
+    QMessageBox::information(this, "Account Info", "Current Account selected.");
+    // Logic to handle current account selection
+}
+
+void MainWindow::on_savings_acc_button_clicked()
+{
+    QMessageBox::information(this, "Account Info", "Savings Account selected.");
+    // Logic to handle savings account selection
+}
+
+void MainWindow::on_default_acc_button_clicked()
+{
+    QMessageBox::information(this, "Account Info", "Default Account selected.");
+    // Logic to handle default account selection
+}
+
+void MainWindow::on_createAccount_Button_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->createUser_Page);
+    QMessageBox::information(this, "Create Account", "Please fill out the form to create a new account.");
+    // Logic to navigate to the create account page
+}
+
+void MainWindow::on_checkBalance_Button_clicked()
+{
     QSqlQuery query;
     query.prepare("SELECT balance FROM users WHERE username = :username");
     query.bindValue(":username", currentUser);
 
     if (query.exec() && query.next()) {
         double balance = query.value(0).toDouble();
-        if (amount > balance) {
-            QMessageBox::warning(this, "Insufficient Funds", "Not enough balance.");
-            return;
-        }
-
-        query.prepare("UPDATE users SET balance = balance - :amount WHERE username = :username");
-        query.bindValue(":amount", amount);
-        query.bindValue(":username", currentUser);
-
-        if (query.exec()) {
-            logTransaction(currentUser, "Withdraw", amount);
-            QMessageBox::information(this, "Withdrawal Successful", "Amount withdrawn successfully!");
-        } else {
-            QMessageBox::critical(this, "Database Error", "Failed to withdraw amount.");
-        }
+        QMessageBox::information(this, "Balance", "Your current balance is: " + QString::number(balance, 'f', 2));
+    } else {
+        QMessageBox::critical(this, "Error", "Failed to retrieve balance.");
     }
 }
 

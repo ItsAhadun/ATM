@@ -21,7 +21,9 @@ HEADERS += \
     accounts_page.h \
     dashboard_page.h \
     mainwindow.h \
-    numpad_page.h
+    numpad_page.h \
+    login_page.h \
+    create_user_page.h
 
 FORMS += \
     accounts_page.ui \

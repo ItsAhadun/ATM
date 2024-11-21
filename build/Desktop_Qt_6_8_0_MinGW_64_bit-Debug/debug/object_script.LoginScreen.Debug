@@ -1,0 +1,14 @@
+debug/accounts_page.o
+debug/create_user_page.o
+debug/dashboard_page.o
+debug/login_page.o
+debug/main.o
+debug/mainwindow.o
+debug/numpad_page.o
+debug/qrc_qmake_qmake_qm_files.o
+debug/moc_accounts_page.o
+debug/moc_dashboard_page.o
+debug/moc_mainwindow.o
+debug/moc_numpad_page.o
+debug/moc_login_page.o
+debug/moc_create_user_page.o

@@ -29,7 +29,6 @@ private slots:
     void on_createAccount_Button_clicked();
     void on_submitApplication_Button_clicked();
     void on_deposit_Button_clicked();
-    void on_withdraw_Button_clicked();
     void on_checkBalance_Button_clicked();
 
 protected:
