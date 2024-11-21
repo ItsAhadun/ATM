@@ -5,13 +5,14 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QVariant>
-#include <QPropertyAnimation>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
-    , loginButtonAnimation(new QPropertyAnimation(ui->login_button, "styleSheet"))
+
 {
+
     ui->setupUi(this);
     ui->stackedWidget->setCurrentWidget(ui->login_Page);
 
@@ -30,45 +31,27 @@ MainWindow::MainWindow(QWidget *parent)
     }
 
     connect(ui->login_button, &QPushButton::clicked, this, &MainWindow::login_button);
+    //numpad connections
+    connect(ui->zero_Button, &QPushButton::released, this, &MainWindow::num_pressed);
+    connect(ui->one_Button, &QPushButton::released, this, &MainWindow::num_pressed);
+    connect(ui->two_Button, &QPushButton::released, this, &MainWindow::num_pressed);
+    connect(ui->three_Button, &QPushButton::released, this, &MainWindow::num_pressed);
+    connect(ui->four_Button, &QPushButton::released, this, &MainWindow::num_pressed);
+    connect(ui->five_Button, &QPushButton::released, this, &MainWindow::num_pressed);
+    connect(ui->six_Button, &QPushButton::released, this, &MainWindow::num_pressed);
+    connect(ui->seven_Button, &QPushButton::released, this, &MainWindow::num_pressed);
+    connect(ui->eight_Button, &QPushButton::released, this, &MainWindow::num_pressed);
+    connect(ui->nine_Button, &QPushButton::released, this, &MainWindow::num_pressed);
 
-    // Set initial solid color style for login_button
-    ui->login_button->setStyleSheet("background-color: rgb(0, 120, 215);");
-
-    // Configure animation properties for hover effect with solid colors
-    loginButtonAnimation->setDuration(300);  // Duration in milliseconds
-    loginButtonAnimation->setStartValue("background-color: rgb(0, 120, 215);");  // Original color
-    loginButtonAnimation->setEndValue("background-color: rgb(255, 85, 85);");    // Hover color
-
-    // Install event filter on login_button to handle hover animations
-    ui->login_button->installEventFilter(this);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
     QSqlDatabase::database().close();
+
 }
 
-// Event filter to handle hover events specifically for login_button
-bool MainWindow::eventFilter(QObject *watched, QEvent *event)
-{
-    if (watched == ui->login_button) {
-        if (event->type() == QEvent::Enter) {
-            // Start animation on hover
-            loginButtonAnimation->setDirection(QPropertyAnimation::Forward);
-            loginButtonAnimation->start();
-            return true;
-        } else if (event->type() == QEvent::Leave) {
-            // Reverse animation when leaving the button area
-            loginButtonAnimation->setDirection(QPropertyAnimation::Backward);
-            loginButtonAnimation->start();
-            return true;
-        }
-    }
-    return QMainWindow::eventFilter(watched, event);
-}
-
-// Slot to handle login button click event
 void MainWindow::login_button()
 {
     QString uName = ui->lineEdit->text();
@@ -79,7 +62,9 @@ void MainWindow::login_button()
     query.bindValue(":username", uName);
     query.bindValue(":password", uCode);
 
-    if (query.exec() && query.next()) {
+    if (query.exec() && query.next())
+    {
+        loggedInUsername = uName;
         ui->stackedWidget->setCurrentWidget(ui->accounts_Page);
         QMessageBox::information(this, "Welcome Message", "User: " + uName + "\nWelcome to Bank Al LUMS");
     } else {
@@ -87,7 +72,6 @@ void MainWindow::login_button()
     }
 }
 
-// Slot implementations for other button clicks
 void MainWindow::on_current_acc_button_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->dashboard_Page);
@@ -126,14 +110,19 @@ void MainWindow::on_submitApplication_Button_clicked()
     }
 }
 
+void MainWindow::on_createAccount_Button_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->createUser_Page);
+}
+
 void MainWindow::on_one_Button_clicked()
 {
-    // Placeholder for the one_Button functionality if needed
+    // Placeholder for one_Button functionality
 }
 
 void MainWindow::on_login_button_pressed()
 {
-    // Placeholder for the login_button pressed event if needed
+    // Placeholder for login_button pressed event
 }
 
 void MainWindow::on_lineEdit_2_returnPressed()
@@ -141,7 +130,20 @@ void MainWindow::on_lineEdit_2_returnPressed()
     ui->login_button->click();
 }
 
-void MainWindow::on_createAccount_Button_clicked()
+
+void MainWindow::on_deposit_Button_clicked()
 {
-    ui->stackedWidget->setCurrentWidget(ui->createUser_Page);
+    ui->stackedWidget->setCurrentWidget(ui->numpad_Page);
 }
+
+
+void MainWindow::on_two_Button_clicked()
+{
+
+}
+
+void MainWindow::num_pressed()
+{
+    qDebug() << "test";
+}
+
