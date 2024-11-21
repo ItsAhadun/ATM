@@ -42,10 +42,10 @@ constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers::string
     "on_savings_acc_button_clicked",
     "on_default_acc_button_clicked",
     "on_createAccount_Button_clicked",
-    "on_one_Button_clicked",
-    "on_login_button_pressed",
-    "on_lineEdit_2_returnPressed",
-    "on_submitApplication_Button_clicked"
+    "on_submitApplication_Button_clicked",
+    "on_deposit_Button_clicked",
+    "on_withdraw_Button_clicked",
+    "on_checkBalance_Button_clicked"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -109,13 +109,13 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_createAccount_Button_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_one_Button_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_login_button_pressed'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_lineEdit_2_returnPressed'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_submitApplication_Button_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_deposit_Button_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_withdraw_Button_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_checkBalance_Button_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -132,10 +132,10 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 2: _t->on_savings_acc_button_clicked(); break;
         case 3: _t->on_default_acc_button_clicked(); break;
         case 4: _t->on_createAccount_Button_clicked(); break;
-        case 5: _t->on_one_Button_clicked(); break;
-        case 6: _t->on_login_button_pressed(); break;
-        case 7: _t->on_lineEdit_2_returnPressed(); break;
-        case 8: _t->on_submitApplication_Button_clicked(); break;
+        case 5: _t->on_submitApplication_Button_clicked(); break;
+        case 6: _t->on_deposit_Button_clicked(); break;
+        case 7: _t->on_withdraw_Button_clicked(); break;
+        case 8: _t->on_checkBalance_Button_clicked(); break;
         default: ;
         }
     }
