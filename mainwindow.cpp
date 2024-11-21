@@ -178,6 +178,26 @@ void MainWindow::on_clear_Button_clicked()
 void MainWindow::on_cancel_Button_clicked()
 {
     currentInput = 0;
+    ui->lcdNumber->display(currentInput.toDouble());
     ui->stackedWidget->setCurrentWidget(ui->dashboard_Page);
+}
+
+
+void MainWindow::on_checkBalance_Button_clicked()
+{
+    QSqlQuery query;
+    query.prepare("SELECT balance FROM users WHERE username = :username");
+    query.bindValue(":username", loggedInUsername);
+
+    if (query.exec() && query.next()) {
+        // Fetch the balance
+        double balance = query.value("balance").toDouble();
+
+        // Display the balance to the user
+        QMessageBox::information(this, "Account Balance", QString("Your current balance is: $%1").arg(balance));
+    } else {
+        // Handle database query errors
+        QMessageBox::critical(this, "Database Error", "Failed to retrieve account balance.");
+    }
 }
 

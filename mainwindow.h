@@ -34,8 +34,10 @@ private slots:
 
 
     void num_pressed(); //numpad buttons
-
+    void on_cancel_Button_clicked();
     void on_clear_Button_clicked();
+
+    void on_checkBalance_Button_clicked();
 
 protected:
 
