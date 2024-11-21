@@ -46,6 +46,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->submitApplication_Button, &QPushButton::clicked, this, &MainWindow::on_submitApplication_Button_clicked);
     connect(ui->deposit_Button, &QPushButton::clicked, this, &MainWindow::on_deposit_Button_clicked);
     connect(ui->withdraw_Button, &QPushButton::clicked, this, &MainWindow::on_withdraw_Button_clicked);
+    connect(ui->checkBalance_Button, &QPushButton::clicked, this, &MainWindow::on_checkBalance_Button_clicked);
 }
 
 MainWindow::~MainWindow()

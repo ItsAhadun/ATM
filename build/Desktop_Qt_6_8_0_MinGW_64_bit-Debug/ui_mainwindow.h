@@ -34,18 +34,18 @@ public:
     QStackedWidget *stackedWidget;
     QWidget *login_Page;
     QFrame *frame;
-    QLabel *label_2;
-    QLineEdit *lineEdit;
+    QLabel *username_Label;
+    QLineEdit *username_Line;
     QFrame *frame_2;
-    QLineEdit *lineEdit_2;
-    QLabel *label_3;
+    QLineEdit *password_Line;
+    QLabel *password_Label;
     QPushButton *createAccount_Button;
-    QPushButton *login_button;
-    QLabel *label;
+    QPushButton *login_Button;
+    QLabel *mainlogin_Label;
     QWidget *accounts_Page;
-    QPushButton *default_acc_button;
-    QPushButton *current_acc_button;
-    QPushButton *savings_acc_button;
+    QPushButton *default_acc_Button;
+    QPushButton *current_acc_Button;
+    QPushButton *savings_acc_Button;
     QWidget *dashboard_Page;
     QPushButton *amount1000_Button;
     QPushButton *amount5000_Button;
@@ -58,13 +58,13 @@ public:
     QWidget *createUser_Page;
     QFrame *frame_3;
     QLineEdit *newUser_Line;
-    QLabel *label_4;
+    QLabel *newUser_Label;
     QFrame *frame_4;
     QLineEdit *newPassword_Line;
-    QLabel *label_6;
+    QLabel *newPassword_Label;
     QFrame *frame_5;
     QLineEdit *confirmPassword_Line;
-    QLabel *label_8;
+    QLabel *confirmPassword_Label;
     QPushButton *submitApplication_Button;
     QWidget *numpad_Page;
     QLCDNumber *lcdNumber;
@@ -109,18 +109,18 @@ public:
         frame->setMaximumSize(QSize(300, 100));
         frame->setFrameShape(QFrame::Shape::StyledPanel);
         frame->setFrameShadow(QFrame::Shadow::Raised);
-        label_2 = new QLabel(frame);
-        label_2->setObjectName("label_2");
-        label_2->setGeometry(QRect(0, 0, 171, 31));
-        label_2->setMaximumSize(QSize(200, 50));
-        label_2->setStyleSheet(QString::fromUtf8("Qlabel{\n"
+        username_Label = new QLabel(frame);
+        username_Label->setObjectName("username_Label");
+        username_Label->setGeometry(QRect(0, 0, 171, 31));
+        username_Label->setMaximumSize(QSize(200, 50));
+        username_Label->setStyleSheet(QString::fromUtf8("Qlabel{\n"
 "font-size:15px;\n"
 "}"));
-        label_2->setAlignment(Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter);
-        lineEdit = new QLineEdit(frame);
-        lineEdit->setObjectName("lineEdit");
-        lineEdit->setGeometry(QRect(0, 40, 171, 28));
-        lineEdit->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
+        username_Label->setAlignment(Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter);
+        username_Line = new QLineEdit(frame);
+        username_Line->setObjectName("username_Line");
+        username_Line->setGeometry(QRect(0, 40, 171, 28));
+        username_Line->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
 "font-size:15;\n"
 "padding:5px;\n"
 "}"));
@@ -131,22 +131,22 @@ public:
         frame_2->setMaximumSize(QSize(300, 100));
         frame_2->setFrameShape(QFrame::Shape::StyledPanel);
         frame_2->setFrameShadow(QFrame::Shadow::Raised);
-        lineEdit_2 = new QLineEdit(frame_2);
-        lineEdit_2->setObjectName("lineEdit_2");
-        lineEdit_2->setGeometry(QRect(0, 40, 171, 28));
-        lineEdit_2->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
+        password_Line = new QLineEdit(frame_2);
+        password_Line->setObjectName("password_Line");
+        password_Line->setGeometry(QRect(0, 40, 171, 28));
+        password_Line->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
 "font-size:15;\n"
 "padding:5px;\n"
 "}"));
-        lineEdit_2->setEchoMode(QLineEdit::EchoMode::Password);
-        label_3 = new QLabel(frame_2);
-        label_3->setObjectName("label_3");
-        label_3->setGeometry(QRect(0, 10, 171, 31));
-        label_3->setMaximumSize(QSize(200, 50));
-        label_3->setStyleSheet(QString::fromUtf8("Qlabel{\n"
+        password_Line->setEchoMode(QLineEdit::EchoMode::Password);
+        password_Label = new QLabel(frame_2);
+        password_Label->setObjectName("password_Label");
+        password_Label->setGeometry(QRect(0, 10, 171, 31));
+        password_Label->setMaximumSize(QSize(200, 50));
+        password_Label->setStyleSheet(QString::fromUtf8("Qlabel{\n"
 "font-size:15px;\n"
 "}"));
-        label_3->setAlignment(Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter);
+        password_Label->setAlignment(Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter);
         createAccount_Button = new QPushButton(login_Page);
         createAccount_Button->setObjectName("createAccount_Button");
         createAccount_Button->setGeometry(QRect(350, 390, 200, 29));
@@ -155,36 +155,36 @@ public:
 "font-size:15;\n"
 "background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, fx:0.331, fy:0.245, stop:0 rgba(4, 7, 255, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "}"));
-        login_button = new QPushButton(login_Page);
-        login_button->setObjectName("login_button");
-        login_button->setGeometry(QRect(350, 354, 200, 29));
-        login_button->setMaximumSize(QSize(200, 30));
-        login_button->setStyleSheet(QString::fromUtf8("QPushButton{\n"
+        login_Button = new QPushButton(login_Page);
+        login_Button->setObjectName("login_Button");
+        login_Button->setGeometry(QRect(350, 354, 200, 29));
+        login_Button->setMaximumSize(QSize(200, 30));
+        login_Button->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "font-size:15;\n"
 "background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, fx:0.331, fy:0.245, stop:0 rgba(4, 7, 255, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "}\n"
 ""));
-        label = new QLabel(login_Page);
-        label->setObjectName("label");
-        label->setGeometry(QRect(-20, 60, 917, 20));
-        label->setMinimumSize(QSize(0, 20));
-        label->setMaximumSize(QSize(16777215, 100));
-        label->setStyleSheet(QString::fromUtf8("Qlabel{\n"
+        mainlogin_Label = new QLabel(login_Page);
+        mainlogin_Label->setObjectName("mainlogin_Label");
+        mainlogin_Label->setGeometry(QRect(-20, 60, 917, 20));
+        mainlogin_Label->setMinimumSize(QSize(0, 20));
+        mainlogin_Label->setMaximumSize(QSize(16777215, 100));
+        mainlogin_Label->setStyleSheet(QString::fromUtf8("Qlabel{\n"
 "font-size:75px;\n"
 "}"));
-        label->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        mainlogin_Label->setAlignment(Qt::AlignmentFlag::AlignCenter);
         stackedWidget->addWidget(login_Page);
         accounts_Page = new QWidget();
         accounts_Page->setObjectName("accounts_Page");
-        default_acc_button = new QPushButton(accounts_Page);
-        default_acc_button->setObjectName("default_acc_button");
-        default_acc_button->setGeometry(QRect(350, 400, 171, 81));
-        current_acc_button = new QPushButton(accounts_Page);
-        current_acc_button->setObjectName("current_acc_button");
-        current_acc_button->setGeometry(QRect(350, 140, 171, 81));
-        savings_acc_button = new QPushButton(accounts_Page);
-        savings_acc_button->setObjectName("savings_acc_button");
-        savings_acc_button->setGeometry(QRect(350, 270, 171, 81));
+        default_acc_Button = new QPushButton(accounts_Page);
+        default_acc_Button->setObjectName("default_acc_Button");
+        default_acc_Button->setGeometry(QRect(350, 400, 171, 81));
+        current_acc_Button = new QPushButton(accounts_Page);
+        current_acc_Button->setObjectName("current_acc_Button");
+        current_acc_Button->setGeometry(QRect(350, 140, 171, 81));
+        savings_acc_Button = new QPushButton(accounts_Page);
+        savings_acc_Button->setObjectName("savings_acc_Button");
+        savings_acc_Button->setGeometry(QRect(350, 270, 171, 81));
         stackedWidget->addWidget(accounts_Page);
         dashboard_Page = new QWidget();
         dashboard_Page->setObjectName("dashboard_Page");
@@ -223,9 +223,9 @@ public:
         newUser_Line = new QLineEdit(frame_3);
         newUser_Line->setObjectName("newUser_Line");
         newUser_Line->setGeometry(QRect(0, 70, 181, 31));
-        label_4 = new QLabel(frame_3);
-        label_4->setObjectName("label_4");
-        label_4->setGeometry(QRect(0, 40, 181, 20));
+        newUser_Label = new QLabel(frame_3);
+        newUser_Label->setObjectName("newUser_Label");
+        newUser_Label->setGeometry(QRect(0, 40, 181, 20));
         frame_4 = new QFrame(createUser_Page);
         frame_4->setObjectName("frame_4");
         frame_4->setGeometry(QRect(340, 180, 181, 141));
@@ -234,9 +234,9 @@ public:
         newPassword_Line = new QLineEdit(frame_4);
         newPassword_Line->setObjectName("newPassword_Line");
         newPassword_Line->setGeometry(QRect(0, 70, 181, 31));
-        label_6 = new QLabel(frame_4);
-        label_6->setObjectName("label_6");
-        label_6->setGeometry(QRect(0, 40, 181, 20));
+        newPassword_Label = new QLabel(frame_4);
+        newPassword_Label->setObjectName("newPassword_Label");
+        newPassword_Label->setGeometry(QRect(0, 40, 181, 20));
         frame_5 = new QFrame(createUser_Page);
         frame_5->setObjectName("frame_5");
         frame_5->setGeometry(QRect(340, 340, 181, 141));
@@ -245,9 +245,9 @@ public:
         confirmPassword_Line = new QLineEdit(frame_5);
         confirmPassword_Line->setObjectName("confirmPassword_Line");
         confirmPassword_Line->setGeometry(QRect(0, 70, 181, 31));
-        label_8 = new QLabel(frame_5);
-        label_8->setObjectName("label_8");
-        label_8->setGeometry(QRect(0, 40, 181, 20));
+        confirmPassword_Label = new QLabel(frame_5);
+        confirmPassword_Label->setObjectName("confirmPassword_Label");
+        confirmPassword_Label->setGeometry(QRect(0, 40, 181, 20));
         submitApplication_Button = new QPushButton(createUser_Page);
         submitApplication_Button->setObjectName("submitApplication_Button");
         submitApplication_Button->setGeometry(QRect(340, 510, 181, 29));
@@ -367,7 +367,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 939, 25));
+        menubar->setGeometry(QRect(0, 0, 939, 19));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -375,7 +375,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -384,14 +384,14 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        label_2->setText(QCoreApplication::translate("MainWindow", "UserName:", nullptr));
-        label_3->setText(QCoreApplication::translate("MainWindow", "Password:", nullptr));
+        username_Label->setText(QCoreApplication::translate("MainWindow", "UserName:", nullptr));
+        password_Label->setText(QCoreApplication::translate("MainWindow", "Password:", nullptr));
         createAccount_Button->setText(QCoreApplication::translate("MainWindow", "Create New account", nullptr));
-        login_button->setText(QCoreApplication::translate("MainWindow", "Login", nullptr));
-        label->setText(QCoreApplication::translate("MainWindow", "Bank al LUMS", nullptr));
-        default_acc_button->setText(QCoreApplication::translate("MainWindow", "Default Account", nullptr));
-        current_acc_button->setText(QCoreApplication::translate("MainWindow", "Current Account", nullptr));
-        savings_acc_button->setText(QCoreApplication::translate("MainWindow", "Savings Account", nullptr));
+        login_Button->setText(QCoreApplication::translate("MainWindow", "Login", nullptr));
+        mainlogin_Label->setText(QCoreApplication::translate("MainWindow", "Bank al LUMS", nullptr));
+        default_acc_Button->setText(QCoreApplication::translate("MainWindow", "Default Account", nullptr));
+        current_acc_Button->setText(QCoreApplication::translate("MainWindow", "Current Account", nullptr));
+        savings_acc_Button->setText(QCoreApplication::translate("MainWindow", "Savings Account", nullptr));
         amount1000_Button->setText(QCoreApplication::translate("MainWindow", "1000", nullptr));
         amount5000_Button->setText(QCoreApplication::translate("MainWindow", "5000", nullptr));
         amount20000_Button->setText(QCoreApplication::translate("MainWindow", "20,000", nullptr));
@@ -400,9 +400,9 @@ public:
         checkBalance_Button->setText(QCoreApplication::translate("MainWindow", "Check Balance", nullptr));
         otherAmount_Button->setText(QCoreApplication::translate("MainWindow", "Other Amount", nullptr));
         amount25000_Button->setText(QCoreApplication::translate("MainWindow", "25,000", nullptr));
-        label_4->setText(QCoreApplication::translate("MainWindow", "Enter UserName", nullptr));
-        label_6->setText(QCoreApplication::translate("MainWindow", "Enter Password", nullptr));
-        label_8->setText(QCoreApplication::translate("MainWindow", "Confirm Password", nullptr));
+        newUser_Label->setText(QCoreApplication::translate("MainWindow", "Enter UserName", nullptr));
+        newPassword_Label->setText(QCoreApplication::translate("MainWindow", "Enter Password", nullptr));
+        confirmPassword_Label->setText(QCoreApplication::translate("MainWindow", "Confirm Password", nullptr));
         submitApplication_Button->setText(QCoreApplication::translate("MainWindow", "Create account", nullptr));
         zero_Button->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
         blank_Button_2->setText(QString());

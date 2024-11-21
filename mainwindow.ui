@@ -18,7 +18,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>0</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="login_Page">
        <widget class="QFrame" name="frame">
@@ -48,7 +48,7 @@
         <property name="frameShadow">
          <enum>QFrame::Shadow::Raised</enum>
         </property>
-        <widget class="QLabel" name="label_2">
+        <widget class="QLabel" name="username_Label">
          <property name="geometry">
           <rect>
            <x>0</x>
@@ -75,7 +75,7 @@ font-size:15px;
           <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
          </property>
         </widget>
-        <widget class="QLineEdit" name="lineEdit">
+        <widget class="QLineEdit" name="username_Line">
          <property name="geometry">
           <rect>
            <x>0</x>
@@ -119,7 +119,7 @@ padding:5px;
         <property name="frameShadow">
          <enum>QFrame::Shadow::Raised</enum>
         </property>
-        <widget class="QLineEdit" name="lineEdit_2">
+        <widget class="QLineEdit" name="password_Line">
          <property name="geometry">
           <rect>
            <x>0</x>
@@ -138,7 +138,7 @@ padding:5px;
           <enum>QLineEdit::EchoMode::Password</enum>
          </property>
         </widget>
-        <widget class="QLabel" name="label_3">
+        <widget class="QLabel" name="password_Label">
          <property name="geometry">
           <rect>
            <x>0</x>
@@ -191,7 +191,7 @@ background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, 
          <string>Create New account</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="login_button">
+       <widget class="QPushButton" name="login_Button">
         <property name="geometry">
          <rect>
           <x>350</x>
@@ -217,7 +217,7 @@ background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, 
          <string>Login</string>
         </property>
        </widget>
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="mainlogin_Label">
         <property name="geometry">
          <rect>
           <x>-20</x>
@@ -252,7 +252,7 @@ font-size:75px;
        </widget>
       </widget>
       <widget class="QWidget" name="accounts_Page">
-       <widget class="QPushButton" name="default_acc_button">
+       <widget class="QPushButton" name="default_acc_Button">
         <property name="geometry">
          <rect>
           <x>350</x>
@@ -265,7 +265,7 @@ font-size:75px;
          <string>Default Account</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="current_acc_button">
+       <widget class="QPushButton" name="current_acc_Button">
         <property name="geometry">
          <rect>
           <x>350</x>
@@ -278,7 +278,7 @@ font-size:75px;
          <string>Current Account</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="savings_acc_button">
+       <widget class="QPushButton" name="savings_acc_Button">
         <property name="geometry">
          <rect>
           <x>350</x>
@@ -424,7 +424,7 @@ font-size:75px;
           </rect>
          </property>
         </widget>
-        <widget class="QLabel" name="label_4">
+        <widget class="QLabel" name="newUser_Label">
          <property name="geometry">
           <rect>
            <x>0</x>
@@ -463,7 +463,7 @@ font-size:75px;
           </rect>
          </property>
         </widget>
-        <widget class="QLabel" name="label_6">
+        <widget class="QLabel" name="newPassword_Label">
          <property name="geometry">
           <rect>
            <x>0</x>
@@ -502,7 +502,7 @@ font-size:75px;
           </rect>
          </property>
         </widget>
-        <widget class="QLabel" name="label_8">
+        <widget class="QLabel" name="confirmPassword_Label">
          <property name="geometry">
           <rect>
            <x>0</x>
@@ -781,17 +781,6 @@ font-size:75px;
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>939</width>
-     <height>25</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

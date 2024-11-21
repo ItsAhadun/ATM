@@ -9,14 +9,27 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    accounts_page.cpp \
+    create_user_page.cpp \
+    dashboard_page.cpp \
+    login_page.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    numpad_page.cpp
 
 HEADERS += \
-    mainwindow.h
+    accounts_page.h \
+    dashboard_page.h \
+    mainwindow.h \
+    numpad_page.h
 
 FORMS += \
-    mainwindow.ui
+    accounts_page.ui \
+    create_user_page.ui \
+    dashboard_page.ui \
+    login_page.ui \
+    mainwindow.ui \
+    numpad_page.ui
 
 TRANSLATIONS += \
     LoginScreen_en_US.ts
