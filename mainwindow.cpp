@@ -201,3 +201,37 @@ void MainWindow::on_checkBalance_Button_clicked()
     }
 }
 
+
+void MainWindow::on_depositEnter_Button_clicked()
+{
+    ui->lcdNumber->display(currentInput.toDouble());
+
+    // Check if the input is valid
+    if (currentInput.isEmpty() || currentInput.toDouble() <= 0) {
+        QMessageBox::warning(this, "Invalid Input", "Please enter a valid deposit amount.");
+        return;
+    }
+
+    // Convert the input to a double
+    double depositAmount = currentInput.toDouble();
+
+    // Prepare the query to update the user's balance
+    QSqlQuery query;
+    query.prepare("UPDATE users SET balance = balance + :amount WHERE username = :username");
+    query.bindValue(":amount", depositAmount);
+    query.bindValue(":username", loggedInUsername);
+
+    if (query.exec()) {
+        QMessageBox::information(this, "Deposit Successful", QString("Deposited $%1 into your account.").arg(depositAmount));
+
+        // Clear the input and reset the display
+        currentInput.clear();
+        ui->lcdNumber->display(0);
+
+        // Optionally, navigate back to the dashboard or accounts page
+        ui->stackedWidget->setCurrentWidget(ui->dashboard_Page);
+    } else {
+        QMessageBox::critical(this, "Database Error", "Failed to deposit the amount. Please try again.");
+    }
+}
+

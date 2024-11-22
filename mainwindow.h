@@ -39,6 +39,8 @@ private slots:
 
     void on_checkBalance_Button_clicked();
 
+    void on_depositEnter_Button_clicked();
+
 protected:
 
 

@@ -79,7 +79,7 @@ public:
     QGridLayout *numpad_Grid;
     QPushButton *four_Button;
     QPushButton *cancel_Button;
-    QPushButton *enter_Button;
+    QPushButton *depositEnter_Button;
     QPushButton *blank_Button_2;
     QPushButton *blank_Button;
     QPushButton *six_Button;
@@ -325,11 +325,11 @@ public:
 
         numpad_Grid->addWidget(cancel_Button, 1, 3, 1, 1);
 
-        enter_Button = new QPushButton(numpad_Page);
-        enter_Button->setObjectName("enter_Button");
-        enter_Button->setMinimumSize(QSize(75, 75));
+        depositEnter_Button = new QPushButton(numpad_Page);
+        depositEnter_Button->setObjectName("depositEnter_Button");
+        depositEnter_Button->setMinimumSize(QSize(75, 75));
 
-        numpad_Grid->addWidget(enter_Button, 2, 3, 1, 1);
+        numpad_Grid->addWidget(depositEnter_Button, 2, 3, 1, 1);
 
         blank_Button_2 = new QPushButton(numpad_Page);
         blank_Button_2->setObjectName("blank_Button_2");
@@ -424,7 +424,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(4);
+        stackedWidget->setCurrentIndex(6);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -455,7 +455,7 @@ public:
         submitApplication_Button->setText(QCoreApplication::translate("MainWindow", "Create account", nullptr));
         four_Button->setText(QCoreApplication::translate("MainWindow", "4", nullptr));
         cancel_Button->setText(QCoreApplication::translate("MainWindow", "Cancel", nullptr));
-        enter_Button->setText(QCoreApplication::translate("MainWindow", "Enter", nullptr));
+        depositEnter_Button->setText(QCoreApplication::translate("MainWindow", "Enter", nullptr));
         blank_Button_2->setText(QString());
         blank_Button->setText(QString());
         six_Button->setText(QCoreApplication::translate("MainWindow", "6", nullptr));

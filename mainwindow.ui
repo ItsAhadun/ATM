@@ -24,7 +24,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>4</number>
+       <number>6</number>
       </property>
       <widget class="QWidget" name="login_Page">
        <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -576,7 +576,7 @@ background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, 
            </widget>
           </item>
           <item row="2" column="3">
-           <widget class="QPushButton" name="enter_Button">
+           <widget class="QPushButton" name="depositEnter_Button">
             <property name="minimumSize">
              <size>
               <width>75</width>
