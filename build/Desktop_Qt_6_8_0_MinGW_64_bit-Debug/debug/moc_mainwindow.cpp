@@ -61,7 +61,9 @@ constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers::string
     "on_amount20000_Button_clicked",
     "on_amount25000_Button_clicked",
     "on_otherAmount_Button_clicked",
-    "on_logout_Button_clicked"
+    "on_settings_Button_triggered",
+    "QAction*",
+    "arg1"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -105,7 +107,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
       23,    0,  180,    2, 0x08,   22 /* Private */,
       24,    0,  181,    2, 0x08,   23 /* Private */,
       25,    0,  182,    2, 0x08,   24 /* Private */,
-      26,    0,  183,    2, 0x08,   25 /* Private */,
+      26,    1,  183,    2, 0x08,   25 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -131,7 +133,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 27,   28,
 
        0        // eod
 };
@@ -192,8 +194,9 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_otherAmount_Button_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_logout_Button_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
+        // method 'on_settings_Button_triggered'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QAction *, std::false_type>
     >,
     nullptr
 } };
@@ -227,8 +230,19 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 20: _t->on_amount20000_Button_clicked(); break;
         case 21: _t->on_amount25000_Button_clicked(); break;
         case 22: _t->on_otherAmount_Button_clicked(); break;
-        case 23: _t->on_logout_Button_clicked(); break;
+        case 23: _t->on_settings_Button_triggered((*reinterpret_cast< std::add_pointer_t<QAction*>>(_a[1]))); break;
         default: ;
+        }
+    } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        switch (_id) {
+        default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+        case 23:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QAction* >(); break;
+            }
+            break;
         }
     }
 }
@@ -257,7 +271,7 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         _id -= 24;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         if (_id < 24)
-            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
+            qt_static_metacall(this, _c, _id, _a);
         _id -= 24;
     }
     return _id;

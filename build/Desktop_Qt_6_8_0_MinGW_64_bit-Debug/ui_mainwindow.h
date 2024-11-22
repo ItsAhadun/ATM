@@ -21,6 +21,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStackedWidget>
+#include <QtWidgets/QToolButton>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
@@ -59,7 +60,7 @@ public:
     QPushButton *checkBalance_Button;
     QPushButton *otherAmount_Button;
     QPushButton *amount25000_Button;
-    QPushButton *logout_Button;
+    QToolButton *settings_Button;
     QWidget *createUser_Page;
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout_2;
@@ -243,9 +244,9 @@ public:
         amount25000_Button = new QPushButton(dashboard_Page);
         amount25000_Button->setObjectName("amount25000_Button");
         amount25000_Button->setGeometry(QRect(740, 80, 141, 81));
-        logout_Button = new QPushButton(dashboard_Page);
-        logout_Button->setObjectName("logout_Button");
-        logout_Button->setGeometry(QRect(840, 650, 81, 31));
+        settings_Button = new QToolButton(dashboard_Page);
+        settings_Button->setObjectName("settings_Button");
+        settings_Button->setGeometry(QRect(760, 650, 131, 21));
         stackedWidget->addWidget(dashboard_Page);
         createUser_Page = new QWidget();
         createUser_Page->setObjectName("createUser_Page");
@@ -453,7 +454,7 @@ public:
         checkBalance_Button->setText(QCoreApplication::translate("MainWindow", "Check Balance", nullptr));
         otherAmount_Button->setText(QCoreApplication::translate("MainWindow", "Other Amount", nullptr));
         amount25000_Button->setText(QCoreApplication::translate("MainWindow", "25,000", nullptr));
-        logout_Button->setText(QCoreApplication::translate("MainWindow", "Logout", nullptr));
+        settings_Button->setText(QCoreApplication::translate("MainWindow", "Settings", nullptr));
         newUser_Line_2->setText(QCoreApplication::translate("MainWindow", "Enter UserName", nullptr));
         confirmPassword_Label->setText(QCoreApplication::translate("MainWindow", "Confirm Password", nullptr));
         newPassword_Label->setText(QCoreApplication::translate("MainWindow", "Enter Password", nullptr));

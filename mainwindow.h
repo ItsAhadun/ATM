@@ -49,7 +49,7 @@ private slots:
 
     void on_otherAmount_Button_clicked();
 
-    void on_logout_Button_clicked();
+    void on_settings_Button_triggered(QAction *arg1);
 
 protected:
 
@@ -61,6 +61,10 @@ private:
     QString currentInput;
     enum OperationMode { Deposit, Withdrawal };
     OperationMode currentMode;
+    QMenu *settingsMenu;
+    void setupSettingsButton();
+    void logoutAction();
+    void settingsAction();
 };
 
 #endif

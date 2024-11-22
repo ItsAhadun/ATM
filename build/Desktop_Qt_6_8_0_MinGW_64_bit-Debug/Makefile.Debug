@@ -768,6 +768,8 @@ debug/mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		C:/Qt/6.8.0/mingw_64/include/QtWidgets/QSpacerItem \
 		C:/Qt/6.8.0/mingw_64/include/QtWidgets/QStackedWidget \
 		C:/Qt/6.8.0/mingw_64/include/QtWidgets/qstackedwidget.h \
+		C:/Qt/6.8.0/mingw_64/include/QtWidgets/QToolButton \
+		C:/Qt/6.8.0/mingw_64/include/QtWidgets/qtoolbutton.h \
 		C:/Qt/6.8.0/mingw_64/include/QtWidgets/QVBoxLayout \
 		C:/Qt/6.8.0/mingw_64/include/QtWidgets/QMessageBox \
 		C:/Qt/6.8.0/mingw_64/include/QtWidgets/qmessagebox.h \
@@ -783,7 +785,12 @@ debug/mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		C:/Qt/6.8.0/mingw_64/include/QtSql/qsqlquery.h \
 		C:/Qt/6.8.0/mingw_64/include/QtSql/QSqlError \
 		C:/Qt/6.8.0/mingw_64/include/QtSql/qsqlerror.h \
-		C:/Qt/6.8.0/mingw_64/include/QtCore/QDebug
+		C:/Qt/6.8.0/mingw_64/include/QtCore/QDebug \
+		C:/Qt/6.8.0/mingw_64/include/QtCore/QDateTime \
+		C:/Qt/6.8.0/mingw_64/include/QtCore/qdatetime.h \
+		C:/Qt/6.8.0/mingw_64/include/QtCore/qcalendar.h \
+		C:/Qt/6.8.0/mingw_64/include/QtWidgets/QMenu \
+		C:/Qt/6.8.0/mingw_64/include/QtWidgets/qmenu.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mainwindow.o ..\..\mainwindow.cpp
 
 debug/qrc_qmake_qmake_qm_files.o: debug/qrc_qmake_qmake_qm_files.cpp 

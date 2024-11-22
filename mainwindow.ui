@@ -381,17 +381,17 @@ background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, 
          <string>25,000</string>
         </property>
        </widget>
-       <widget class="QPushButton" name="logout_Button">
+       <widget class="QToolButton" name="settings_Button">
         <property name="geometry">
          <rect>
-          <x>840</x>
+          <x>760</x>
           <y>650</y>
-          <width>81</width>
-          <height>31</height>
+          <width>131</width>
+          <height>21</height>
          </rect>
         </property>
         <property name="text">
-         <string>Logout</string>
+         <string>Settings</string>
         </property>
        </widget>
       </widget>
