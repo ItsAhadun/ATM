@@ -57,6 +57,8 @@ private:
     QMap<QString, QWidget*> screenMap;
     QString loggedInUsername;
     QString currentInput;
+    enum OperationMode { Deposit, Withdrawal };
+    OperationMode currentMode;
 };
 
 #endif

@@ -146,6 +146,7 @@ void MainWindow::on_lineEdit_2_returnPressed()
 void MainWindow::on_deposit_Button_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->numpad_Page);
+    currentMode = Deposit;
 }
 
 
@@ -202,38 +203,59 @@ void MainWindow::on_checkBalance_Button_clicked()
 }
 
 
-void MainWindow::on_depositEnter_Button_clicked()
-{
-    ui->lcdNumber->display(currentInput.toDouble());
+void MainWindow::on_depositEnter_Button_clicked() {
+    double amount = currentInput.toDouble();
 
-    // Check if the input is valid
-    if (currentInput.isEmpty() || currentInput.toDouble() <= 0) {
-        QMessageBox::warning(this, "Invalid Input", "Please enter a valid deposit amount.");
+    if (amount <= 0) {
+        QMessageBox::warning(this, "Invalid Input", "Please enter a valid amount.");
         return;
     }
 
-    // Convert the input to a double
-    double depositAmount = currentInput.toDouble();
-
-    // Prepare the query to update the user's balance
     QSqlQuery query;
-    query.prepare("UPDATE users SET balance = balance + :amount WHERE username = :username");
-    query.bindValue(":amount", depositAmount);
-    query.bindValue(":username", loggedInUsername);
 
-    if (query.exec()) {
-        QMessageBox::information(this, "Deposit Successful", QString("Deposited $%1 into your account.").arg(depositAmount));
+    if (currentMode == Deposit) {
+        query.prepare("UPDATE users SET balance = balance + :amount WHERE username = :username");
+        query.bindValue(":amount", amount);
+        query.bindValue(":username", loggedInUsername);
 
-        // Clear the input and reset the display
-        currentInput.clear();
-        ui->lcdNumber->display(0);
+        if (query.exec()) {
+            QMessageBox::information(this, "Deposit Successful", QString("Deposited $%1 into your account.").arg(amount));
+        } else {
+            QMessageBox::critical(this, "Database Error", "Failed to deposit the amount. Please try again.");
+        }
+    } else if (currentMode == Withdrawal) {
+        query.prepare("SELECT balance FROM users WHERE username = :username");
+        query.bindValue(":username", loggedInUsername);
 
-        // Optionally, navigate back to the dashboard or accounts page
-        ui->stackedWidget->setCurrentWidget(ui->dashboard_Page);
-    } else {
-        QMessageBox::critical(this, "Database Error", "Failed to deposit the amount. Please try again.");
+        if (!query.exec() || !query.next()) {
+            QMessageBox::critical(this, "Database Error", "Failed to retrieve account balance.");
+            return;
+        }
+
+        double currentBalance = query.value("balance").toDouble();
+
+        if (currentBalance < amount) {
+            QMessageBox::warning(this, "Insufficient Funds", "You do not have enough balance for this withdrawal.");
+            return;
+        }
+
+        query.prepare("UPDATE users SET balance = balance - :amount WHERE username = :username");
+        query.bindValue(":amount", amount);
+        query.bindValue(":username", loggedInUsername);
+
+        if (query.exec()) {
+            QMessageBox::information(this, "Withdrawal Successful", QString("Withdrawn $%1.").arg(amount));
+        } else {
+            QMessageBox::critical(this, "Database Error", "Failed to process the withdrawal.");
+        }
     }
+
+    // Clear the input and reset the display
+    currentInput.clear();
+    ui->lcdNumber->display(0);
+    ui->stackedWidget->setCurrentWidget(ui->dashboard_Page);
 }
+
 
 void MainWindow::processWithdrawal(double amount) {
     if (loggedInUsername.isEmpty()) {
@@ -272,32 +294,33 @@ void MainWindow::processWithdrawal(double amount) {
     }
 }
 
-void MainWindow::on_amount1000_Button_clicked() {
+void MainWindow::on_amount1000_Button_clicked()
+{
     processWithdrawal(1000);
 }
 
-void MainWindow::on_amount5000_Button_clicked() {
+void MainWindow::on_amount5000_Button_clicked()
+{
     processWithdrawal(5000);
 }
 
-void MainWindow::on_amount10000_Button_clicked() {
+void MainWindow::on_amount10000_Button_clicked()
+{
     processWithdrawal(10000);
 }
 
-void MainWindow::on_amount20000_Button_clicked() {
+void MainWindow::on_amount20000_Button_clicked()
+{
     processWithdrawal(20000);
 }
 
-void MainWindow::on_amount25000_Button_clicked() {
+void MainWindow::on_amount25000_Button_clicked()
+{
     processWithdrawal(25000);
 }
-/*
-void MainWindow::on_otherAmount_Button_clicked() {
-    double amount = currentInput.toDouble();
-    if (amount <= 0) {
-        QMessageBox::warning(this, "Invalid Input", "Please enter a valid withdrawal amount.");
-        return;
-    }
-    processWithdrawal(amount);
+
+void MainWindow::on_otherAmount_Button_clicked()
+{
+    currentMode = Withdrawal;
+    ui->stackedWidget->setCurrentWidget(ui->numpad_Page);
 }
-*/

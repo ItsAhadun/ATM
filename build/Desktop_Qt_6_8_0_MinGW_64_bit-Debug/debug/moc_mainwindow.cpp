@@ -221,7 +221,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 19: _t->on_amount10000_Button_clicked(); break;
         case 20: _t->on_amount20000_Button_clicked(); break;
         case 21: _t->on_amount25000_Button_clicked(); break;
-        //case 22: _t->on_otherAmount_Button_clicked(); break;
+        case 22: _t->on_otherAmount_Button_clicked(); break;
         default: ;
         }
     }
