@@ -24,7 +24,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>4</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="login_Page">
        <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -57,7 +57,7 @@ font-size:75px;
             </property>
            </widget>
           </item>
-          <item alignment="">
+          <item>
            <widget class="QFrame" name="frame">
             <property name="minimumSize">
              <size>
@@ -122,7 +122,7 @@ padding:5px;
             </widget>
            </widget>
           </item>
-          <item alignment="">
+          <item>
            <widget class="QFrame" name="frame_2">
             <property name="minimumSize">
              <size>
@@ -190,7 +190,7 @@ font-size:15px;
             </widget>
            </widget>
           </item>
-          <item alignment="">
+          <item>
            <widget class="QPushButton" name="login_button">
             <property name="maximumSize">
              <size>
@@ -210,7 +210,7 @@ background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, 
             </property>
            </widget>
           </item>
-          <item alignment="">
+          <item>
            <widget class="QPushButton" name="createAccount_Button">
             <property name="maximumSize">
              <size>
