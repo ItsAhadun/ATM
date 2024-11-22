@@ -19,6 +19,7 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSlider>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QToolButton>
@@ -46,7 +47,16 @@ public:
     QPushButton *login_button;
     QPushButton *createAccount_Button;
     QWidget *receipt_Page;
-    QWidget *page_2;
+    QWidget *deleteAccount_Page;
+    QWidget *horizontalLayoutWidget;
+    QHBoxLayout *horizontalLayout_4;
+    QVBoxLayout *verticalLayout_3;
+    QLabel *enterPass_Label;
+    QLineEdit *deletePass_Line;
+    QLabel *enterPassConfirm_Label;
+    QLineEdit *deletePassConfirm_Line;
+    QSlider *horizontalSlider;
+    QLabel *deletion_Label;
     QWidget *accounts_Page;
     QPushButton *default_acc_button;
     QPushButton *current_acc_button;
@@ -203,9 +213,74 @@ public:
         receipt_Page = new QWidget();
         receipt_Page->setObjectName("receipt_Page");
         stackedWidget->addWidget(receipt_Page);
-        page_2 = new QWidget();
-        page_2->setObjectName("page_2");
-        stackedWidget->addWidget(page_2);
+        deleteAccount_Page = new QWidget();
+        deleteAccount_Page->setObjectName("deleteAccount_Page");
+        horizontalLayoutWidget = new QWidget(deleteAccount_Page);
+        horizontalLayoutWidget->setObjectName("horizontalLayoutWidget");
+        horizontalLayoutWidget->setGeometry(QRect(200, 170, 511, 331));
+        horizontalLayout_4 = new QHBoxLayout(horizontalLayoutWidget);
+        horizontalLayout_4->setObjectName("horizontalLayout_4");
+        horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
+        verticalLayout_3 = new QVBoxLayout();
+        verticalLayout_3->setObjectName("verticalLayout_3");
+        enterPass_Label = new QLabel(horizontalLayoutWidget);
+        enterPass_Label->setObjectName("enterPass_Label");
+        QFont font;
+        font.setPointSize(12);
+        font.setBold(true);
+        font.setItalic(true);
+        enterPass_Label->setFont(font);
+
+        verticalLayout_3->addWidget(enterPass_Label);
+
+        deletePass_Line = new QLineEdit(horizontalLayoutWidget);
+        deletePass_Line->setObjectName("deletePass_Line");
+
+        verticalLayout_3->addWidget(deletePass_Line);
+
+        enterPassConfirm_Label = new QLabel(horizontalLayoutWidget);
+        enterPassConfirm_Label->setObjectName("enterPassConfirm_Label");
+        enterPassConfirm_Label->setFont(font);
+        enterPassConfirm_Label->setLineWidth(1);
+        enterPassConfirm_Label->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        verticalLayout_3->addWidget(enterPassConfirm_Label);
+
+        deletePassConfirm_Line = new QLineEdit(horizontalLayoutWidget);
+        deletePassConfirm_Line->setObjectName("deletePassConfirm_Line");
+
+        verticalLayout_3->addWidget(deletePassConfirm_Line);
+
+        horizontalSlider = new QSlider(horizontalLayoutWidget);
+        horizontalSlider->setObjectName("horizontalSlider");
+        QFont font1;
+        font1.setBold(true);
+        horizontalSlider->setFont(font1);
+        horizontalSlider->setCursor(QCursor(Qt::CursorShape::SizeAllCursor));
+        horizontalSlider->setMinimum(0);
+        horizontalSlider->setMaximum(20);
+        horizontalSlider->setValue(0);
+        horizontalSlider->setSliderPosition(0);
+        horizontalSlider->setTracking(true);
+        horizontalSlider->setOrientation(Qt::Orientation::Horizontal);
+        horizontalSlider->setInvertedAppearance(false);
+        horizontalSlider->setTickPosition(QSlider::TickPosition::TicksBelow);
+        horizontalSlider->setTickInterval(4);
+
+        verticalLayout_3->addWidget(horizontalSlider);
+
+        deletion_Label = new QLabel(horizontalLayoutWidget);
+        deletion_Label->setObjectName("deletion_Label");
+        deletion_Label->setFont(font);
+        deletion_Label->setLineWidth(1);
+        deletion_Label->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        verticalLayout_3->addWidget(deletion_Label);
+
+
+        horizontalLayout_4->addLayout(verticalLayout_3);
+
+        stackedWidget->addWidget(deleteAccount_Page);
         accounts_Page = new QWidget();
         accounts_Page->setObjectName("accounts_Page");
         default_acc_button = new QPushButton(accounts_Page);
@@ -429,7 +504,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(4);
+        stackedWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -443,6 +518,9 @@ public:
         password_Label->setText(QCoreApplication::translate("MainWindow", "Password:", nullptr));
         login_button->setText(QCoreApplication::translate("MainWindow", "Login", nullptr));
         createAccount_Button->setText(QCoreApplication::translate("MainWindow", "Create New account", nullptr));
+        enterPass_Label->setText(QCoreApplication::translate("MainWindow", "Enter password", nullptr));
+        enterPassConfirm_Label->setText(QCoreApplication::translate("MainWindow", "Enter password again", nullptr));
+        deletion_Label->setText(QCoreApplication::translate("MainWindow", "Slide to the right end to confirm deletion of your account!", nullptr));
         default_acc_button->setText(QCoreApplication::translate("MainWindow", "Default Account", nullptr));
         current_acc_button->setText(QCoreApplication::translate("MainWindow", "Current Account", nullptr));
         savings_acc_button->setText(QCoreApplication::translate("MainWindow", "Savings Account", nullptr));
