@@ -90,12 +90,17 @@ bool isValidPin(const QString &pin)
     return true;
 }
 
-
-
 void MainWindow::login_button()
 {
     QString uName = ui->lineEdit->text();
     QString uCode = ui->lineEdit_2->text();
+
+    // Validate PIN
+    if (!isValidPin(uCode))
+    {
+        QMessageBox::warning(this, "Input Error", "Password must be a 4-digit PIN.");
+        return;
+    }
 
     QSqlQuery query;
 
@@ -226,27 +231,36 @@ void MainWindow::on_submitApplication_Button_clicked()
         QMessageBox::warning(this, "Input Error", "Please enter both a username and a password.");
         return;
     }
-    if (confirmPassword == newPassword)
-    {
-        QSqlQuery query;
-        query.prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
-        query.bindValue(":username", newUsername);
-        query.bindValue(":password", newPassword);
 
-        if (query.exec()) {
-            QMessageBox::information(this, "Success", "Account created successfully!");
-            ui->stackedWidget->setCurrentWidget(ui->login_Page);
-        } else {
-            QMessageBox::critical(this, "Database Error", "Failed to create account: " + query.lastError().text());
-        }
-        //clear text fields
-        ui->confirmPassword_Line->clear();
-        ui->newPassword_Line->clear();
-        ui->newUser_Line->clear();
+    if (newPassword != confirmPassword)
+    {
+        QMessageBox::warning(this, "Input Error", "Passwords do not match.");
+        return;
     }
-    else
-        QMessageBox::warning(this, "Input Error", "Both Passwords aren't the same");
+    // Validate PIN
+    if (!isValidPin(newPassword))
+    {
+        QMessageBox::warning(this, "Input Error", "Password must be a 4-digit PIN.");
+        return;
+    }
+
+    QSqlQuery query;
+    query.prepare("INSERT INTO users (username, password) VALUES (:username, :password)");
+    query.bindValue(":username", newUsername);
+    query.bindValue(":password", newPassword);
+
+    if (query.exec()) {
+        QMessageBox::information(this, "Success", "Account created successfully!");
+        ui->stackedWidget->setCurrentWidget(ui->login_Page);
+    } else {
+        QMessageBox::critical(this, "Database Error", "Failed to create account: " + query.lastError().text());
+    }
+
+    ui->confirmPassword_Line->clear();
+    ui->newPassword_Line->clear();
+    ui->newUser_Line->clear();
 }
+
 
 void MainWindow::on_createAccount_Button_clicked()
 {
