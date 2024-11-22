@@ -30,7 +30,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>4</number>
+       <number>5</number>
       </property>
       <widget class="QWidget" name="login_Page">
        <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -253,7 +253,7 @@ background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, 
         <layout class="QHBoxLayout" name="horizontalLayout_4">
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_3">
-           <item alignment="">
+           <item>
             <widget class="QLabel" name="enterPass_Label">
              <property name="font">
               <font>
@@ -411,7 +411,7 @@ background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, 
         <layout class="QHBoxLayout" name="horizontalLayout_5">
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_6">
-           <item alignment="">
+           <item>
             <widget class="QPushButton" name="amount1000_Button">
              <property name="minimumSize">
               <size>
@@ -430,7 +430,7 @@ background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, 
              </property>
             </widget>
            </item>
-           <item alignment="">
+           <item>
             <widget class="QPushButton" name="amount5000_Button">
              <property name="minimumSize">
               <size>
@@ -449,7 +449,7 @@ background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, 
              </property>
             </widget>
            </item>
-           <item alignment="">
+           <item>
             <widget class="QPushButton" name="amount10000_Button">
              <property name="minimumSize">
               <size>
@@ -468,7 +468,7 @@ background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, 
              </property>
             </widget>
            </item>
-           <item alignment="|Qt::AlignmentFlag::AlignVCenter">
+           <item>
             <widget class="QPushButton" name="amount20000_Button">
              <property name="minimumSize">
               <size>
@@ -494,12 +494,9 @@ background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, 
            <property name="orientation">
             <enum>Qt::Orientation::Vertical</enum>
            </property>
-           <property name="sizeType">
-            <enum>QSizePolicy::Policy::MinimumExpanding</enum>
-           </property>
            <property name="sizeHint" stdset="0">
             <size>
-             <width>40</width>
+             <width>20</width>
              <height>40</height>
             </size>
            </property>
@@ -507,7 +504,7 @@ background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, 
          </item>
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_7">
-           <item alignment="">
+           <item>
             <widget class="QPushButton" name="amount25000_Button">
              <property name="minimumSize">
               <size>
@@ -526,7 +523,7 @@ background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, 
              </property>
             </widget>
            </item>
-           <item alignment="">
+           <item>
             <widget class="QPushButton" name="otherAmount_Button">
              <property name="minimumSize">
               <size>
@@ -545,7 +542,7 @@ background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, 
              </property>
             </widget>
            </item>
-           <item alignment="">
+           <item>
             <widget class="QPushButton" name="deposit_Button">
              <property name="minimumSize">
               <size>
@@ -564,7 +561,7 @@ background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, 
              </property>
             </widget>
            </item>
-           <item alignment="">
+           <item>
             <widget class="QPushButton" name="checkBalance_Button">
              <property name="minimumSize">
               <size>
@@ -742,6 +739,16 @@ Balance</string>
            </property>
            <property name="text">
             <string>Create account</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="acc_Cancel_Button">
+           <property name="styleSheet">
+            <string notr="true">background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, fx:0.331, fy:0.245, stop:0 rgba(4, 7, 255, 255), stop:1 rgba(255, 255, 255, 255));</string>
+           </property>
+           <property name="text">
+            <string>Cancel</string>
            </property>
           </widget>
          </item>

@@ -54,6 +54,8 @@ private slots:
     void on_horizontalSlider_valueChanged(int value);
     void on_deleteAccount_action();
 
+    void on_acc_Cancel_Button_clicked();
+
 protected:
 
 
@@ -64,6 +66,8 @@ private:
     QString currentInput;
     enum OperationMode { Deposit, Withdrawal };
     OperationMode currentMode;
+    enum AccountMode { Savings, Current };
+    AccountMode currentAccountMode;
     QMenu *settingsMenu;
     void setupSettingsButton();
     void logoutAction();

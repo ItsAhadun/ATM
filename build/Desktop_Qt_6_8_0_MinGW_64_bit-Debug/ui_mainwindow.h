@@ -89,6 +89,7 @@ public:
     QLineEdit *newPassword_Line;
     QLabel *newPassword_Label;
     QPushButton *submitApplication_Button;
+    QPushButton *acc_Cancel_Button;
     QWidget *numpad_Page;
     QVBoxLayout *verticalLayout;
     QSpacerItem *horizontalSpacer_2;
@@ -317,7 +318,7 @@ public:
         amount1000_Button->setObjectName("amount1000_Button");
         amount1000_Button->setMinimumSize(QSize(100, 100));
         QFont font2;
-        font2.setPointSize(20);
+        font2.setPointSize(12);
         font2.setBold(true);
         amount1000_Button->setFont(font2);
 
@@ -347,7 +348,7 @@ public:
 
         horizontalLayout_5->addLayout(verticalLayout_6);
 
-        verticalSpacer = new QSpacerItem(40, 40, QSizePolicy::Policy::MinimumExpanding, QSizePolicy::Policy::Minimum);
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
 
         horizontalLayout_5->addItem(verticalSpacer);
 
@@ -388,6 +389,9 @@ public:
         settings_Button->setObjectName("settings_Button");
         settings_Button->setGeometry(QRect(830, 660, 71, 21));
         settings_Button->setMinimumSize(QSize(0, 0));
+        QFont font3;
+        font3.setPointSize(10);
+        settings_Button->setFont(font3);
         stackedWidget->addWidget(dashboard_Page);
         createUser_Page = new QWidget();
         createUser_Page->setObjectName("createUser_Page");
@@ -441,6 +445,12 @@ public:
         submitApplication_Button->setStyleSheet(QString::fromUtf8("background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, fx:0.331, fy:0.245, stop:0 rgba(4, 7, 255, 255), stop:1 rgba(255, 255, 255, 255));"));
 
         verticalLayout_2->addWidget(submitApplication_Button);
+
+        acc_Cancel_Button = new QPushButton(verticalLayoutWidget);
+        acc_Cancel_Button->setObjectName("acc_Cancel_Button");
+        acc_Cancel_Button->setStyleSheet(QString::fromUtf8("background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, fx:0.331, fy:0.245, stop:0 rgba(4, 7, 255, 255), stop:1 rgba(255, 255, 255, 255));"));
+
+        verticalLayout_2->addWidget(acc_Cancel_Button);
 
         stackedWidget->addWidget(createUser_Page);
         numpad_Page = new QWidget();
@@ -570,7 +580,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(4);
+        stackedWidget->setCurrentIndex(5);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -604,6 +614,7 @@ public:
         confirmPassword_Label->setText(QCoreApplication::translate("MainWindow", "Confirm Password", nullptr));
         newPassword_Label->setText(QCoreApplication::translate("MainWindow", "Enter Password", nullptr));
         submitApplication_Button->setText(QCoreApplication::translate("MainWindow", "Create account", nullptr));
+        acc_Cancel_Button->setText(QCoreApplication::translate("MainWindow", "Cancel", nullptr));
         four_Button->setText(QCoreApplication::translate("MainWindow", "4", nullptr));
         cancel_Button->setText(QCoreApplication::translate("MainWindow", "Cancel", nullptr));
         depositEnter_Button->setText(QCoreApplication::translate("MainWindow", "Enter", nullptr));
