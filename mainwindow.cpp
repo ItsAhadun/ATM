@@ -79,6 +79,8 @@ void MainWindow::login_button()
         loggedInUsername = uName;
         ui->stackedWidget->setCurrentWidget(ui->accounts_Page);
         QMessageBox::information(this, "Welcome Message", "User: " + uName + "\nWelcome to Bank Al LUMS");
+        ui->lineEdit->clear();
+        ui->lineEdit_2->clear();
     } else {
         QMessageBox::information(this, "Error Box", "Invalid Username or Password");
     }
@@ -324,3 +326,17 @@ void MainWindow::on_otherAmount_Button_clicked()
     currentMode = Withdrawal;
     ui->stackedWidget->setCurrentWidget(ui->numpad_Page);
 }
+
+void MainWindow::on_logout_Button_clicked()
+{
+    // Clear the logged-in user's session
+    loggedInUsername.clear();
+    currentInput.clear();
+
+    // Redirect to the login page
+    ui->stackedWidget->setCurrentWidget(ui->login_Page);
+
+    // Optionally, show a message
+    QMessageBox::information(this, "Logout", "You have successfully logged out.");
+}
+

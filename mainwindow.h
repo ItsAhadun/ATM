@@ -49,6 +49,8 @@ private slots:
 
     void on_otherAmount_Button_clicked();
 
+    void on_logout_Button_clicked();
+
 protected:
 
 
