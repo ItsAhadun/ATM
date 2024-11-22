@@ -38,8 +38,16 @@ private slots:
     void on_clear_Button_clicked();
 
     void on_checkBalance_Button_clicked();
-
+    void processWithdrawal(double amount);
     void on_depositEnter_Button_clicked();
+
+    void on_amount1000_Button_clicked();
+    void on_amount5000_Button_clicked();
+    void on_amount10000_Button_clicked();
+    void on_amount20000_Button_clicked();
+    void on_amount25000_Button_clicked();
+
+    void on_otherAmount_Button_clicked();
 
 protected:
 

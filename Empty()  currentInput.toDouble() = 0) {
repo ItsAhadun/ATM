@@ -1,0 +1,41 @@
+[33mcommit 330773dcc92b76403f103bb9069061774346bfca[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: ItsAhadun <aahad6613@gmail.com>
+Date:   Fri Nov 22 05:07:23 2024 +0500
+
+    added deposting money into account
+
+[33mcommit a622350cf1d196a036e292aa5675178759fc8485[m
+Author: ItsAhadun <aahad6613@gmail.com>
+Date:   Fri Nov 22 04:58:13 2024 +0500
+
+    added check balance
+
+[33mcommit 31c052130c5854098cf2577a5db358c3b6d7dbc1[m
+Author: ItsAhadun <aahad6613@gmail.com>
+Date:   Fri Nov 22 04:24:31 2024 +0500
+
+    full database sql code added
+
+[33mcommit 4ef226bc44468d9681603df8082c978526cf2bd4[m
+Author: ItsAhadun <aahad6613@gmail.com>
+Date:   Fri Nov 22 04:20:03 2024 +0500
+
+    added working num, clear, cancel buttons
+
+[33mcommit 6ca3c8ffc7a05e27fa19e1956175acd381b6acb8[m
+Author: ItsAhadun <aahad6613@gmail.com>
+Date:   Fri Nov 22 02:59:47 2024 +0500
+
+    numpad connected and some screens aligned
+
+[33mcommit 18f1ee119282aaa3560c079fbc77388b0fe3aec0[m
+Author: ItsAhadun <aahad6613@gmail.com>
+Date:   Thu Nov 14 11:41:02 2024 +0500
+
+    hovering added
+
+[33mcommit 57a42ac204a86c2b5561b63cc8715a9e792d2bdf[m
+Author: ItsAhadun <aahad6613@gmail.com>
+Date:   Thu Nov 14 00:02:46 2024 +0500
+
+    initial commit
