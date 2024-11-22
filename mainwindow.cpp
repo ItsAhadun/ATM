@@ -10,7 +10,6 @@
 #include <QMenu>
 #include <QToolButton>
 
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -120,7 +119,8 @@ void MainWindow::login_button()
     query.bindValue(":username", uName);
     query.bindValue(":password", uCode);
 
-    if (query.exec() && query.next()) {
+    if (query.exec() && query.next())
+    {
         // Successful login
         loggedInUsername = uName;
         ui->stackedWidget->setCurrentWidget(ui->accounts_Page);
@@ -134,7 +134,7 @@ void MainWindow::login_button()
         if (!resetQuery.exec()) {
             QMessageBox::critical(this, "Database Error", "Failed to reset login attempts: " + resetQuery.lastError().text());
 
-        }
+    }
 
     } else {
         // Failed login
@@ -166,10 +166,7 @@ void MainWindow::login_button()
             }
         }
     }
-
-
 }
-
 
 void MainWindow::on_current_acc_button_clicked()
 {
@@ -427,7 +424,6 @@ void MainWindow::logoutAction()
 
 void MainWindow::settingsAction()
 {
-    // Placeholder for settings functionality
     QMessageBox::information(this, "Settings", "Settings option clicked.");
 }
 
@@ -437,6 +433,8 @@ void MainWindow::setupSettingsButton()
     QMenu *settingsMenu = new QMenu(this);
     settingsMenu->addAction("Logout", this, &MainWindow::logoutAction);
     settingsMenu->addAction("Change Password", this, &MainWindow::settingsAction);
+    settingsMenu->addAction("Delete Account", this, &MainWindow::on_deleteAccount_action);
+
 
     // Configure the tool button
     QToolButton *settingsButton = ui->settings_Button; // Ensure the tool button exists in your UI
@@ -444,9 +442,78 @@ void MainWindow::setupSettingsButton()
     settingsButton->setPopupMode(QToolButton::MenuButtonPopup);
 }
 
-
 void MainWindow::on_settings_Button_triggered(QAction *)
 {
 
+}
+
+void MainWindow::on_deleteAccount_action()
+{
+    QSqlQuery query;
+    query.prepare("SELECT balance FROM users WHERE username = :username");
+    query.bindValue(":username", loggedInUsername);
+
+    if (query.exec() && query.next()) {
+        double balance = query.value("balance").toDouble();
+        if (balance != 0) {
+            QMessageBox::warning(this, "Cannot Delete Account",
+                                 "Your account balance is not zero. Please withdraw all funds before deleting your account.");
+            return;
+        }
+    } else {
+        QMessageBox::critical(this, "Database Error",
+                              "Failed to retrieve account balance. Please try again.");
+        return;
+    }
+
+    // Navigate to Delete Account Page
+    ui->stackedWidget->setCurrentWidget(ui->deleteAccount_Page);
+}
+
+void MainWindow::on_horizontalSlider_valueChanged(int value)
+{
+    if (value == 20)
+    {
+        QString password = ui->deletePass_Line->text();
+        QString confirmPassword = ui->deletePassConfirm_Line->text();
+
+        if (password.isEmpty() || confirmPassword.isEmpty()) {
+            QMessageBox::warning(this, "Input Error", "Please fill in both password fields.");
+            return;
+        }
+
+        if (password != confirmPassword) {
+            QMessageBox::warning(this, "Input Error", "Passwords do not match.");
+            return;
+        }
+
+        // Verify password in the database
+        QSqlQuery query;
+        query.prepare("SELECT password FROM users WHERE username = :username");
+        query.bindValue(":username", loggedInUsername);
+
+        if (query.exec() && query.next()) {
+            QString storedPassword = query.value("password").toString();
+            if (storedPassword != password) {
+                QMessageBox::warning(this, "Authentication Failed", "Incorrect password. Please try again.");
+                return;
+            }
+
+            // Delete the account
+            QSqlQuery deleteQuery;
+            deleteQuery.prepare("DELETE FROM users WHERE username = :username");
+            deleteQuery.bindValue(":username", loggedInUsername);
+
+            if (deleteQuery.exec()) {
+                QMessageBox::information(this, "Account Deleted", "Your account has been successfully deleted.");
+                logoutAction(); // Log out the user
+            } else {
+                QMessageBox::critical(this, "Database Error", "Failed to delete the account. Please try again.");
+            }
+        } else {
+            QMessageBox::critical(this, "Database Error", "Failed to validate password. Please try again.");
+        }
+        //qDebug() << "slider triggerred";
+    }
 }
 

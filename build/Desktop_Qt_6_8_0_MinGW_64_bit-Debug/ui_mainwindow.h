@@ -62,14 +62,19 @@ public:
     QPushButton *current_acc_button;
     QPushButton *savings_acc_button;
     QWidget *dashboard_Page;
+    QWidget *horizontalLayoutWidget_2;
+    QHBoxLayout *horizontalLayout_5;
+    QVBoxLayout *verticalLayout_6;
     QPushButton *amount1000_Button;
     QPushButton *amount5000_Button;
-    QPushButton *amount20000_Button;
     QPushButton *amount10000_Button;
+    QPushButton *amount20000_Button;
+    QSpacerItem *verticalSpacer;
+    QVBoxLayout *verticalLayout_7;
+    QPushButton *amount25000_Button;
+    QPushButton *otherAmount_Button;
     QPushButton *deposit_Button;
     QPushButton *checkBalance_Button;
-    QPushButton *otherAmount_Button;
-    QPushButton *amount25000_Button;
     QToolButton *settings_Button;
     QWidget *createUser_Page;
     QWidget *verticalLayoutWidget;
@@ -111,8 +116,13 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(939, 700);
-        MainWindow->setMinimumSize(QSize(400, 700));
+        MainWindow->resize(940, 700);
+        QSizePolicy sizePolicy(QSizePolicy::Policy::MinimumExpanding, QSizePolicy::Policy::MinimumExpanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
+        MainWindow->setSizePolicy(sizePolicy);
+        MainWindow->setMinimumSize(QSize(940, 700));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         horizontalLayout = new QHBoxLayout(centralwidget);
@@ -295,33 +305,89 @@ public:
         stackedWidget->addWidget(accounts_Page);
         dashboard_Page = new QWidget();
         dashboard_Page->setObjectName("dashboard_Page");
-        amount1000_Button = new QPushButton(dashboard_Page);
+        horizontalLayoutWidget_2 = new QWidget(dashboard_Page);
+        horizontalLayoutWidget_2->setObjectName("horizontalLayoutWidget_2");
+        horizontalLayoutWidget_2->setGeometry(QRect(20, 10, 881, 641));
+        horizontalLayout_5 = new QHBoxLayout(horizontalLayoutWidget_2);
+        horizontalLayout_5->setObjectName("horizontalLayout_5");
+        horizontalLayout_5->setContentsMargins(0, 0, 0, 0);
+        verticalLayout_6 = new QVBoxLayout();
+        verticalLayout_6->setObjectName("verticalLayout_6");
+        amount1000_Button = new QPushButton(horizontalLayoutWidget_2);
         amount1000_Button->setObjectName("amount1000_Button");
-        amount1000_Button->setGeometry(QRect(40, 80, 141, 81));
-        amount5000_Button = new QPushButton(dashboard_Page);
+        amount1000_Button->setMinimumSize(QSize(100, 100));
+        QFont font2;
+        font2.setPointSize(20);
+        font2.setBold(true);
+        amount1000_Button->setFont(font2);
+
+        verticalLayout_6->addWidget(amount1000_Button);
+
+        amount5000_Button = new QPushButton(horizontalLayoutWidget_2);
         amount5000_Button->setObjectName("amount5000_Button");
-        amount5000_Button->setGeometry(QRect(40, 210, 141, 81));
-        amount20000_Button = new QPushButton(dashboard_Page);
-        amount20000_Button->setObjectName("amount20000_Button");
-        amount20000_Button->setGeometry(QRect(40, 470, 141, 81));
-        amount10000_Button = new QPushButton(dashboard_Page);
+        amount5000_Button->setMinimumSize(QSize(100, 100));
+        amount5000_Button->setFont(font2);
+
+        verticalLayout_6->addWidget(amount5000_Button);
+
+        amount10000_Button = new QPushButton(horizontalLayoutWidget_2);
         amount10000_Button->setObjectName("amount10000_Button");
-        amount10000_Button->setGeometry(QRect(40, 340, 141, 81));
-        deposit_Button = new QPushButton(dashboard_Page);
-        deposit_Button->setObjectName("deposit_Button");
-        deposit_Button->setGeometry(QRect(740, 340, 141, 81));
-        checkBalance_Button = new QPushButton(dashboard_Page);
-        checkBalance_Button->setObjectName("checkBalance_Button");
-        checkBalance_Button->setGeometry(QRect(740, 470, 141, 81));
-        otherAmount_Button = new QPushButton(dashboard_Page);
-        otherAmount_Button->setObjectName("otherAmount_Button");
-        otherAmount_Button->setGeometry(QRect(740, 210, 141, 81));
-        amount25000_Button = new QPushButton(dashboard_Page);
+        amount10000_Button->setMinimumSize(QSize(100, 100));
+        amount10000_Button->setFont(font2);
+
+        verticalLayout_6->addWidget(amount10000_Button);
+
+        amount20000_Button = new QPushButton(horizontalLayoutWidget_2);
+        amount20000_Button->setObjectName("amount20000_Button");
+        amount20000_Button->setMinimumSize(QSize(100, 100));
+        amount20000_Button->setFont(font2);
+
+        verticalLayout_6->addWidget(amount20000_Button);
+
+
+        horizontalLayout_5->addLayout(verticalLayout_6);
+
+        verticalSpacer = new QSpacerItem(40, 40, QSizePolicy::Policy::MinimumExpanding, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout_5->addItem(verticalSpacer);
+
+        verticalLayout_7 = new QVBoxLayout();
+        verticalLayout_7->setObjectName("verticalLayout_7");
+        amount25000_Button = new QPushButton(horizontalLayoutWidget_2);
         amount25000_Button->setObjectName("amount25000_Button");
-        amount25000_Button->setGeometry(QRect(740, 80, 141, 81));
+        amount25000_Button->setMinimumSize(QSize(100, 100));
+        amount25000_Button->setFont(font2);
+
+        verticalLayout_7->addWidget(amount25000_Button);
+
+        otherAmount_Button = new QPushButton(horizontalLayoutWidget_2);
+        otherAmount_Button->setObjectName("otherAmount_Button");
+        otherAmount_Button->setMinimumSize(QSize(100, 100));
+        otherAmount_Button->setFont(font2);
+
+        verticalLayout_7->addWidget(otherAmount_Button);
+
+        deposit_Button = new QPushButton(horizontalLayoutWidget_2);
+        deposit_Button->setObjectName("deposit_Button");
+        deposit_Button->setMinimumSize(QSize(100, 100));
+        deposit_Button->setFont(font2);
+
+        verticalLayout_7->addWidget(deposit_Button);
+
+        checkBalance_Button = new QPushButton(horizontalLayoutWidget_2);
+        checkBalance_Button->setObjectName("checkBalance_Button");
+        checkBalance_Button->setMinimumSize(QSize(100, 100));
+        checkBalance_Button->setFont(font2);
+
+        verticalLayout_7->addWidget(checkBalance_Button);
+
+
+        horizontalLayout_5->addLayout(verticalLayout_7);
+
         settings_Button = new QToolButton(dashboard_Page);
         settings_Button->setObjectName("settings_Button");
-        settings_Button->setGeometry(QRect(760, 650, 131, 21));
+        settings_Button->setGeometry(QRect(830, 660, 71, 21));
+        settings_Button->setMinimumSize(QSize(0, 0));
         stackedWidget->addWidget(dashboard_Page);
         createUser_Page = new QWidget();
         createUser_Page->setObjectName("createUser_Page");
@@ -504,7 +570,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(2);
+        stackedWidget->setCurrentIndex(4);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -524,14 +590,15 @@ public:
         default_acc_button->setText(QCoreApplication::translate("MainWindow", "Default Account", nullptr));
         current_acc_button->setText(QCoreApplication::translate("MainWindow", "Current Account", nullptr));
         savings_acc_button->setText(QCoreApplication::translate("MainWindow", "Savings Account", nullptr));
-        amount1000_Button->setText(QCoreApplication::translate("MainWindow", "1000", nullptr));
-        amount5000_Button->setText(QCoreApplication::translate("MainWindow", "5000", nullptr));
+        amount1000_Button->setText(QCoreApplication::translate("MainWindow", "1,000", nullptr));
+        amount5000_Button->setText(QCoreApplication::translate("MainWindow", "5,000", nullptr));
+        amount10000_Button->setText(QCoreApplication::translate("MainWindow", "10,000", nullptr));
         amount20000_Button->setText(QCoreApplication::translate("MainWindow", "20,000", nullptr));
-        amount10000_Button->setText(QCoreApplication::translate("MainWindow", "10000", nullptr));
-        deposit_Button->setText(QCoreApplication::translate("MainWindow", "Deposit", nullptr));
-        checkBalance_Button->setText(QCoreApplication::translate("MainWindow", "Check Balance", nullptr));
-        otherAmount_Button->setText(QCoreApplication::translate("MainWindow", "Other Amount", nullptr));
         amount25000_Button->setText(QCoreApplication::translate("MainWindow", "25,000", nullptr));
+        otherAmount_Button->setText(QCoreApplication::translate("MainWindow", "Other Amount", nullptr));
+        deposit_Button->setText(QCoreApplication::translate("MainWindow", "Deposit", nullptr));
+        checkBalance_Button->setText(QCoreApplication::translate("MainWindow", "Check\n"
+"Balance", nullptr));
         settings_Button->setText(QCoreApplication::translate("MainWindow", "Settings", nullptr));
         newUser_Line_2->setText(QCoreApplication::translate("MainWindow", "Enter UserName", nullptr));
         confirmPassword_Label->setText(QCoreApplication::translate("MainWindow", "Confirm Password", nullptr));

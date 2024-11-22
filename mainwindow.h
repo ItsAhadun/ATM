@@ -51,6 +51,9 @@ private slots:
 
     void on_settings_Button_triggered(QAction *arg1);
 
+    void on_horizontalSlider_valueChanged(int value);
+    void on_deleteAccount_action();
+
 protected:
 
 
