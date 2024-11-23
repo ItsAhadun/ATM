@@ -341,31 +341,40 @@ bool MainWindow::isAmountValid(double amount) {
 }
 
 
-void MainWindow::on_depositEnter_Button_clicked() {
+void MainWindow::on_depositEnter_Button_clicked()
+{
     double amount = currentInput.toDouble();
 
-    if (!isAmountValid(amount))
-    {
-        currentInput=0;
+    if (currentMode == Withdrawal) {
+        // Use the processWithdrawal function to handle withdrawals
+        processWithdrawal(amount);
+        ui->lcdNumber->display(0);
+        currentInput = 0;
+        return;
+    }
+
+    // For deposits, validate the amount
+    if (!isAmountValid(amount)) {
+        ui->lcdNumber->display(0);
+        currentInput = 0;
         return;
     }
 
     QString balanceColumn = (currentAccountMode == Savings) ? "savings_balance" : "current_balance";
-    QString operation = (currentMode == Deposit) ? "+" : "-";
 
+    // Update the balance for deposits
     QSqlQuery query;
-    query.prepare(QString("UPDATE users SET %1 = %1 %2 :amount WHERE username = :username")
-                      .arg(balanceColumn).arg(operation));
+    query.prepare(QString("UPDATE users SET %1 = %1 + :amount WHERE username = :username").arg(balanceColumn));
     query.bindValue(":amount", amount);
     query.bindValue(":username", loggedInUsername);
 
     if (query.exec()) {
-        QString action = (currentMode == Deposit) ? "Deposited" : "Withdrawn";
-        QMessageBox::information(this, "Success", QString("%1 Rs%2 to your %3 account.")
-                                                      .arg(action).arg(amount)
-                                                      .arg((currentAccountMode == Savings) ? "Savings" : "Current"));
+        QMessageBox::information(this, "Deposit Successful",
+                                 QString("Deposited Rs%1 to your %2 account.")
+                                     .arg(amount)
+                                     .arg((currentAccountMode == Savings) ? "Savings" : "Current"));
     } else {
-        QMessageBox::critical(this, "Database Error", "Failed to update balance.");
+        QMessageBox::critical(this, "Database Error", "Failed to update balance. Please try again.");
     }
 
     currentInput.clear();
