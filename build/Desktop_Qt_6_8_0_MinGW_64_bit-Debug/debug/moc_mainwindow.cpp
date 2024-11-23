@@ -36,35 +36,35 @@ namespace {
 struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {};
 constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers::stringData(
     "MainWindow",
-    "login_button",
+    "on_login_button_clicked",
     "",
+    "on_loginPass_Line_returnPressed",
+    "on_createAccount_Button_clicked",
+    "on_submitApplication_Button_clicked",
+    "on_acc_Cancel_Button_clicked",
     "on_current_acc_button_clicked",
     "on_savings_acc_button_clicked",
     "on_default_acc_button_clicked",
-    "on_createAccount_Button_clicked",
-    "on_lineEdit_2_returnPressed",
-    "on_submitApplication_Button_clicked",
     "on_deposit_Button_clicked",
-    "num_pressed",
-    "on_cancel_Button_clicked",
-    "on_clear_Button_clicked",
-    "on_checkBalance_Button_clicked",
+    "on_depositEnter_Button_clicked",
     "processWithdrawal",
     "amount",
-    "on_depositEnter_Button_clicked",
+    "on_checkBalance_Button_clicked",
+    "on_otherAmount_Button_clicked",
     "on_amount1000_Button_clicked",
     "on_amount5000_Button_clicked",
     "on_amount10000_Button_clicked",
     "on_amount20000_Button_clicked",
     "on_amount25000_Button_clicked",
-    "on_otherAmount_Button_clicked",
+    "num_pressed",
+    "on_clear_Button_clicked",
+    "on_cancel_Button_clicked",
     "on_settings_Button_triggered",
     "QAction*",
     "arg1",
     "on_horizontalSlider_valueChanged",
     "value",
-    "on_deleteAccount_action",
-    "on_acc_Cancel_Button_clicked"
+    "on_deleteAccount_action"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -95,9 +95,9 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
        9,    0,  165,    2, 0x08,    8 /* Private */,
       10,    0,  166,    2, 0x08,    9 /* Private */,
       11,    0,  167,    2, 0x08,   10 /* Private */,
-      12,    0,  168,    2, 0x08,   11 /* Private */,
-      13,    0,  169,    2, 0x08,   12 /* Private */,
-      14,    1,  170,    2, 0x08,   13 /* Private */,
+      12,    1,  168,    2, 0x08,   11 /* Private */,
+      14,    0,  171,    2, 0x08,   13 /* Private */,
+      15,    0,  172,    2, 0x08,   14 /* Private */,
       16,    0,  173,    2, 0x08,   15 /* Private */,
       17,    0,  174,    2, 0x08,   16 /* Private */,
       18,    0,  175,    2, 0x08,   17 /* Private */,
@@ -105,9 +105,9 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
       20,    0,  177,    2, 0x08,   19 /* Private */,
       21,    0,  178,    2, 0x08,   20 /* Private */,
       22,    0,  179,    2, 0x08,   21 /* Private */,
-      23,    1,  180,    2, 0x08,   22 /* Private */,
-      26,    1,  183,    2, 0x08,   24 /* Private */,
-      28,    0,  186,    2, 0x08,   26 /* Private */,
+      23,    0,  180,    2, 0x08,   22 /* Private */,
+      24,    1,  181,    2, 0x08,   23 /* Private */,
+      27,    1,  184,    2, 0x08,   25 /* Private */,
       29,    0,  187,    2, 0x08,   27 /* Private */,
 
  // slots: parameters
@@ -121,19 +121,19 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, QMetaType::Double,   15,
-    QMetaType::Void,
+    QMetaType::Void, QMetaType::Double,   13,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 24,   25,
-    QMetaType::Void, QMetaType::Int,   27,
     QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 25,   26,
+    QMetaType::Void, QMetaType::Int,   28,
     QMetaType::Void,
 
        0        // eod
@@ -148,7 +148,15 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_stringdata_CLASSMainWindowENDCLASS_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<MainWindow, std::true_type>,
-        // method 'login_button'
+        // method 'on_login_button_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_loginPass_Line_returnPressed'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_createAccount_Button_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_submitApplication_Button_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_acc_Cancel_Button_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_current_acc_button_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
@@ -156,26 +164,16 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_default_acc_button_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_createAccount_Button_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_lineEdit_2_returnPressed'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_submitApplication_Button_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_deposit_Button_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'num_pressed'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_cancel_Button_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_clear_Button_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_checkBalance_Button_clicked'
+        // method 'on_depositEnter_Button_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'processWithdrawal'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<double, std::false_type>,
-        // method 'on_depositEnter_Button_clicked'
+        // method 'on_checkBalance_Button_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_otherAmount_Button_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_amount1000_Button_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
@@ -187,7 +185,11 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_amount25000_Button_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_otherAmount_Button_clicked'
+        // method 'num_pressed'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_clear_Button_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_cancel_Button_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_settings_Button_triggered'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
@@ -196,8 +198,6 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>,
         // method 'on_deleteAccount_action'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'on_acc_Cancel_Button_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -209,36 +209,36 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         auto *_t = static_cast<MainWindow *>(_o);
         (void)_t;
         switch (_id) {
-        case 0: _t->login_button(); break;
-        case 1: _t->on_current_acc_button_clicked(); break;
-        case 2: _t->on_savings_acc_button_clicked(); break;
-        case 3: _t->on_default_acc_button_clicked(); break;
-        case 4: _t->on_createAccount_Button_clicked(); break;
-        case 5: _t->on_lineEdit_2_returnPressed(); break;
-        case 6: _t->on_submitApplication_Button_clicked(); break;
-        case 7: _t->on_deposit_Button_clicked(); break;
-        case 8: _t->num_pressed(); break;
-        case 9: _t->on_cancel_Button_clicked(); break;
-        case 10: _t->on_clear_Button_clicked(); break;
+        case 0: _t->on_login_button_clicked(); break;
+        case 1: _t->on_loginPass_Line_returnPressed(); break;
+        case 2: _t->on_createAccount_Button_clicked(); break;
+        case 3: _t->on_submitApplication_Button_clicked(); break;
+        case 4: _t->on_acc_Cancel_Button_clicked(); break;
+        case 5: _t->on_current_acc_button_clicked(); break;
+        case 6: _t->on_savings_acc_button_clicked(); break;
+        case 7: _t->on_default_acc_button_clicked(); break;
+        case 8: _t->on_deposit_Button_clicked(); break;
+        case 9: _t->on_depositEnter_Button_clicked(); break;
+        case 10: _t->processWithdrawal((*reinterpret_cast< std::add_pointer_t<double>>(_a[1]))); break;
         case 11: _t->on_checkBalance_Button_clicked(); break;
-        case 12: _t->processWithdrawal((*reinterpret_cast< std::add_pointer_t<double>>(_a[1]))); break;
-        case 13: _t->on_depositEnter_Button_clicked(); break;
-        case 14: _t->on_amount1000_Button_clicked(); break;
-        case 15: _t->on_amount5000_Button_clicked(); break;
-        case 16: _t->on_amount10000_Button_clicked(); break;
-        case 17: _t->on_amount20000_Button_clicked(); break;
-        case 18: _t->on_amount25000_Button_clicked(); break;
-        case 19: _t->on_otherAmount_Button_clicked(); break;
-        case 20: _t->on_settings_Button_triggered((*reinterpret_cast< std::add_pointer_t<QAction*>>(_a[1]))); break;
-        case 21: _t->on_horizontalSlider_valueChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 22: _t->on_deleteAccount_action(); break;
-        case 23: _t->on_acc_Cancel_Button_clicked(); break;
+        case 12: _t->on_otherAmount_Button_clicked(); break;
+        case 13: _t->on_amount1000_Button_clicked(); break;
+        case 14: _t->on_amount5000_Button_clicked(); break;
+        case 15: _t->on_amount10000_Button_clicked(); break;
+        case 16: _t->on_amount20000_Button_clicked(); break;
+        case 17: _t->on_amount25000_Button_clicked(); break;
+        case 18: _t->num_pressed(); break;
+        case 19: _t->on_clear_Button_clicked(); break;
+        case 20: _t->on_cancel_Button_clicked(); break;
+        case 21: _t->on_settings_Button_triggered((*reinterpret_cast< std::add_pointer_t<QAction*>>(_a[1]))); break;
+        case 22: _t->on_horizontalSlider_valueChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 23: _t->on_deleteAccount_action(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
-        case 20:
+        case 21:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
             case 0:

@@ -63,7 +63,7 @@
            </spacer>
           </item>
           <item>
-           <widget class="QLabel" name="label">
+           <widget class="QLabel" name="BankalLums">
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -121,8 +121,8 @@ font-size:15px;
             </property>
            </widget>
           </item>
-          <item alignment="">
-           <widget class="QLineEdit" name="lineEdit">
+          <item>
+           <widget class="QLineEdit" name="loginUser_Line">
             <property name="minimumSize">
              <size>
               <width>260</width>
@@ -176,8 +176,8 @@ font-size:15px;
             </property>
            </widget>
           </item>
-          <item alignment="">
-           <widget class="QLineEdit" name="lineEdit_2">
+          <item>
+           <widget class="QLineEdit" name="loginPass_Line">
             <property name="minimumSize">
              <size>
               <width>260</width>
@@ -208,7 +208,7 @@ padding:5px;
             </property>
            </spacer>
           </item>
-          <item alignment="">
+          <item>
            <widget class="QPushButton" name="login_button">
             <property name="sizePolicy">
              <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
@@ -253,7 +253,7 @@ background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, 
             </property>
            </spacer>
           </item>
-          <item alignment="">
+          <item>
            <widget class="QPushButton" name="createAccount_Button">
             <property name="sizePolicy">
              <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
@@ -778,7 +778,7 @@ Balance</string>
             </property>
            </widget>
           </item>
-          <item alignment="">
+          <item>
            <widget class="QToolButton" name="settings_Button">
             <property name="minimumSize">
              <size>

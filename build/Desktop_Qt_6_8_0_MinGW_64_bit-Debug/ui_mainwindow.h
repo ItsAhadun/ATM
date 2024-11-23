@@ -39,12 +39,12 @@ public:
     QSpacerItem *horizontalSpacer_6;
     QVBoxLayout *verticalLayout;
     QSpacerItem *verticalSpacer_7;
-    QLabel *label;
+    QLabel *BankalLums;
     QLabel *username_Label;
-    QLineEdit *lineEdit;
+    QLineEdit *loginUser_Line;
     QSpacerItem *verticalSpacer_10;
     QLabel *password_Label;
-    QLineEdit *lineEdit_2;
+    QLineEdit *loginPass_Line;
     QSpacerItem *verticalSpacer_11;
     QPushButton *login_button;
     QSpacerItem *horizontalSpacer_8;
@@ -160,20 +160,20 @@ public:
 
         verticalLayout->addItem(verticalSpacer_7);
 
-        label = new QLabel(login_Page);
-        label->setObjectName("label");
-        label->setMinimumSize(QSize(0, 20));
-        label->setMaximumSize(QSize(16777215, 100));
+        BankalLums = new QLabel(login_Page);
+        BankalLums->setObjectName("BankalLums");
+        BankalLums->setMinimumSize(QSize(0, 20));
+        BankalLums->setMaximumSize(QSize(16777215, 100));
         QFont font;
         font.setPointSize(36);
         font.setBold(true);
-        label->setFont(font);
-        label->setStyleSheet(QString::fromUtf8("Qlabel{\n"
+        BankalLums->setFont(font);
+        BankalLums->setStyleSheet(QString::fromUtf8("Qlabel{\n"
 "font-size:75px;\n"
 "}"));
-        label->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        BankalLums->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
-        verticalLayout->addWidget(label);
+        verticalLayout->addWidget(BankalLums);
 
         username_Label = new QLabel(login_Page);
         username_Label->setObjectName("username_Label");
@@ -188,15 +188,15 @@ public:
 
         verticalLayout->addWidget(username_Label);
 
-        lineEdit = new QLineEdit(login_Page);
-        lineEdit->setObjectName("lineEdit");
-        lineEdit->setMinimumSize(QSize(260, 0));
-        lineEdit->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
+        loginUser_Line = new QLineEdit(login_Page);
+        loginUser_Line->setObjectName("loginUser_Line");
+        loginUser_Line->setMinimumSize(QSize(260, 0));
+        loginUser_Line->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
 "font-size:15;\n"
 "padding:5px;\n"
 "}"));
 
-        verticalLayout->addWidget(lineEdit);
+        verticalLayout->addWidget(loginUser_Line);
 
         verticalSpacer_10 = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
 
@@ -213,16 +213,16 @@ public:
 
         verticalLayout->addWidget(password_Label);
 
-        lineEdit_2 = new QLineEdit(login_Page);
-        lineEdit_2->setObjectName("lineEdit_2");
-        lineEdit_2->setMinimumSize(QSize(260, 0));
-        lineEdit_2->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
+        loginPass_Line = new QLineEdit(login_Page);
+        loginPass_Line->setObjectName("loginPass_Line");
+        loginPass_Line->setMinimumSize(QSize(260, 0));
+        loginPass_Line->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
 "font-size:15;\n"
 "padding:5px;\n"
 "}"));
-        lineEdit_2->setEchoMode(QLineEdit::EchoMode::Password);
+        loginPass_Line->setEchoMode(QLineEdit::EchoMode::Password);
 
-        verticalLayout->addWidget(lineEdit_2);
+        verticalLayout->addWidget(loginPass_Line);
 
         verticalSpacer_11 = new QSpacerItem(20, 30, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
 
@@ -734,7 +734,7 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
-        label->setText(QCoreApplication::translate("MainWindow", "Bank al LUMS", nullptr));
+        BankalLums->setText(QCoreApplication::translate("MainWindow", "Bank al LUMS", nullptr));
         username_Label->setText(QCoreApplication::translate("MainWindow", "UserName:", nullptr));
         password_Label->setText(QCoreApplication::translate("MainWindow", "Password:", nullptr));
         login_button->setText(QCoreApplication::translate("MainWindow", "Login", nullptr));

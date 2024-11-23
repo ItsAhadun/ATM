@@ -49,7 +49,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     currentInput = ""; // Start with an empty string
 
-    connect(ui->login_button, &QPushButton::clicked, this, &MainWindow::login_button);
     //numpad connections
     connect(ui->zero_Button, &QPushButton::released, this, &MainWindow::num_pressed);
     connect(ui->one_Button, &QPushButton::released, this, &MainWindow::num_pressed);
@@ -90,10 +89,11 @@ bool isValidPin(const QString &pin)
     return true;
 }
 
-void MainWindow::login_button()
+
+void MainWindow::on_login_button_clicked()
 {
-    QString uName = ui->lineEdit->text();
-    QString uCode = ui->lineEdit_2->text();
+    QString uName = ui->loginUser_Line->text();
+    QString uCode = ui->loginPass_Line->text();
 
     // Validate PIN
     if (!isValidPin(uCode))
@@ -158,8 +158,8 @@ void MainWindow::login_button()
         loggedInUsername = uName;
         ui->stackedWidget->setCurrentWidget(ui->accounts_Page);
         QMessageBox::information(this, "Welcome", "Welcome to Bank al LUMS, " + uName + "!");
-        ui->lineEdit->clear();
-        ui->lineEdit_2->clear();
+        ui->loginUser_Line->clear();
+        ui->loginPass_Line->clear();
         // Reset failed attempts and unlock account
         QSqlQuery resetQuery;
         resetQuery.prepare("UPDATE users SET failed_attempts = 0, is_locked = 0 WHERE username = :username");
@@ -167,7 +167,7 @@ void MainWindow::login_button()
         if (!resetQuery.exec()) {
             QMessageBox::critical(this, "Database Error", "Failed to reset login attempts: " + resetQuery.lastError().text());
 
-    }
+        }
 
     } else {
         // Failed login
@@ -199,8 +199,8 @@ void MainWindow::login_button()
             }
         }
     }
-}
 
+}
 
 
 void MainWindow::on_current_acc_button_clicked()
@@ -264,12 +264,12 @@ void MainWindow::on_submitApplication_Button_clicked()
 
 void MainWindow::on_createAccount_Button_clicked()
 {
-    ui->lineEdit->clear();
-    ui->lineEdit_2->clear();
+    ui->loginUser_Line->clear();
+    ui->loginPass_Line->clear();
     ui->stackedWidget->setCurrentWidget(ui->createUser_Page);
 }
 
-void MainWindow::on_lineEdit_2_returnPressed()
+void MainWindow::on_loginPass_Line_returnPressed()
 {
     ui->login_button->click();
 }
@@ -461,7 +461,7 @@ void MainWindow::logoutAction()
 
     // Redirect to the login page
     ui->stackedWidget->setCurrentWidget(ui->login_Page);
-
+    ui->loginUser_Line->setFocus();
     // show a message
     QMessageBox::information(this, "Logout", "You have successfully logged out.");
 }
@@ -587,3 +587,5 @@ void MainWindow::on_acc_Cancel_Button_clicked()
     ui->newUser_Line->clear();
     ui->confirmPassword_Line->clear();
 }
+
+
