@@ -39,6 +39,17 @@ constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers::string
     "on_login_button_clicked",
     "",
     "on_loginPass_Line_returnPressed",
+    "isValidPin",
+    "pin",
+    "handleInvalidPin",
+    "username",
+    "isAccountLocked",
+    "unlockAccount",
+    "validateLogin",
+    "password",
+    "handleSuccessfulLogin",
+    "handleFailedLogin",
+    "lockAccount",
     "on_createAccount_Button_clicked",
     "on_submitApplication_Button_clicked",
     "on_acc_Cancel_Button_clicked",
@@ -77,7 +88,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      24,   14, // methods
+      32,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -85,34 +96,50 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,  158,    2, 0x08,    1 /* Private */,
-       3,    0,  159,    2, 0x08,    2 /* Private */,
-       4,    0,  160,    2, 0x08,    3 /* Private */,
-       5,    0,  161,    2, 0x08,    4 /* Private */,
-       6,    0,  162,    2, 0x08,    5 /* Private */,
-       7,    0,  163,    2, 0x08,    6 /* Private */,
-       8,    0,  164,    2, 0x08,    7 /* Private */,
-       9,    0,  165,    2, 0x08,    8 /* Private */,
-      10,    0,  166,    2, 0x08,    9 /* Private */,
-      11,    0,  167,    2, 0x08,   10 /* Private */,
-      12,    1,  168,    2, 0x08,   11 /* Private */,
-      14,    0,  171,    2, 0x08,   13 /* Private */,
-      15,    0,  172,    2, 0x08,   14 /* Private */,
-      16,    0,  173,    2, 0x08,   15 /* Private */,
-      17,    0,  174,    2, 0x08,   16 /* Private */,
-      18,    0,  175,    2, 0x08,   17 /* Private */,
-      19,    0,  176,    2, 0x08,   18 /* Private */,
-      20,    0,  177,    2, 0x08,   19 /* Private */,
-      21,    0,  178,    2, 0x08,   20 /* Private */,
-      22,    0,  179,    2, 0x08,   21 /* Private */,
-      23,    0,  180,    2, 0x08,   22 /* Private */,
-      24,    1,  181,    2, 0x08,   23 /* Private */,
-      27,    1,  184,    2, 0x08,   25 /* Private */,
-      29,    0,  187,    2, 0x08,   27 /* Private */,
+       1,    0,  206,    2, 0x08,    1 /* Private */,
+       3,    0,  207,    2, 0x08,    2 /* Private */,
+       4,    1,  208,    2, 0x08,    3 /* Private */,
+       6,    1,  211,    2, 0x08,    5 /* Private */,
+       8,    1,  214,    2, 0x08,    7 /* Private */,
+       9,    1,  217,    2, 0x08,    9 /* Private */,
+      10,    2,  220,    2, 0x08,   11 /* Private */,
+      12,    1,  225,    2, 0x08,   14 /* Private */,
+      13,    1,  228,    2, 0x08,   16 /* Private */,
+      14,    1,  231,    2, 0x08,   18 /* Private */,
+      15,    0,  234,    2, 0x08,   20 /* Private */,
+      16,    0,  235,    2, 0x08,   21 /* Private */,
+      17,    0,  236,    2, 0x08,   22 /* Private */,
+      18,    0,  237,    2, 0x08,   23 /* Private */,
+      19,    0,  238,    2, 0x08,   24 /* Private */,
+      20,    0,  239,    2, 0x08,   25 /* Private */,
+      21,    0,  240,    2, 0x08,   26 /* Private */,
+      22,    0,  241,    2, 0x08,   27 /* Private */,
+      23,    1,  242,    2, 0x08,   28 /* Private */,
+      25,    0,  245,    2, 0x08,   30 /* Private */,
+      26,    0,  246,    2, 0x08,   31 /* Private */,
+      27,    0,  247,    2, 0x08,   32 /* Private */,
+      28,    0,  248,    2, 0x08,   33 /* Private */,
+      29,    0,  249,    2, 0x08,   34 /* Private */,
+      30,    0,  250,    2, 0x08,   35 /* Private */,
+      31,    0,  251,    2, 0x08,   36 /* Private */,
+      32,    0,  252,    2, 0x08,   37 /* Private */,
+      33,    0,  253,    2, 0x08,   38 /* Private */,
+      34,    0,  254,    2, 0x08,   39 /* Private */,
+      35,    1,  255,    2, 0x08,   40 /* Private */,
+      38,    1,  258,    2, 0x08,   42 /* Private */,
+      40,    0,  261,    2, 0x08,   44 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Bool, QMetaType::QString,    5,
+    QMetaType::Void, QMetaType::QString,    7,
+    QMetaType::Bool, QMetaType::QString,    7,
+    QMetaType::Void, QMetaType::QString,    7,
+    QMetaType::Bool, QMetaType::QString, QMetaType::QString,    7,   11,
+    QMetaType::Void, QMetaType::QString,    7,
+    QMetaType::Void, QMetaType::QString,    7,
+    QMetaType::Void, QMetaType::QString,    7,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -121,7 +148,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Double,   13,
+    QMetaType::Void, QMetaType::Double,   24,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -132,8 +159,8 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 25,   26,
-    QMetaType::Void, QMetaType::Int,   28,
+    QMetaType::Void, 0x80000000 | 36,   37,
+    QMetaType::Void, QMetaType::Int,   39,
     QMetaType::Void,
 
        0        // eod
@@ -152,6 +179,31 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_loginPass_Line_returnPressed'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'isValidPin'
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'handleInvalidPin'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'isAccountLocked'
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'unlockAccount'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'validateLogin'
+        QtPrivate::TypeAndForceComplete<bool, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'handleSuccessfulLogin'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'handleFailedLogin'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'lockAccount'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         // method 'on_createAccount_Button_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_submitApplication_Button_clicked'
@@ -211,34 +263,45 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         switch (_id) {
         case 0: _t->on_login_button_clicked(); break;
         case 1: _t->on_loginPass_Line_returnPressed(); break;
-        case 2: _t->on_createAccount_Button_clicked(); break;
-        case 3: _t->on_submitApplication_Button_clicked(); break;
-        case 4: _t->on_acc_Cancel_Button_clicked(); break;
-        case 5: _t->on_current_acc_button_clicked(); break;
-        case 6: _t->on_savings_acc_button_clicked(); break;
-        case 7: _t->on_default_acc_button_clicked(); break;
-        case 8: _t->on_deposit_Button_clicked(); break;
-        case 9: _t->on_depositEnter_Button_clicked(); break;
-        case 10: _t->processWithdrawal((*reinterpret_cast< std::add_pointer_t<double>>(_a[1]))); break;
-        case 11: _t->on_checkBalance_Button_clicked(); break;
-        case 12: _t->on_otherAmount_Button_clicked(); break;
-        case 13: _t->on_amount1000_Button_clicked(); break;
-        case 14: _t->on_amount5000_Button_clicked(); break;
-        case 15: _t->on_amount10000_Button_clicked(); break;
-        case 16: _t->on_amount20000_Button_clicked(); break;
-        case 17: _t->on_amount25000_Button_clicked(); break;
-        case 18: _t->num_pressed(); break;
-        case 19: _t->on_clear_Button_clicked(); break;
-        case 20: _t->on_cancel_Button_clicked(); break;
-        case 21: _t->on_settings_Button_triggered((*reinterpret_cast< std::add_pointer_t<QAction*>>(_a[1]))); break;
-        case 22: _t->on_horizontalSlider_valueChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 23: _t->on_deleteAccount_action(); break;
+        case 2: { bool _r = _t->isValidPin((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])));
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
+        case 3: _t->handleInvalidPin((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 4: { bool _r = _t->isAccountLocked((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])));
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
+        case 5: _t->unlockAccount((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 6: { bool _r = _t->validateLogin((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])));
+            if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
+        case 7: _t->handleSuccessfulLogin((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 8: _t->handleFailedLogin((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 9: _t->lockAccount((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 10: _t->on_createAccount_Button_clicked(); break;
+        case 11: _t->on_submitApplication_Button_clicked(); break;
+        case 12: _t->on_acc_Cancel_Button_clicked(); break;
+        case 13: _t->on_current_acc_button_clicked(); break;
+        case 14: _t->on_savings_acc_button_clicked(); break;
+        case 15: _t->on_default_acc_button_clicked(); break;
+        case 16: _t->on_deposit_Button_clicked(); break;
+        case 17: _t->on_depositEnter_Button_clicked(); break;
+        case 18: _t->processWithdrawal((*reinterpret_cast< std::add_pointer_t<double>>(_a[1]))); break;
+        case 19: _t->on_checkBalance_Button_clicked(); break;
+        case 20: _t->on_otherAmount_Button_clicked(); break;
+        case 21: _t->on_amount1000_Button_clicked(); break;
+        case 22: _t->on_amount5000_Button_clicked(); break;
+        case 23: _t->on_amount10000_Button_clicked(); break;
+        case 24: _t->on_amount20000_Button_clicked(); break;
+        case 25: _t->on_amount25000_Button_clicked(); break;
+        case 26: _t->num_pressed(); break;
+        case 27: _t->on_clear_Button_clicked(); break;
+        case 28: _t->on_cancel_Button_clicked(); break;
+        case 29: _t->on_settings_Button_triggered((*reinterpret_cast< std::add_pointer_t<QAction*>>(_a[1]))); break;
+        case 30: _t->on_horizontalSlider_valueChanged((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 31: _t->on_deleteAccount_action(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
-        case 21:
+        case 29:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
             case 0:
@@ -268,13 +331,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 24)
+        if (_id < 32)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 24;
+        _id -= 32;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 24)
+        if (_id < 32)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 24;
+        _id -= 32;
     }
     return _id;
 }

@@ -79,9 +79,8 @@ bool isValidPin(const QString &pin)
         return false;
     }
 
-    for (size_t i = 0; i < 4; ++i) {
-        char ch = pinStr.substr(i, 1)[0];
-        if (ch < 48 || ch > 57)
+    for (int i = 0; i < 4; ++i) {
+        if (pinStr[i] < 48 || pinStr[i] > 57)
         {
             return false;
         }
@@ -89,117 +88,188 @@ bool isValidPin(const QString &pin)
     return true;
 }
 
-
 void MainWindow::on_login_button_clicked()
 {
     QString uName = ui->loginUser_Line->text();
     QString uCode = ui->loginPass_Line->text();
 
-    // Validate PIN
+    if (isAccountLocked(uName)) {
+        return;
+    }
+
     if (!isValidPin(uCode))
     {
-        QMessageBox::warning(this, "Input Error", "Password must be a 4-digit PIN.");
+        handleInvalidPin(uName);
+        return;
+    }
+
+    if (validateLogin(uName, uCode)) {
+        handleSuccessfulLogin(uName);
+    } else {
+        handleFailedLogin(uName);
+    }
+}
+
+bool MainWindow::isValidPin(const QString& pin)
+{
+    string pinStr = pin.toStdString();
+
+    if (pinStr.length() != 4) {
+        return false;
+    }
+
+    for (int i = 0; i < 4; i++)
+    {
+        if (pinStr[i] < 48 || pinStr[i] > 57)
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+void MainWindow::handleInvalidPin(const QString& username)
+{
+    QSqlQuery updateQuery;
+    updateQuery.prepare("UPDATE users SET failed_attempts = failed_attempts + 1 WHERE username = :username");
+    updateQuery.bindValue(":username", username);
+
+    if (!updateQuery.exec()) {
+        QMessageBox::critical(this, "Database Error", "Failed to update failed attempts: " + updateQuery.lastError().text());
+        return;
+    }
+
+
+
+    QSqlQuery query;
+    query.prepare("SELECT failed_attempts FROM users WHERE username = :username");
+    query.bindValue(":username", username);
+
+    if (query.exec() && query.next()) {
+        int failedAttempts = query.value("failed_attempts").toInt();
+        if (failedAttempts >= 3) {
+            lockAccount(username);
+        }
+        else
+        {
+            QMessageBox::warning(this, "Input Error",
+                                 "Password must be a 4-digit PIN. Remaining attempts: " + QString::number(3 - failedAttempts));
+        }
+
+        }
+}
+
+bool MainWindow::isAccountLocked(const QString& username)
+{
+    QSqlQuery query;
+    query.prepare("SELECT is_locked, last_failed_login, failed_attempts FROM users WHERE username = :username");
+    query.bindValue(":username", username);
+
+    if (!query.exec() || !query.next()) {
+        QMessageBox::critical(this, "Invalid Info", "Entered Username or Password is incorrect");
+        return false;
+    }
+
+    bool isLocked = query.value("is_locked").toBool();
+    QDateTime lastFailedLogin = query.value("last_failed_login").toDateTime();
+
+    if (isLocked) {
+        QDateTime unlockTime = lastFailedLogin.addSecs(5 * 60); // 5-minute timeout
+        QDateTime currentTime = QDateTime::currentDateTime();
+
+        if (currentTime < unlockTime) {
+            int remainingSeconds = currentTime.secsTo(unlockTime);
+            int minutes = remainingSeconds / 60;
+            int seconds = remainingSeconds % 60;
+
+            QMessageBox::warning(this, "Account Locked",
+                                 QString("Your account is locked. Please try again in %1 minutes and %2 seconds.")
+                                     .arg(minutes)
+                                     .arg(seconds));
+            return true;
+        } else {
+            unlockAccount(username);
+        }
+    }
+    return false;
+}
+
+void MainWindow::unlockAccount(const QString& username)
+{
+    QSqlQuery unlockQuery;
+    unlockQuery.prepare("UPDATE users SET is_locked = 0, failed_attempts = 0 WHERE username = :username");
+    unlockQuery.bindValue(":username", username);
+
+    if (!unlockQuery.exec()) {
+        QMessageBox::critical(this, "Database Error", "Failed to unlock account: " + unlockQuery.lastError().text());
+    }
+}
+
+bool MainWindow::validateLogin(const QString& username, const QString& password)
+{
+    QSqlQuery query;
+    query.prepare("SELECT * FROM users WHERE username = :username AND password = :password");
+    query.bindValue(":username", username);
+    query.bindValue(":password", password);
+
+    return query.exec() && query.next();
+}
+
+void MainWindow::handleSuccessfulLogin(const QString& username)
+{
+    loggedInUsername = username;
+    ui->stackedWidget->setCurrentWidget(ui->accounts_Page);
+    QMessageBox::information(this, "Welcome", "Welcome to Bank al LUMS, " + username + "!");
+    ui->loginUser_Line->clear();
+    ui->loginPass_Line->clear();
+
+    QSqlQuery resetQuery;
+    resetQuery.prepare("UPDATE users SET failed_attempts = 0, is_locked = 0 WHERE username = :username");
+    resetQuery.bindValue(":username", username);
+
+    if (!resetQuery.exec()) {
+        QMessageBox::critical(this, "Database Error", "Failed to reset login attempts: " + resetQuery.lastError().text());
+    }
+}
+
+void MainWindow::handleFailedLogin(const QString& username)
+{
+    QSqlQuery updateQuery;
+    updateQuery.prepare("UPDATE users SET failed_attempts = failed_attempts + 1 WHERE username = :username");
+    updateQuery.bindValue(":username", username);
+
+    if (!updateQuery.exec()) {
+        QMessageBox::critical(this, "Database Error", "Failed to update failed attempts: " + updateQuery.lastError().text());
         return;
     }
 
     QSqlQuery query;
-
-    // Check if the account is locked
-    query.prepare("SELECT is_locked, last_failed_login, failed_attempts FROM users WHERE username = :username");
-    query.bindValue(":username", uName);
+    query.prepare("SELECT failed_attempts FROM users WHERE username = :username");
+    query.bindValue(":username", username);
 
     if (query.exec() && query.next()) {
-        bool isLocked = query.value("is_locked").toBool();
-        QDateTime lastFailedLogin = query.value("last_failed_login").toDateTime();
+        int failedAttempts = query.value("failed_attempts").toInt();
 
-        if (isLocked) {
-            // Timeout duration (e.g., 5 minutes)
-            int timeoutMinutes = 5;
-            QDateTime unlockTime = lastFailedLogin.addSecs(timeoutMinutes * 60);
-            QDateTime currentTime = QDateTime::currentDateTime();
-
-            if (currentTime < unlockTime) {
-                // Calculate remaining time
-                int remainingSeconds = currentTime.secsTo(unlockTime);
-                int minutes = remainingSeconds / 60;
-                int seconds = remainingSeconds % 60;
-
-                QMessageBox::warning(this, "Account Locked",
-                                     QString("Your account is locked. Please try again in %1 minutes and %2 seconds.")
-                                         .arg(minutes)
-                                         .arg(seconds));
-                return;
-            } else {
-                // Unlock the account
-                QSqlQuery unlockQuery;
-                unlockQuery.prepare("UPDATE users SET is_locked = 0, failed_attempts = 0 WHERE username = :username");
-                unlockQuery.bindValue(":username", uName);
-                if (!unlockQuery.exec()) {
-                    QMessageBox::critical(this, "Database Error", "Failed to unlock account: " + unlockQuery.lastError().text());
-                    return;
-                }
-            }
+        if (failedAttempts >= 3) {
+            lockAccount(username);
+        } else {
+            QMessageBox::warning(this, "Login Failed", "Invalid username or password. Remaining attempts: " + QString::number(3 - failedAttempts));
         }
     }
-    else
-    {
-        QMessageBox::critical(this, "Invalid Info", "Entered Username or Password is incorrect");
+}
 
-    }
+void MainWindow::lockAccount(const QString& username)
+{
+    QSqlQuery lockQuery;
+    lockQuery.prepare("UPDATE users SET is_locked = 1, last_failed_login = :timestamp WHERE username = :username");
+    lockQuery.bindValue(":username", username);
+    lockQuery.bindValue(":timestamp", QDateTime::currentDateTime().toString(Qt::ISODate));
 
-    // Proceed with login validation
-    query.prepare("SELECT * FROM users WHERE username = :username AND password = :password");
-    query.bindValue(":username", uName);
-    query.bindValue(":password", uCode);
-
-    if (query.exec() && query.next())
-    {
-        // Successful login
-        loggedInUsername = uName;
-        ui->stackedWidget->setCurrentWidget(ui->accounts_Page);
-        QMessageBox::information(this, "Welcome", "Welcome to Bank al LUMS, " + uName + "!");
-        ui->loginUser_Line->clear();
-        ui->loginPass_Line->clear();
-        // Reset failed attempts and unlock account
-        QSqlQuery resetQuery;
-        resetQuery.prepare("UPDATE users SET failed_attempts = 0, is_locked = 0 WHERE username = :username");
-        resetQuery.bindValue(":username", uName);
-        if (!resetQuery.exec()) {
-            QMessageBox::critical(this, "Database Error", "Failed to reset login attempts: " + resetQuery.lastError().text());
-
-        }
-
+    if (lockQuery.exec()) {
+        QMessageBox::warning(this, "Account Locked", "Your account has been locked due to multiple failed login attempts. Please try again later.");
     } else {
-        // Failed login
-        QSqlQuery updateQuery;
-        updateQuery.prepare("UPDATE users SET failed_attempts = failed_attempts + 1 WHERE username = :username");
-        updateQuery.bindValue(":username", uName);
-        if (!updateQuery.exec()) {
-            QMessageBox::critical(this, "Database Error", "Failed to update failed attempts: " + updateQuery.lastError().text());
-            return;
-        }
-
-        // Check if failed attempts exceed threshold
-        query.prepare("SELECT failed_attempts FROM users WHERE username = :username");
-        query.bindValue(":username", uName);
-        if (query.exec() && query.next()) {
-            int failedAttempts = query.value("failed_attempts").toInt();
-            if (failedAttempts >= 3) {
-                QSqlQuery lockQuery;
-                lockQuery.prepare("UPDATE users SET is_locked = 1, last_failed_login = :timestamp WHERE username = :username");
-                lockQuery.bindValue(":username", uName);
-                lockQuery.bindValue(":timestamp", QDateTime::currentDateTime().toString(Qt::ISODate));
-                if (lockQuery.exec()) {
-                    QMessageBox::warning(this, "Account Locked", "Your account has been locked due to multiple failed login attempts. Please try again later.");
-                } else {
-                    QMessageBox::critical(this, "Database Error", "Failed to lock account: " + lockQuery.lastError().text());
-                }
-            } else {
-                QMessageBox::warning(this, "Login Failed", "Invalid username or password. Remaining attempts: " + QString::number(3 - failedAttempts));
-            }
-        }
+        QMessageBox::critical(this, "Database Error", "Failed to lock account: " + lockQuery.lastError().text());
     }
-
 }
 
 

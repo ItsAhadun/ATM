@@ -24,6 +24,16 @@ private slots:
     void on_login_button_clicked();
     void on_loginPass_Line_returnPressed();
 
+    // Helper functions
+    bool isValidPin(const QString& pin);
+    void handleInvalidPin(const QString& username);
+    bool isAccountLocked(const QString& username);
+    void unlockAccount(const QString& username);
+    bool validateLogin(const QString& username, const QString& password);
+    void handleSuccessfulLogin(const QString& username);
+    void handleFailedLogin(const QString& username);
+    void lockAccount(const QString& username);
+
     // Account Management
     void on_createAccount_Button_clicked();
     void on_submitApplication_Button_clicked();
