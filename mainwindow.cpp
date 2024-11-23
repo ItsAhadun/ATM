@@ -205,18 +205,22 @@ void MainWindow::on_login_button_clicked()
 
 void MainWindow::on_current_acc_button_clicked()
 {
+
+    ui->account_Label->setText("Current Account");
     currentAccountMode = Current;
     ui->stackedWidget->setCurrentWidget(ui->dashboard_Page);
 }
 
 void MainWindow::on_savings_acc_button_clicked()
 {
+    ui->account_Label->setText("Savings Account");
     currentAccountMode = Savings;
     ui->stackedWidget->setCurrentWidget(ui->dashboard_Page);
 }
 
 void MainWindow::on_default_acc_button_clicked()
 {
+    ui->account_Label->setText("Savings Account");
     currentAccountMode = Savings;
     ui->stackedWidget->setCurrentWidget(ui->dashboard_Page);
 }
@@ -341,46 +345,6 @@ bool MainWindow::isAmountValid(double amount) {
 }
 
 
-void MainWindow::on_depositEnter_Button_clicked()
-{
-    double amount = currentInput.toDouble();
-
-    if (currentMode == Withdrawal) {
-        // Use the processWithdrawal function to handle withdrawals
-        processWithdrawal(amount);
-        ui->lcdNumber->display(0);
-        currentInput = 0;
-        return;
-    }
-
-    // For deposits, validate the amount
-    if (!isAmountValid(amount)) {
-        ui->lcdNumber->display(0);
-        currentInput = 0;
-        return;
-    }
-
-    QString balanceColumn = (currentAccountMode == Savings) ? "savings_balance" : "current_balance";
-
-    // Update the balance for deposits
-    QSqlQuery query;
-    query.prepare(QString("UPDATE users SET %1 = %1 + :amount WHERE username = :username").arg(balanceColumn));
-    query.bindValue(":amount", amount);
-    query.bindValue(":username", loggedInUsername);
-
-    if (query.exec()) {
-        QMessageBox::information(this, "Deposit Successful",
-                                 QString("Deposited Rs%1 to your %2 account.")
-                                     .arg(amount)
-                                     .arg((currentAccountMode == Savings) ? "Savings" : "Current"));
-    } else {
-        QMessageBox::critical(this, "Database Error", "Failed to update balance. Please try again.");
-    }
-
-    currentInput.clear();
-    ui->lcdNumber->display(0);
-    ui->stackedWidget->setCurrentWidget(ui->dashboard_Page);
-}
 
 void MainWindow::processWithdrawal(double amount)
 {
@@ -426,6 +390,7 @@ void MainWindow::processWithdrawal(double amount)
                                      .arg(currentBalance - amount));
         ui->lcdNumber->display(0);
         currentInput.clear();
+        ui->stackedWidget->setCurrentWidget(ui->dashboard_Page);
     } else {
         QMessageBox::critical(this, "Database Error", "Failed to update balance. Please try again.");
     }
@@ -461,6 +426,49 @@ void MainWindow::on_otherAmount_Button_clicked()
     currentMode = Withdrawal;
     ui->stackedWidget->setCurrentWidget(ui->numpad_Page);
 }
+
+void MainWindow::on_depositEnter_Button_clicked()
+{
+    double amount = currentInput.toDouble();
+
+    if (currentMode == Withdrawal)
+    {
+        processWithdrawal(amount);
+        ui->lcdNumber->display(0);
+        currentInput = 0;
+        return;
+    }
+
+    // For deposits, validate the amount
+    if (!isAmountValid(amount))
+    {
+        ui->lcdNumber->display(0);
+        currentInput = 0;
+        return;
+    }
+
+    QString balanceColumn = (currentAccountMode == Savings) ? "savings_balance" : "current_balance";
+
+    // Update the balance for deposits
+    QSqlQuery query;
+    query.prepare(QString("UPDATE users SET %1 = %1 + :amount WHERE username = :username").arg(balanceColumn));
+    query.bindValue(":amount", amount);
+    query.bindValue(":username", loggedInUsername);
+
+    if (query.exec()) {
+        QMessageBox::information(this, "Deposit Successful",
+                                 QString("Deposited Rs%1 to your %2 account.")
+                                     .arg(amount)
+                                     .arg((currentAccountMode == Savings) ? "Savings" : "Current"));
+    } else {
+        QMessageBox::critical(this, "Database Error", "Failed to update balance. Please try again.");
+    }
+
+    currentInput.clear();
+    ui->lcdNumber->display(0);
+    ui->stackedWidget->setCurrentWidget(ui->dashboard_Page);
+}
+
 
 void MainWindow::logoutAction()
 {

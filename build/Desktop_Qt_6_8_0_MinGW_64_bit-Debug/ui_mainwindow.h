@@ -51,7 +51,6 @@ public:
     QPushButton *createAccount_Button;
     QSpacerItem *verticalSpacer_8;
     QSpacerItem *horizontalSpacer_7;
-    QWidget *receipt_Page;
     QWidget *deleteAccount_Page;
     QWidget *horizontalLayoutWidget;
     QHBoxLayout *horizontalLayout_4;
@@ -82,6 +81,9 @@ public:
     QPushButton *amount10000_Button;
     QPushButton *amount20000_Button;
     QLabel *label_2;
+    QVBoxLayout *verticalLayout_4;
+    QLabel *account_Label;
+    QSpacerItem *verticalSpacer_9;
     QSpacerItem *horizontalSpacer_3;
     QVBoxLayout *verticalLayout_7;
     QPushButton *amount25000_Button;
@@ -281,9 +283,6 @@ public:
         horizontalLayout_3->addItem(horizontalSpacer_7);
 
         stackedWidget->addWidget(login_Page);
-        receipt_Page = new QWidget();
-        receipt_Page->setObjectName("receipt_Page");
-        stackedWidget->addWidget(receipt_Page);
         deleteAccount_Page = new QWidget();
         deleteAccount_Page->setObjectName("deleteAccount_Page");
         horizontalLayoutWidget = new QWidget(deleteAccount_Page);
@@ -466,9 +465,27 @@ public:
 
         horizontalLayout_2->addLayout(verticalLayout_6);
 
-        horizontalSpacer_3 = new QSpacerItem(695, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+        verticalLayout_4 = new QVBoxLayout();
+        verticalLayout_4->setObjectName("verticalLayout_4");
+        account_Label = new QLabel(dashboard_Page);
+        account_Label->setObjectName("account_Label");
+        QFont font6;
+        font6.setPointSize(30);
+        account_Label->setFont(font6);
+        account_Label->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
-        horizontalLayout_2->addItem(horizontalSpacer_3);
+        verticalLayout_4->addWidget(account_Label);
+
+        verticalSpacer_9 = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
+
+        verticalLayout_4->addItem(verticalSpacer_9);
+
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        verticalLayout_4->addItem(horizontalSpacer_3);
+
+
+        horizontalLayout_2->addLayout(verticalLayout_4);
 
         verticalLayout_7 = new QVBoxLayout();
         verticalLayout_7->setSpacing(0);
@@ -504,9 +521,9 @@ public:
         settings_Button = new QToolButton(dashboard_Page);
         settings_Button->setObjectName("settings_Button");
         settings_Button->setMinimumSize(QSize(0, 0));
-        QFont font6;
-        font6.setPointSize(10);
-        settings_Button->setFont(font6);
+        QFont font7;
+        font7.setPointSize(10);
+        settings_Button->setFont(font7);
 
         verticalLayout_7->addWidget(settings_Button);
 
@@ -592,9 +609,9 @@ public:
 
         lcdNumber = new QLCDNumber(numpad_Page);
         lcdNumber->setObjectName("lcdNumber");
-        QFont font7;
-        font7.setBold(false);
-        lcdNumber->setFont(font7);
+        QFont font8;
+        font8.setBold(false);
+        lcdNumber->setFont(font8);
         lcdNumber->setSmallDecimalPoint(false);
         lcdNumber->setDigitCount(9);
 
@@ -725,7 +742,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -750,6 +767,7 @@ public:
         amount10000_Button->setText(QCoreApplication::translate("MainWindow", "10,000", nullptr));
         amount20000_Button->setText(QCoreApplication::translate("MainWindow", "20,000", nullptr));
         label_2->setText(QString());
+        account_Label->setText(QCoreApplication::translate("MainWindow", "Current Account", nullptr));
         amount25000_Button->setText(QCoreApplication::translate("MainWindow", "25,000", nullptr));
         otherAmount_Button->setText(QCoreApplication::translate("MainWindow", "Other\n"
 "Amount", nullptr));
