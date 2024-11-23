@@ -288,7 +288,7 @@ public:
         deleteAccount_Page->setObjectName("deleteAccount_Page");
         horizontalLayoutWidget = new QWidget(deleteAccount_Page);
         horizontalLayoutWidget->setObjectName("horizontalLayoutWidget");
-        horizontalLayoutWidget->setGeometry(QRect(200, 170, 511, 331));
+        horizontalLayoutWidget->setGeometry(QRect(200, 170, 552, 331));
         horizontalLayout_4 = new QHBoxLayout(horizontalLayoutWidget);
         horizontalLayout_4->setObjectName("horizontalLayout_4");
         horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
@@ -733,7 +733,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "Bank al LUMS", nullptr));
         BankalLums->setText(QCoreApplication::translate("MainWindow", "Bank al LUMS", nullptr));
         username_Label->setText(QCoreApplication::translate("MainWindow", "UserName:", nullptr));
         password_Label->setText(QCoreApplication::translate("MainWindow", "Password:", nullptr));
