@@ -25,12 +25,9 @@ private slots:
     void on_savings_acc_button_clicked();
     void on_default_acc_button_clicked();
     void on_createAccount_Button_clicked();
-    void on_one_Button_clicked();
-    void on_login_button_pressed();
     void on_lineEdit_2_returnPressed();
     void on_submitApplication_Button_clicked();
     void on_deposit_Button_clicked();
-    void on_two_Button_clicked();
 
 
     void num_pressed(); //numpad buttons

@@ -269,16 +269,6 @@ void MainWindow::on_createAccount_Button_clicked()
     ui->stackedWidget->setCurrentWidget(ui->createUser_Page);
 }
 
-void MainWindow::on_one_Button_clicked()
-{
-
-}
-
-void MainWindow::on_login_button_pressed()
-{
-    // Placeholder for login_button pressed event
-}
-
 void MainWindow::on_lineEdit_2_returnPressed()
 {
     ui->login_button->click();
@@ -289,12 +279,6 @@ void MainWindow::on_deposit_Button_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->numpad_Page);
     currentMode = Deposit;
-}
-
-
-void MainWindow::on_two_Button_clicked()
-{
-
 }
 
 void MainWindow::num_pressed()
@@ -475,7 +459,7 @@ void MainWindow::logoutAction()
     // Redirect to the login page
     ui->stackedWidget->setCurrentWidget(ui->login_Page);
 
-    // Optionally, show a message
+    // show a message
     QMessageBox::information(this, "Logout", "You have successfully logged out.");
 }
 
@@ -506,7 +490,8 @@ void MainWindow::on_settings_Button_triggered(QAction *)
 
 void MainWindow::on_deleteAccount_action()
 {
-    if (loggedInUsername.isEmpty()) {
+    if (loggedInUsername.isEmpty())
+    {
         QMessageBox::warning(this, "Error", "No user is logged in. Please log in to proceed.");
         return;
     }
@@ -516,7 +501,8 @@ void MainWindow::on_deleteAccount_action()
     query.prepare("SELECT savings_balance, current_balance FROM users WHERE username = :username");
     query.bindValue(":username", loggedInUsername);
 
-    if (query.exec() && query.next()) {
+    if (query.exec() && query.next())
+    {
         double savingsBalance = query.value("savings_balance").toDouble();
         double currentBalance = query.value("current_balance").toDouble();
 
