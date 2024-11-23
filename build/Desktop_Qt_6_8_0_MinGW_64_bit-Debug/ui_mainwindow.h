@@ -36,16 +36,21 @@ public:
     QStackedWidget *stackedWidget;
     QWidget *login_Page;
     QHBoxLayout *horizontalLayout_3;
-    QVBoxLayout *verticalLayout_4;
+    QSpacerItem *horizontalSpacer_6;
+    QVBoxLayout *verticalLayout;
+    QSpacerItem *verticalSpacer_7;
     QLabel *label;
-    QFrame *frame;
     QLabel *username_Label;
     QLineEdit *lineEdit;
-    QFrame *frame_2;
-    QLineEdit *lineEdit_2;
+    QSpacerItem *verticalSpacer_10;
     QLabel *password_Label;
+    QLineEdit *lineEdit_2;
+    QSpacerItem *verticalSpacer_11;
     QPushButton *login_button;
+    QSpacerItem *horizontalSpacer_8;
     QPushButton *createAccount_Button;
+    QSpacerItem *verticalSpacer_8;
+    QSpacerItem *horizontalSpacer_7;
     QWidget *receipt_Page;
     QWidget *deleteAccount_Page;
     QWidget *horizontalLayoutWidget;
@@ -145,15 +150,22 @@ public:
         login_Page->setObjectName("login_Page");
         horizontalLayout_3 = new QHBoxLayout(login_Page);
         horizontalLayout_3->setObjectName("horizontalLayout_3");
-        verticalLayout_4 = new QVBoxLayout();
-        verticalLayout_4->setSpacing(0);
-        verticalLayout_4->setObjectName("verticalLayout_4");
+        horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer_6);
+
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setObjectName("verticalLayout");
+        verticalSpacer_7 = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
+
+        verticalLayout->addItem(verticalSpacer_7);
+
         label = new QLabel(login_Page);
         label->setObjectName("label");
         label->setMinimumSize(QSize(0, 20));
         label->setMaximumSize(QSize(16777215, 100));
         QFont font;
-        font.setPointSize(30);
+        font.setPointSize(36);
         font.setBold(true);
         label->setFont(font);
         label->setStyleSheet(QString::fromUtf8("Qlabel{\n"
@@ -161,92 +173,112 @@ public:
 "}"));
         label->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
-        verticalLayout_4->addWidget(label);
+        verticalLayout->addWidget(label);
 
-        frame = new QFrame(login_Page);
-        frame->setObjectName("frame");
-        frame->setMinimumSize(QSize(170, 100));
-        frame->setMaximumSize(QSize(300, 100));
-        frame->setFrameShape(QFrame::Shape::StyledPanel);
-        frame->setFrameShadow(QFrame::Shadow::Raised);
-        username_Label = new QLabel(frame);
+        username_Label = new QLabel(login_Page);
         username_Label->setObjectName("username_Label");
-        username_Label->setGeometry(QRect(0, 0, 171, 31));
         username_Label->setMaximumSize(QSize(200, 50));
+        QFont font1;
+        font1.setPointSize(13);
+        username_Label->setFont(font1);
         username_Label->setStyleSheet(QString::fromUtf8("Qlabel{\n"
 "font-size:15px;\n"
 "}"));
         username_Label->setAlignment(Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter);
-        lineEdit = new QLineEdit(frame);
+
+        verticalLayout->addWidget(username_Label);
+
+        lineEdit = new QLineEdit(login_Page);
         lineEdit->setObjectName("lineEdit");
-        lineEdit->setGeometry(QRect(0, 40, 171, 28));
+        lineEdit->setMinimumSize(QSize(260, 0));
         lineEdit->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
 "font-size:15;\n"
 "padding:5px;\n"
 "}"));
 
-        verticalLayout_4->addWidget(frame);
+        verticalLayout->addWidget(lineEdit);
 
-        frame_2 = new QFrame(login_Page);
-        frame_2->setObjectName("frame_2");
-        frame_2->setMinimumSize(QSize(170, 100));
-        frame_2->setMaximumSize(QSize(300, 100));
-        frame_2->setFrameShape(QFrame::Shape::StyledPanel);
-        frame_2->setFrameShadow(QFrame::Shadow::Raised);
-        lineEdit_2 = new QLineEdit(frame_2);
-        lineEdit_2->setObjectName("lineEdit_2");
-        lineEdit_2->setGeometry(QRect(0, 40, 171, 28));
-        lineEdit_2->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
-"font-size:15;\n"
-"padding:5px;\n"
-"}"));
-        lineEdit_2->setEchoMode(QLineEdit::EchoMode::Password);
-        password_Label = new QLabel(frame_2);
+        verticalSpacer_10 = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
+
+        verticalLayout->addItem(verticalSpacer_10);
+
+        password_Label = new QLabel(login_Page);
         password_Label->setObjectName("password_Label");
-        password_Label->setGeometry(QRect(0, 10, 171, 31));
         password_Label->setMaximumSize(QSize(200, 50));
+        password_Label->setFont(font1);
         password_Label->setStyleSheet(QString::fromUtf8("Qlabel{\n"
 "font-size:15px;\n"
 "}"));
         password_Label->setAlignment(Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter);
 
-        verticalLayout_4->addWidget(frame_2);
+        verticalLayout->addWidget(password_Label);
+
+        lineEdit_2 = new QLineEdit(login_Page);
+        lineEdit_2->setObjectName("lineEdit_2");
+        lineEdit_2->setMinimumSize(QSize(260, 0));
+        lineEdit_2->setStyleSheet(QString::fromUtf8("QLineEdit{\n"
+"font-size:15;\n"
+"padding:5px;\n"
+"}"));
+        lineEdit_2->setEchoMode(QLineEdit::EchoMode::Password);
+
+        verticalLayout->addWidget(lineEdit_2);
+
+        verticalSpacer_11 = new QSpacerItem(20, 30, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
+
+        verticalLayout->addItem(verticalSpacer_11);
 
         login_button = new QPushButton(login_Page);
         login_button->setObjectName("login_button");
-        QSizePolicy sizePolicy1(QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Minimum);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(login_button->sizePolicy().hasHeightForWidth());
-        login_button->setSizePolicy(sizePolicy1);
-        login_button->setMaximumSize(QSize(200, 30));
+        sizePolicy.setHeightForWidth(login_button->sizePolicy().hasHeightForWidth());
+        login_button->setSizePolicy(sizePolicy);
+        login_button->setMinimumSize(QSize(260, 0));
+        login_button->setMaximumSize(QSize(10000, 30));
         login_button->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "font-size:15;\n"
 "background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, fx:0.331, fy:0.245, stop:0 rgba(4, 7, 255, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "}\n"
 ""));
 
-        verticalLayout_4->addWidget(login_button);
+        verticalLayout->addWidget(login_button);
+
+        horizontalSpacer_8 = new QSpacerItem(40, 10, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        verticalLayout->addItem(horizontalSpacer_8);
 
         createAccount_Button = new QPushButton(login_Page);
         createAccount_Button->setObjectName("createAccount_Button");
-        sizePolicy1.setHeightForWidth(createAccount_Button->sizePolicy().hasHeightForWidth());
-        createAccount_Button->setSizePolicy(sizePolicy1);
-        createAccount_Button->setMaximumSize(QSize(200, 30));
+        sizePolicy.setHeightForWidth(createAccount_Button->sizePolicy().hasHeightForWidth());
+        createAccount_Button->setSizePolicy(sizePolicy);
+        createAccount_Button->setMinimumSize(QSize(260, 0));
+        createAccount_Button->setMaximumSize(QSize(10000, 30));
         createAccount_Button->setStyleSheet(QString::fromUtf8("QPushButton{\n"
 "font-size:15;\n"
 "background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, fx:0.331, fy:0.245, stop:0 rgba(4, 7, 255, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "}"));
 
-        verticalLayout_4->addWidget(createAccount_Button);
+        verticalLayout->addWidget(createAccount_Button);
 
-        verticalLayout_4->setStretch(0, 1);
-        verticalLayout_4->setStretch(1, 1);
-        verticalLayout_4->setStretch(2, 1);
-        verticalLayout_4->setStretch(3, 1);
-        verticalLayout_4->setStretch(4, 1);
+        verticalSpacer_8 = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
 
-        horizontalLayout_3->addLayout(verticalLayout_4);
+        verticalLayout->addItem(verticalSpacer_8);
+
+        verticalLayout->setStretch(0, 2);
+        verticalLayout->setStretch(1, 2);
+        verticalLayout->setStretch(2, 2);
+        verticalLayout->setStretch(3, 2);
+        verticalLayout->setStretch(4, 1);
+        verticalLayout->setStretch(6, 2);
+        verticalLayout->setStretch(7, 1);
+        verticalLayout->setStretch(8, 2);
+        verticalLayout->setStretch(10, 2);
+        verticalLayout->setStretch(11, 2);
+
+        horizontalLayout_3->addLayout(verticalLayout);
+
+        horizontalSpacer_7 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer_7);
 
         stackedWidget->addWidget(login_Page);
         receipt_Page = new QWidget();
@@ -264,11 +296,11 @@ public:
         verticalLayout_3->setObjectName("verticalLayout_3");
         enterPass_Label = new QLabel(horizontalLayoutWidget);
         enterPass_Label->setObjectName("enterPass_Label");
-        QFont font1;
-        font1.setPointSize(12);
-        font1.setBold(true);
-        font1.setItalic(true);
-        enterPass_Label->setFont(font1);
+        QFont font2;
+        font2.setPointSize(12);
+        font2.setBold(true);
+        font2.setItalic(true);
+        enterPass_Label->setFont(font2);
 
         verticalLayout_3->addWidget(enterPass_Label);
 
@@ -279,7 +311,7 @@ public:
 
         enterPassConfirm_Label = new QLabel(horizontalLayoutWidget);
         enterPassConfirm_Label->setObjectName("enterPassConfirm_Label");
-        enterPassConfirm_Label->setFont(font1);
+        enterPassConfirm_Label->setFont(font2);
         enterPassConfirm_Label->setLineWidth(1);
         enterPassConfirm_Label->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
@@ -292,9 +324,9 @@ public:
 
         horizontalSlider = new QSlider(horizontalLayoutWidget);
         horizontalSlider->setObjectName("horizontalSlider");
-        QFont font2;
-        font2.setBold(true);
-        horizontalSlider->setFont(font2);
+        QFont font3;
+        font3.setBold(true);
+        horizontalSlider->setFont(font3);
         horizontalSlider->setCursor(QCursor(Qt::CursorShape::SizeAllCursor));
         horizontalSlider->setMinimum(0);
         horizontalSlider->setMaximum(20);
@@ -310,7 +342,7 @@ public:
 
         deletion_Label = new QLabel(horizontalLayoutWidget);
         deletion_Label->setObjectName("deletion_Label");
-        deletion_Label->setFont(font1);
+        deletion_Label->setFont(font2);
         deletion_Label->setLineWidth(1);
         deletion_Label->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
@@ -340,10 +372,10 @@ public:
         current_acc_button->setObjectName("current_acc_button");
         sizePolicy.setHeightForWidth(current_acc_button->sizePolicy().hasHeightForWidth());
         current_acc_button->setSizePolicy(sizePolicy);
-        QFont font3;
-        font3.setPointSize(15);
-        font3.setBold(true);
-        current_acc_button->setFont(font3);
+        QFont font4;
+        font4.setPointSize(15);
+        font4.setBold(true);
+        current_acc_button->setFont(font4);
 
         verticalLayout_8->addWidget(current_acc_button);
 
@@ -355,7 +387,7 @@ public:
         savings_acc_button->setObjectName("savings_acc_button");
         sizePolicy.setHeightForWidth(savings_acc_button->sizePolicy().hasHeightForWidth());
         savings_acc_button->setSizePolicy(sizePolicy);
-        savings_acc_button->setFont(font3);
+        savings_acc_button->setFont(font4);
 
         verticalLayout_8->addWidget(savings_acc_button);
 
@@ -367,7 +399,7 @@ public:
         default_acc_button->setObjectName("default_acc_button");
         sizePolicy.setHeightForWidth(default_acc_button->sizePolicy().hasHeightForWidth());
         default_acc_button->setSizePolicy(sizePolicy);
-        default_acc_button->setFont(font3);
+        default_acc_button->setFont(font4);
 
         verticalLayout_8->addWidget(default_acc_button);
 
@@ -393,41 +425,41 @@ public:
         amount1000_Button = new QPushButton(dashboard_Page);
         amount1000_Button->setObjectName("amount1000_Button");
         amount1000_Button->setMinimumSize(QSize(100, 100));
-        QFont font4;
-        font4.setPointSize(12);
-        font4.setBold(true);
-        amount1000_Button->setFont(font4);
+        QFont font5;
+        font5.setPointSize(12);
+        font5.setBold(true);
+        amount1000_Button->setFont(font5);
 
         verticalLayout_6->addWidget(amount1000_Button);
 
         amount5000_Button = new QPushButton(dashboard_Page);
         amount5000_Button->setObjectName("amount5000_Button");
         amount5000_Button->setMinimumSize(QSize(100, 100));
-        amount5000_Button->setFont(font4);
+        amount5000_Button->setFont(font5);
 
         verticalLayout_6->addWidget(amount5000_Button);
 
         amount10000_Button = new QPushButton(dashboard_Page);
         amount10000_Button->setObjectName("amount10000_Button");
         amount10000_Button->setMinimumSize(QSize(100, 100));
-        amount10000_Button->setFont(font4);
+        amount10000_Button->setFont(font5);
 
         verticalLayout_6->addWidget(amount10000_Button);
 
         amount20000_Button = new QPushButton(dashboard_Page);
         amount20000_Button->setObjectName("amount20000_Button");
         amount20000_Button->setMinimumSize(QSize(100, 100));
-        amount20000_Button->setFont(font4);
+        amount20000_Button->setFont(font5);
 
         verticalLayout_6->addWidget(amount20000_Button);
 
         label_2 = new QLabel(dashboard_Page);
         label_2->setObjectName("label_2");
-        QSizePolicy sizePolicy2(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Maximum);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(label_2->sizePolicy().hasHeightForWidth());
-        label_2->setSizePolicy(sizePolicy2);
+        QSizePolicy sizePolicy1(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Maximum);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(label_2->sizePolicy().hasHeightForWidth());
+        label_2->setSizePolicy(sizePolicy1);
 
         verticalLayout_6->addWidget(label_2);
 
@@ -444,37 +476,37 @@ public:
         amount25000_Button = new QPushButton(dashboard_Page);
         amount25000_Button->setObjectName("amount25000_Button");
         amount25000_Button->setMinimumSize(QSize(100, 100));
-        amount25000_Button->setFont(font4);
+        amount25000_Button->setFont(font5);
 
         verticalLayout_7->addWidget(amount25000_Button);
 
         otherAmount_Button = new QPushButton(dashboard_Page);
         otherAmount_Button->setObjectName("otherAmount_Button");
         otherAmount_Button->setMinimumSize(QSize(100, 100));
-        otherAmount_Button->setFont(font4);
+        otherAmount_Button->setFont(font5);
 
         verticalLayout_7->addWidget(otherAmount_Button);
 
         deposit_Button = new QPushButton(dashboard_Page);
         deposit_Button->setObjectName("deposit_Button");
         deposit_Button->setMinimumSize(QSize(100, 100));
-        deposit_Button->setFont(font4);
+        deposit_Button->setFont(font5);
 
         verticalLayout_7->addWidget(deposit_Button);
 
         checkBalance_Button = new QPushButton(dashboard_Page);
         checkBalance_Button->setObjectName("checkBalance_Button");
         checkBalance_Button->setMinimumSize(QSize(100, 100));
-        checkBalance_Button->setFont(font4);
+        checkBalance_Button->setFont(font5);
 
         verticalLayout_7->addWidget(checkBalance_Button);
 
         settings_Button = new QToolButton(dashboard_Page);
         settings_Button->setObjectName("settings_Button");
         settings_Button->setMinimumSize(QSize(0, 0));
-        QFont font5;
-        font5.setPointSize(10);
-        settings_Button->setFont(font5);
+        QFont font6;
+        font6.setPointSize(10);
+        settings_Button->setFont(font6);
 
         verticalLayout_7->addWidget(settings_Button);
 
@@ -560,9 +592,9 @@ public:
 
         lcdNumber = new QLCDNumber(numpad_Page);
         lcdNumber->setObjectName("lcdNumber");
-        QFont font6;
-        font6.setBold(false);
-        lcdNumber->setFont(font6);
+        QFont font7;
+        font7.setBold(false);
+        lcdNumber->setFont(font7);
         lcdNumber->setSmallDecimalPoint(false);
         lcdNumber->setDigitCount(9);
 
@@ -693,7 +725,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(6);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

@@ -30,15 +30,38 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>6</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="login_Page">
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,1,1,1,1">
-          <property name="spacing">
-           <number>0</number>
+         <spacer name="horizontalSpacer_6">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
           </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout" stretch="2,2,2,2,1,0,2,1,2,0,2,2">
+          <item>
+           <spacer name="verticalSpacer_7">
+            <property name="orientation">
+             <enum>Qt::Orientation::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
           <item>
            <widget class="QLabel" name="label">
             <property name="minimumSize">
@@ -55,7 +78,7 @@
             </property>
             <property name="font">
              <font>
-              <pointsize>30</pointsize>
+              <pointsize>36</pointsize>
               <bold>true</bold>
              </font>
             </property>
@@ -73,149 +96,135 @@ font-size:75px;
            </widget>
           </item>
           <item>
-           <widget class="QFrame" name="frame">
-            <property name="minimumSize">
-             <size>
-              <width>170</width>
-              <height>100</height>
-             </size>
-            </property>
+           <widget class="QLabel" name="username_Label">
             <property name="maximumSize">
              <size>
-              <width>300</width>
-              <height>100</height>
+              <width>200</width>
+              <height>50</height>
              </size>
             </property>
-            <property name="frameShape">
-             <enum>QFrame::Shape::StyledPanel</enum>
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+             </font>
             </property>
-            <property name="frameShadow">
-             <enum>QFrame::Shadow::Raised</enum>
-            </property>
-            <widget class="QLabel" name="username_Label">
-             <property name="geometry">
-              <rect>
-               <x>0</x>
-               <y>0</y>
-               <width>171</width>
-               <height>31</height>
-              </rect>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>200</width>
-               <height>50</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">Qlabel{
+            <property name="styleSheet">
+             <string notr="true">Qlabel{
 font-size:15px;
 }</string>
-             </property>
-             <property name="text">
-              <string>UserName:</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-             </property>
-            </widget>
-            <widget class="QLineEdit" name="lineEdit">
-             <property name="geometry">
-              <rect>
-               <x>0</x>
-               <y>40</y>
-               <width>171</width>
-               <height>28</height>
-              </rect>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QLineEdit{
+            </property>
+            <property name="text">
+             <string>UserName:</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item alignment="">
+           <widget class="QLineEdit" name="lineEdit">
+            <property name="minimumSize">
+             <size>
+              <width>260</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLineEdit{
 font-size:15;
 padding:5px;
 }</string>
-             </property>
-            </widget>
+            </property>
            </widget>
           </item>
           <item>
-           <widget class="QFrame" name="frame_2">
-            <property name="minimumSize">
+           <spacer name="verticalSpacer_10">
+            <property name="orientation">
+             <enum>Qt::Orientation::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
              <size>
-              <width>170</width>
-              <height>100</height>
+              <width>20</width>
+              <height>40</height>
              </size>
             </property>
+           </spacer>
+          </item>
+          <item>
+           <widget class="QLabel" name="password_Label">
             <property name="maximumSize">
              <size>
-              <width>300</width>
-              <height>100</height>
+              <width>200</width>
+              <height>50</height>
              </size>
             </property>
-            <property name="frameShape">
-             <enum>QFrame::Shape::StyledPanel</enum>
+            <property name="font">
+             <font>
+              <pointsize>13</pointsize>
+             </font>
             </property>
-            <property name="frameShadow">
-             <enum>QFrame::Shadow::Raised</enum>
+            <property name="styleSheet">
+             <string notr="true">Qlabel{
+font-size:15px;
+}</string>
             </property>
-            <widget class="QLineEdit" name="lineEdit_2">
-             <property name="geometry">
-              <rect>
-               <x>0</x>
-               <y>40</y>
-               <width>171</width>
-               <height>28</height>
-              </rect>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">QLineEdit{
+            <property name="text">
+             <string>Password:</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item alignment="">
+           <widget class="QLineEdit" name="lineEdit_2">
+            <property name="minimumSize">
+             <size>
+              <width>260</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QLineEdit{
 font-size:15;
 padding:5px;
 }</string>
-             </property>
-             <property name="echoMode">
-              <enum>QLineEdit::EchoMode::Password</enum>
-             </property>
-            </widget>
-            <widget class="QLabel" name="password_Label">
-             <property name="geometry">
-              <rect>
-               <x>0</x>
-               <y>10</y>
-               <width>171</width>
-               <height>31</height>
-              </rect>
-             </property>
-             <property name="maximumSize">
-              <size>
-               <width>200</width>
-               <height>50</height>
-              </size>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">Qlabel{
-font-size:15px;
-}</string>
-             </property>
-             <property name="text">
-              <string>Password:</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
-             </property>
-            </widget>
+            </property>
+            <property name="echoMode">
+             <enum>QLineEdit::EchoMode::Password</enum>
+            </property>
            </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer_11">
+            <property name="orientation">
+             <enum>Qt::Orientation::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>30</height>
+             </size>
+            </property>
+           </spacer>
           </item>
           <item alignment="">
            <widget class="QPushButton" name="login_button">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
+            <property name="minimumSize">
+             <size>
+              <width>260</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="maximumSize">
              <size>
-              <width>200</width>
+              <width>10000</width>
               <height>30</height>
              </size>
             </property>
@@ -231,17 +240,36 @@ background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, 
             </property>
            </widget>
           </item>
+          <item>
+           <spacer name="horizontalSpacer_8">
+            <property name="orientation">
+             <enum>Qt::Orientation::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>40</width>
+              <height>10</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
           <item alignment="">
            <widget class="QPushButton" name="createAccount_Button">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+             <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
+            <property name="minimumSize">
+             <size>
+              <width>260</width>
+              <height>0</height>
+             </size>
+            </property>
             <property name="maximumSize">
              <size>
-              <width>200</width>
+              <width>10000</width>
               <height>30</height>
              </size>
             </property>
@@ -256,7 +284,33 @@ background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, 
             </property>
            </widget>
           </item>
+          <item>
+           <spacer name="verticalSpacer_8">
+            <property name="orientation">
+             <enum>Qt::Orientation::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
          </layout>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_7">
+          <property name="orientation">
+           <enum>Qt::Orientation::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
         </item>
        </layout>
       </widget>
