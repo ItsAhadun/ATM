@@ -344,7 +344,9 @@ bool MainWindow::isAmountValid(double amount) {
 void MainWindow::on_depositEnter_Button_clicked() {
     double amount = currentInput.toDouble();
 
-    if (!isAmountValid(amount)) {
+    if (!isAmountValid(amount))
+    {
+        currentInput=0;
         return;
     }
 
@@ -381,6 +383,7 @@ void MainWindow::processWithdrawal(double amount)
 
     if (!isAmountValid(amount))
     {
+        currentInput=0;
         return;
     }
 

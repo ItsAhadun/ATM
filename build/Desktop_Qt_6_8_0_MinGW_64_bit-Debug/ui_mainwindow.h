@@ -99,27 +99,30 @@ public:
     QPushButton *submitApplication_Button;
     QPushButton *acc_Cancel_Button;
     QWidget *numpad_Page;
-    QVBoxLayout *verticalLayout;
-    QSpacerItem *horizontalSpacer_2;
+    QHBoxLayout *horizontalLayout_6;
+    QSpacerItem *horizontalSpacer;
+    QVBoxLayout *verticalLayout_10;
+    QSpacerItem *verticalSpacer_5;
     QLCDNumber *lcdNumber;
     QGridLayout *numpad_Grid;
-    QPushButton *four_Button;
-    QPushButton *cancel_Button;
     QPushButton *depositEnter_Button;
     QPushButton *blank_Button_2;
-    QPushButton *blank_Button;
-    QPushButton *six_Button;
+    QPushButton *four_Button;
+    QPushButton *blank_Button_3;
+    QPushButton *eight_Button;
+    QPushButton *cancel_Button;
+    QPushButton *seven_Button;
+    QPushButton *three_Button;
     QPushButton *five_Button;
     QPushButton *clear_Button;
-    QPushButton *two_Button;
-    QPushButton *three_Button;
-    QPushButton *blank_Button_3;
-    QPushButton *one_Button;
     QPushButton *nine_Button;
-    QPushButton *eight_Button;
     QPushButton *zero_Button;
-    QPushButton *seven_Button;
-    QSpacerItem *horizontalSpacer;
+    QPushButton *two_Button;
+    QPushButton *blank_Button;
+    QPushButton *six_Button;
+    QPushButton *one_Button;
+    QSpacerItem *verticalSpacer_6;
+    QSpacerItem *horizontalSpacer_2;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -507,7 +510,7 @@ public:
         frame_5->setFrameShadow(QFrame::Shadow::Raised);
         confirmPassword_Line = new QLineEdit(frame_5);
         confirmPassword_Line->setObjectName("confirmPassword_Line");
-        confirmPassword_Line->setGeometry(QRect(0, 70, 181, 31));
+        confirmPassword_Line->setGeometry(QRect(0, 70, 1000, 31));
         confirmPassword_Label = new QLabel(frame_5);
         confirmPassword_Label->setObjectName("confirmPassword_Label");
         confirmPassword_Label->setGeometry(QRect(0, 40, 181, 20));
@@ -542,32 +545,32 @@ public:
         stackedWidget->addWidget(createUser_Page);
         numpad_Page = new QWidget();
         numpad_Page->setObjectName("numpad_Page");
-        verticalLayout = new QVBoxLayout(numpad_Page);
-        verticalLayout->setObjectName("verticalLayout");
-        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+        horizontalLayout_6 = new QHBoxLayout(numpad_Page);
+        horizontalLayout_6->setObjectName("horizontalLayout_6");
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
-        verticalLayout->addItem(horizontalSpacer_2);
+        horizontalLayout_6->addItem(horizontalSpacer);
+
+        verticalLayout_10 = new QVBoxLayout();
+        verticalLayout_10->setSpacing(2);
+        verticalLayout_10->setObjectName("verticalLayout_10");
+        verticalSpacer_5 = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
+
+        verticalLayout_10->addItem(verticalSpacer_5);
 
         lcdNumber = new QLCDNumber(numpad_Page);
         lcdNumber->setObjectName("lcdNumber");
+        QFont font6;
+        font6.setBold(false);
+        lcdNumber->setFont(font6);
+        lcdNumber->setSmallDecimalPoint(false);
+        lcdNumber->setDigitCount(9);
 
-        verticalLayout->addWidget(lcdNumber);
+        verticalLayout_10->addWidget(lcdNumber);
 
         numpad_Grid = new QGridLayout();
         numpad_Grid->setObjectName("numpad_Grid");
         numpad_Grid->setContentsMargins(5, 5, 5, 5);
-        four_Button = new QPushButton(numpad_Page);
-        four_Button->setObjectName("four_Button");
-        four_Button->setMinimumSize(QSize(75, 75));
-
-        numpad_Grid->addWidget(four_Button, 1, 0, 1, 1);
-
-        cancel_Button = new QPushButton(numpad_Page);
-        cancel_Button->setObjectName("cancel_Button");
-        cancel_Button->setMinimumSize(QSize(75, 75));
-
-        numpad_Grid->addWidget(cancel_Button, 1, 3, 1, 1);
-
         depositEnter_Button = new QPushButton(numpad_Page);
         depositEnter_Button->setObjectName("depositEnter_Button");
         depositEnter_Button->setMinimumSize(QSize(75, 75));
@@ -580,17 +583,41 @@ public:
 
         numpad_Grid->addWidget(blank_Button_2, 3, 0, 1, 1);
 
-        blank_Button = new QPushButton(numpad_Page);
-        blank_Button->setObjectName("blank_Button");
-        blank_Button->setMinimumSize(QSize(75, 75));
+        four_Button = new QPushButton(numpad_Page);
+        four_Button->setObjectName("four_Button");
+        four_Button->setMinimumSize(QSize(75, 75));
 
-        numpad_Grid->addWidget(blank_Button, 3, 2, 1, 1);
+        numpad_Grid->addWidget(four_Button, 1, 0, 1, 1);
 
-        six_Button = new QPushButton(numpad_Page);
-        six_Button->setObjectName("six_Button");
-        six_Button->setMinimumSize(QSize(75, 75));
+        blank_Button_3 = new QPushButton(numpad_Page);
+        blank_Button_3->setObjectName("blank_Button_3");
+        blank_Button_3->setMinimumSize(QSize(75, 75));
 
-        numpad_Grid->addWidget(six_Button, 1, 2, 1, 1);
+        numpad_Grid->addWidget(blank_Button_3, 3, 3, 1, 1);
+
+        eight_Button = new QPushButton(numpad_Page);
+        eight_Button->setObjectName("eight_Button");
+        eight_Button->setMinimumSize(QSize(75, 75));
+
+        numpad_Grid->addWidget(eight_Button, 2, 1, 1, 1);
+
+        cancel_Button = new QPushButton(numpad_Page);
+        cancel_Button->setObjectName("cancel_Button");
+        cancel_Button->setMinimumSize(QSize(75, 75));
+
+        numpad_Grid->addWidget(cancel_Button, 1, 3, 1, 1);
+
+        seven_Button = new QPushButton(numpad_Page);
+        seven_Button->setObjectName("seven_Button");
+        seven_Button->setMinimumSize(QSize(75, 75));
+
+        numpad_Grid->addWidget(seven_Button, 2, 0, 1, 1);
+
+        three_Button = new QPushButton(numpad_Page);
+        three_Button->setObjectName("three_Button");
+        three_Button->setMinimumSize(QSize(75, 75));
+
+        numpad_Grid->addWidget(three_Button, 0, 2, 1, 1);
 
         five_Button = new QPushButton(numpad_Page);
         five_Button->setObjectName("five_Button");
@@ -604,41 +631,11 @@ public:
 
         numpad_Grid->addWidget(clear_Button, 0, 3, 1, 1);
 
-        two_Button = new QPushButton(numpad_Page);
-        two_Button->setObjectName("two_Button");
-        two_Button->setMinimumSize(QSize(75, 75));
-
-        numpad_Grid->addWidget(two_Button, 0, 1, 1, 1);
-
-        three_Button = new QPushButton(numpad_Page);
-        three_Button->setObjectName("three_Button");
-        three_Button->setMinimumSize(QSize(75, 75));
-
-        numpad_Grid->addWidget(three_Button, 0, 2, 1, 1);
-
-        blank_Button_3 = new QPushButton(numpad_Page);
-        blank_Button_3->setObjectName("blank_Button_3");
-        blank_Button_3->setMinimumSize(QSize(75, 75));
-
-        numpad_Grid->addWidget(blank_Button_3, 3, 3, 1, 1);
-
-        one_Button = new QPushButton(numpad_Page);
-        one_Button->setObjectName("one_Button");
-        one_Button->setMinimumSize(QSize(75, 75));
-
-        numpad_Grid->addWidget(one_Button, 0, 0, 1, 1);
-
         nine_Button = new QPushButton(numpad_Page);
         nine_Button->setObjectName("nine_Button");
         nine_Button->setMinimumSize(QSize(75, 75));
 
         numpad_Grid->addWidget(nine_Button, 2, 2, 1, 1);
-
-        eight_Button = new QPushButton(numpad_Page);
-        eight_Button->setObjectName("eight_Button");
-        eight_Button->setMinimumSize(QSize(75, 75));
-
-        numpad_Grid->addWidget(eight_Button, 2, 1, 1, 1);
 
         zero_Button = new QPushButton(numpad_Page);
         zero_Button->setObjectName("zero_Button");
@@ -646,18 +643,47 @@ public:
 
         numpad_Grid->addWidget(zero_Button, 3, 1, 1, 1);
 
-        seven_Button = new QPushButton(numpad_Page);
-        seven_Button->setObjectName("seven_Button");
-        seven_Button->setMinimumSize(QSize(75, 75));
+        two_Button = new QPushButton(numpad_Page);
+        two_Button->setObjectName("two_Button");
+        two_Button->setMinimumSize(QSize(75, 75));
 
-        numpad_Grid->addWidget(seven_Button, 2, 0, 1, 1);
+        numpad_Grid->addWidget(two_Button, 0, 1, 1, 1);
+
+        blank_Button = new QPushButton(numpad_Page);
+        blank_Button->setObjectName("blank_Button");
+        blank_Button->setMinimumSize(QSize(75, 75));
+
+        numpad_Grid->addWidget(blank_Button, 3, 2, 1, 1);
+
+        six_Button = new QPushButton(numpad_Page);
+        six_Button->setObjectName("six_Button");
+        six_Button->setMinimumSize(QSize(75, 75));
+
+        numpad_Grid->addWidget(six_Button, 1, 2, 1, 1);
+
+        one_Button = new QPushButton(numpad_Page);
+        one_Button->setObjectName("one_Button");
+        one_Button->setMinimumSize(QSize(75, 75));
+
+        numpad_Grid->addWidget(one_Button, 0, 0, 1, 1);
 
 
-        verticalLayout->addLayout(numpad_Grid);
+        verticalLayout_10->addLayout(numpad_Grid);
 
-        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+        verticalSpacer_6 = new QSpacerItem(20, 40, QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Expanding);
 
-        verticalLayout->addItem(horizontalSpacer);
+        verticalLayout_10->addItem(verticalSpacer_6);
+
+        verticalLayout_10->setStretch(0, 1);
+        verticalLayout_10->setStretch(1, 2);
+        verticalLayout_10->setStretch(2, 4);
+        verticalLayout_10->setStretch(3, 1);
+
+        horizontalLayout_6->addLayout(verticalLayout_10);
+
+        horizontalSpacer_2 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout_6->addItem(horizontalSpacer_2);
 
         stackedWidget->addWidget(numpad_Page);
 
@@ -667,7 +693,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(3);
+        stackedWidget->setCurrentIndex(6);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -704,22 +730,22 @@ public:
         newPassword_Label->setText(QCoreApplication::translate("MainWindow", "Enter Password", nullptr));
         submitApplication_Button->setText(QCoreApplication::translate("MainWindow", "Create account", nullptr));
         acc_Cancel_Button->setText(QCoreApplication::translate("MainWindow", "Cancel", nullptr));
-        four_Button->setText(QCoreApplication::translate("MainWindow", "4", nullptr));
-        cancel_Button->setText(QCoreApplication::translate("MainWindow", "Cancel", nullptr));
         depositEnter_Button->setText(QCoreApplication::translate("MainWindow", "Enter", nullptr));
         blank_Button_2->setText(QString());
-        blank_Button->setText(QString());
-        six_Button->setText(QCoreApplication::translate("MainWindow", "6", nullptr));
+        four_Button->setText(QCoreApplication::translate("MainWindow", "4", nullptr));
+        blank_Button_3->setText(QString());
+        eight_Button->setText(QCoreApplication::translate("MainWindow", "8", nullptr));
+        cancel_Button->setText(QCoreApplication::translate("MainWindow", "Cancel", nullptr));
+        seven_Button->setText(QCoreApplication::translate("MainWindow", "7", nullptr));
+        three_Button->setText(QCoreApplication::translate("MainWindow", "3", nullptr));
         five_Button->setText(QCoreApplication::translate("MainWindow", "5", nullptr));
         clear_Button->setText(QCoreApplication::translate("MainWindow", "Clear", nullptr));
-        two_Button->setText(QCoreApplication::translate("MainWindow", "2", nullptr));
-        three_Button->setText(QCoreApplication::translate("MainWindow", "3", nullptr));
-        blank_Button_3->setText(QString());
-        one_Button->setText(QCoreApplication::translate("MainWindow", "1", nullptr));
         nine_Button->setText(QCoreApplication::translate("MainWindow", "9", nullptr));
-        eight_Button->setText(QCoreApplication::translate("MainWindow", "8", nullptr));
         zero_Button->setText(QCoreApplication::translate("MainWindow", "0", nullptr));
-        seven_Button->setText(QCoreApplication::translate("MainWindow", "7", nullptr));
+        two_Button->setText(QCoreApplication::translate("MainWindow", "2", nullptr));
+        blank_Button->setText(QString());
+        six_Button->setText(QCoreApplication::translate("MainWindow", "6", nullptr));
+        one_Button->setText(QCoreApplication::translate("MainWindow", "1", nullptr));
     } // retranslateUi
 
 };
