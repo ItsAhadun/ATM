@@ -72,6 +72,7 @@ private:
     void setupSettingsButton();
     void logoutAction();
     void settingsAction();
+    bool isAmountValid(double amount);
 };
 
 #endif

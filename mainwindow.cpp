@@ -336,17 +336,31 @@ void MainWindow::on_checkBalance_Button_clicked()
 
     if (query.exec() && query.next()) {
         double balance = query.value(balanceColumn).toDouble();
-        QMessageBox::information(this, "Account Balance", QString("Your balance is: $%1").arg(balance));
+        QMessageBox::information(this, "Account Balance", QString("Your balance is: Rs%1  ").arg(balance));
     } else {
         QMessageBox::critical(this, "Database Error", "Failed to retrieve balance.");
     }
 }
 
+bool MainWindow::isAmountValid(double amount) {
+    if (amount <= 0) {
+        QMessageBox::warning(this, "Invalid Input", "Amount must be greater than zero.");
+        return false;
+    }
+
+    if (static_cast<int>(amount) % 500 != 0) {
+        QMessageBox::warning(this, "Invalid Input", "Amount must be in multiples of 500.");
+        return false;
+    }
+
+    return true;
+}
+
+
 void MainWindow::on_depositEnter_Button_clicked() {
     double amount = currentInput.toDouble();
 
-    if (amount <= 0) {
-        QMessageBox::warning(this, "Invalid Input", "Please enter a valid amount.");
+    if (!isAmountValid(amount)) {
         return;
     }
 
@@ -361,7 +375,7 @@ void MainWindow::on_depositEnter_Button_clicked() {
 
     if (query.exec()) {
         QString action = (currentMode == Deposit) ? "Deposited" : "Withdrawn";
-        QMessageBox::information(this, "Success", QString("%1 $%2 to/from your %3 account.")
+        QMessageBox::information(this, "Success", QString("%1 Rs%2 to your %3 account.")
                                                       .arg(action).arg(amount)
                                                       .arg((currentAccountMode == Savings) ? "Savings" : "Current"));
     } else {
@@ -373,9 +387,16 @@ void MainWindow::on_depositEnter_Button_clicked() {
     ui->stackedWidget->setCurrentWidget(ui->dashboard_Page);
 }
 
-void MainWindow::processWithdrawal(double amount) {
-    if (loggedInUsername.isEmpty()) {
+void MainWindow::processWithdrawal(double amount)
+{
+    if (loggedInUsername.isEmpty())
+    {
         QMessageBox::warning(this, "Error", "No user is logged in. Please log in to proceed.");
+        return;
+    }
+
+    if (!isAmountValid(amount))
+    {
         return;
     }
 
@@ -403,7 +424,7 @@ void MainWindow::processWithdrawal(double amount) {
 
     if (query.exec()) {
         QMessageBox::information(this, "Withdrawal Successful",
-                                 QString("You have withdrawn $%1 from your %2 account. Your new balance is $%3.")
+                                 QString("You have withdrawn Rs%1  from your %2 account. Your new balance is Rs%3.")
                                      .arg(amount)
                                      .arg((currentAccountMode == Savings) ? "Savings" : "Current")
                                      .arg(currentBalance - amount));
@@ -503,8 +524,8 @@ void MainWindow::on_deleteAccount_action()
         if (savingsBalance > 0 || currentBalance > 0) {
             QMessageBox::warning(this, "Cannot Delete Account",
                                  QString("Your account balances are not zero.\n"
-                                         "Savings Balance: $%1\n"
-                                         "Current Balance: $%2\n"
+                                         "Savings Balance: Rs%1  \n"
+                                         "Current Balance: Rs%2\n"
                                          "Please withdraw all funds before deleting your account.")
                                      .arg(savingsBalance, 0, 'f', 2) // Format balances to 2 decimal places
                                      .arg(currentBalance, 0, 'f', 2));
