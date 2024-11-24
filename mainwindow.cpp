@@ -11,6 +11,8 @@
 #include <QToolButton>
 using namespace std;
 
+
+// Constructor for MainWindow
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -26,7 +28,8 @@ MainWindow::MainWindow(QWidget *parent)
     QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("bankingApp.db");
 
-    if (!db.open()) {
+    if (!db.open())
+    {
         QMessageBox::critical(this, "Database Error", "Failed to open the database: " + db.lastError().text());
         return;
     }
@@ -43,11 +46,12 @@ MainWindow::MainWindow(QWidget *parent)
         is_locked INTEGER DEFAULT 0,
         last_failed_login DATETIME
     )
-    )")) {
+    )"))
+    {
         QMessageBox::critical(this, "Database Error", "Failed to create table: " + query.lastError().text());
     }
 
-    currentInput = ""; // Start with an empty string
+    currentInput = ""; // Initialize the global variable
 
     //numpad connections
     connect(ui->zero_Button, &QPushButton::released, this, &MainWindow::num_pressed);
@@ -60,9 +64,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->seven_Button, &QPushButton::released, this, &MainWindow::num_pressed);
     connect(ui->eight_Button, &QPushButton::released, this, &MainWindow::num_pressed);
     connect(ui->nine_Button, &QPushButton::released, this, &MainWindow::num_pressed);
-
 }
 
+// Destructor for MainWindow
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -71,29 +75,15 @@ MainWindow::~MainWindow()
 }
 
 
-bool isValidPin(const QString &pin)
-{
-    string pinStr = pin.toStdString();
 
-    if (pinStr.length() != 4) {
-        return false;
-    }
-
-    for (int i = 0; i < 4; ++i) {
-        if (pinStr[i] < 48 || pinStr[i] > 57)
-        {
-            return false;
-        }
-    }
-    return true;
-}
-
+//processes login
 void MainWindow::on_login_button_clicked()
 {
     QString uName = ui->loginUser_Line->text();
     QString uCode = ui->loginPass_Line->text();
 
-    if (isAccountLocked(uName)) {
+    if (isAccountLocked(uName))
+    {
         return;
     }
 
@@ -103,13 +93,16 @@ void MainWindow::on_login_button_clicked()
         return;
     }
 
-    if (validateLogin(uName, uCode)) {
+    if (validateLogin(uName, uCode))
+    {
         handleSuccessfulLogin(uName);
-    } else {
+    }
+    else
+    {
         handleFailedLogin(uName);
     }
 }
-
+//PIN validatation
 bool MainWindow::isValidPin(const QString& pin)
 {
     string pinStr = pin.toStdString();
@@ -127,14 +120,16 @@ bool MainWindow::isValidPin(const QString& pin)
     }
     return true;
 }
-
+//increments failed Attempts
+//locks the account after 3 consective attempts
 void MainWindow::handleInvalidPin(const QString& username)
 {
     QSqlQuery updateQuery;
     updateQuery.prepare("UPDATE users SET failed_attempts = failed_attempts + 1 WHERE username = :username");
     updateQuery.bindValue(":username", username);
 
-    if (!updateQuery.exec()) {
+    if (!updateQuery.exec())
+    {
         QMessageBox::critical(this, "Database Error", "Failed to update failed attempts: " + updateQuery.lastError().text());
         return;
     }
@@ -145,9 +140,11 @@ void MainWindow::handleInvalidPin(const QString& username)
     query.prepare("SELECT failed_attempts FROM users WHERE username = :username");
     query.bindValue(":username", username);
 
-    if (query.exec() && query.next()) {
+    if (query.exec() && query.next())
+    {
         int failedAttempts = query.value("failed_attempts").toInt();
-        if (failedAttempts >= 3) {
+        if (failedAttempts >= 3)
+        {
             lockAccount(username);
         }
         else
@@ -158,7 +155,8 @@ void MainWindow::handleInvalidPin(const QString& username)
 
         }
 }
-
+// Check if account's locked
+//unlock if it has been minutes since lockout
 bool MainWindow::isAccountLocked(const QString& username)
 {
     QSqlQuery query;
@@ -173,11 +171,13 @@ bool MainWindow::isAccountLocked(const QString& username)
     bool isLocked = query.value("is_locked").toBool();
     QDateTime lastFailedLogin = query.value("last_failed_login").toDateTime();
 
-    if (isLocked) {
+    if (isLocked)
+    {
         QDateTime unlockTime = lastFailedLogin.addSecs(5 * 60); // 5-minute timeout
         QDateTime currentTime = QDateTime::currentDateTime();
 
-        if (currentTime < unlockTime) {
+        if (currentTime < unlockTime)
+        {
             int remainingSeconds = currentTime.secsTo(unlockTime);
             int minutes = remainingSeconds / 60;
             int seconds = remainingSeconds % 60;
@@ -187,23 +187,21 @@ bool MainWindow::isAccountLocked(const QString& username)
                                      .arg(minutes)
                                      .arg(seconds));
             return true;
-        } else {
-            unlockAccount(username);
+        }
+        else
+        {
+            QSqlQuery unlockQuery;
+            unlockQuery.prepare("UPDATE users SET is_locked = 0, failed_attempts = 0 WHERE username = :username");
+            unlockQuery.bindValue(":username", username);
+
+            if (!unlockQuery.exec()) {
+                QMessageBox::critical(this, "Database Error", "Failed to unlock account: " + unlockQuery.lastError().text());
+            }
         }
     }
     return false;
 }
 
-void MainWindow::unlockAccount(const QString& username)
-{
-    QSqlQuery unlockQuery;
-    unlockQuery.prepare("UPDATE users SET is_locked = 0, failed_attempts = 0 WHERE username = :username");
-    unlockQuery.bindValue(":username", username);
-
-    if (!unlockQuery.exec()) {
-        QMessageBox::critical(this, "Database Error", "Failed to unlock account: " + unlockQuery.lastError().text());
-    }
-}
 
 bool MainWindow::validateLogin(const QString& username, const QString& password)
 {

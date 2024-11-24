@@ -32,4 +32,4 @@ RESOURCES += \
     resource.qrc
 
 
-RC_LOGO = LOGO.ico
+RC_ICONS = LOGO.ico

@@ -28,7 +28,6 @@ private slots:
     bool isValidPin(const QString& pin);
     void handleInvalidPin(const QString& username);
     bool isAccountLocked(const QString& username);
-    void unlockAccount(const QString& username);
     bool validateLogin(const QString& username, const QString& password);
     void handleSuccessfulLogin(const QString& username);
     void handleFailedLogin(const QString& username);
