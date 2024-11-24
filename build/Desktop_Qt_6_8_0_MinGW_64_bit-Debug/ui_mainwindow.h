@@ -112,7 +112,7 @@ public:
     QSpacerItem *verticalSpacer_5;
     QLCDNumber *lcdNumber;
     QGridLayout *numpad_Grid;
-    QPushButton *depositEnter_Button;
+    QPushButton *numpadEnter_Button;
     QPushButton *blank_Button_2;
     QPushButton *four_Button;
     QPushButton *blank_Button_3;
@@ -300,6 +300,7 @@ public:
         font2.setBold(true);
         font2.setItalic(true);
         enterPass_Label->setFont(font2);
+        enterPass_Label->setAlignment(Qt::AlignmentFlag::AlignCenter);
 
         verticalLayout_3->addWidget(enterPass_Label);
 
@@ -620,11 +621,11 @@ public:
         numpad_Grid = new QGridLayout();
         numpad_Grid->setObjectName("numpad_Grid");
         numpad_Grid->setContentsMargins(5, 5, 5, 5);
-        depositEnter_Button = new QPushButton(numpad_Page);
-        depositEnter_Button->setObjectName("depositEnter_Button");
-        depositEnter_Button->setMinimumSize(QSize(75, 75));
+        numpadEnter_Button = new QPushButton(numpad_Page);
+        numpadEnter_Button->setObjectName("numpadEnter_Button");
+        numpadEnter_Button->setMinimumSize(QSize(75, 75));
 
-        numpad_Grid->addWidget(depositEnter_Button, 2, 3, 1, 1);
+        numpad_Grid->addWidget(numpadEnter_Button, 2, 3, 1, 1);
 
         blank_Button_2 = new QPushButton(numpad_Page);
         blank_Button_2->setObjectName("blank_Button_2");
@@ -742,7 +743,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(3);
+        stackedWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -756,8 +757,8 @@ public:
         password_Label->setText(QCoreApplication::translate("MainWindow", "Password:", nullptr));
         login_button->setText(QCoreApplication::translate("MainWindow", "Login", nullptr));
         createAccount_Button->setText(QCoreApplication::translate("MainWindow", "Create New account", nullptr));
-        enterPass_Label->setText(QCoreApplication::translate("MainWindow", "Enter password", nullptr));
-        enterPassConfirm_Label->setText(QCoreApplication::translate("MainWindow", "Enter password again", nullptr));
+        enterPass_Label->setText(QCoreApplication::translate("MainWindow", "Enter PIN", nullptr));
+        enterPassConfirm_Label->setText(QCoreApplication::translate("MainWindow", "Enter PIN again", nullptr));
         deletion_Label->setText(QCoreApplication::translate("MainWindow", "Slide to the right end to confirm deletion of your account!", nullptr));
         current_acc_button->setText(QCoreApplication::translate("MainWindow", "Current Account", nullptr));
         savings_acc_button->setText(QCoreApplication::translate("MainWindow", "Savings Account", nullptr));
@@ -776,11 +777,11 @@ public:
 "Balance", nullptr));
         settings_Button->setText(QCoreApplication::translate("MainWindow", "Settings", nullptr));
         newUser_Line_2->setText(QCoreApplication::translate("MainWindow", "Enter UserName", nullptr));
-        confirmPassword_Label->setText(QCoreApplication::translate("MainWindow", "Confirm Password", nullptr));
-        newPassword_Label->setText(QCoreApplication::translate("MainWindow", "Enter Password", nullptr));
+        confirmPassword_Label->setText(QCoreApplication::translate("MainWindow", "Confirm PIN", nullptr));
+        newPassword_Label->setText(QCoreApplication::translate("MainWindow", "Enter PIN", nullptr));
         submitApplication_Button->setText(QCoreApplication::translate("MainWindow", "Create account", nullptr));
         acc_Cancel_Button->setText(QCoreApplication::translate("MainWindow", "Cancel", nullptr));
-        depositEnter_Button->setText(QCoreApplication::translate("MainWindow", "Enter", nullptr));
+        numpadEnter_Button->setText(QCoreApplication::translate("MainWindow", "Enter", nullptr));
         blank_Button_2->setText(QString());
         four_Button->setText(QCoreApplication::translate("MainWindow", "4", nullptr));
         blank_Button_3->setText(QString());

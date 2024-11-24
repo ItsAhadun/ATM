@@ -45,7 +45,7 @@ private slots:
 
     // Transactions
     void on_deposit_Button_clicked();
-    void on_depositEnter_Button_clicked();
+    void on_numpadEnter_Button_clicked();
     void processWithdrawal(double amount);
     void on_checkBalance_Button_clicked();
     void on_otherAmount_Button_clicked();
@@ -61,7 +61,6 @@ private slots:
     void on_cancel_Button_clicked();
 
     // Settings and Actions
-    void on_settings_Button_triggered(QAction *arg1);
     void on_horizontalSlider_valueChanged(int value);
     void on_deleteAccount_action();
 

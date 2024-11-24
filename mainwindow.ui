@@ -30,7 +30,7 @@
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="currentIndex">
-       <number>3</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="login_Page">
        <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -337,7 +337,10 @@ background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, 
               </font>
              </property>
              <property name="text">
-              <string>Enter password</string>
+              <string>Enter PIN</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignCenter</set>
              </property>
             </widget>
            </item>
@@ -357,7 +360,7 @@ background-color: qradialgradient(spread:reflect, cx:0.5, cy:0.5, radius:1.026, 
               <number>1</number>
              </property>
              <property name="text">
-              <string>Enter password again</string>
+              <string>Enter PIN again</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -918,7 +921,7 @@ Balance</string>
              </rect>
             </property>
             <property name="text">
-             <string>Confirm Password</string>
+             <string>Confirm PIN</string>
             </property>
            </widget>
           </widget>
@@ -951,7 +954,7 @@ Balance</string>
              </rect>
             </property>
             <property name="text">
-             <string>Enter Password</string>
+             <string>Enter PIN</string>
             </property>
            </widget>
           </widget>
@@ -1042,7 +1045,7 @@ Balance</string>
              <number>5</number>
             </property>
             <item row="2" column="3">
-             <widget class="QPushButton" name="depositEnter_Button">
+             <widget class="QPushButton" name="numpadEnter_Button">
               <property name="minimumSize">
                <size>
                 <width>75</width>

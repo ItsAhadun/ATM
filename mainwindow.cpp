@@ -87,13 +87,13 @@ void MainWindow::on_login_button_clicked()
         return;
     }
 
-    if (!isValidPin(uCode))
+    if (!isValidPin(uCode)) //check correct format (validation)
     {
         handleInvalidPin(uName);
         return;
     }
 
-    if (validateLogin(uName, uCode))
+    if (validateLogin(uName, uCode)) //check correct pin and username (verification)
     {
         handleSuccessfulLogin(uName);
     }
@@ -156,7 +156,7 @@ void MainWindow::handleInvalidPin(const QString& username)
         }
 }
 // Check if account's locked
-//unlock if it has been minutes since lockout
+//unlock if it has been 5 minutes since lockout
 bool MainWindow::isAccountLocked(const QString& username)
 {
     QSqlQuery query;
@@ -188,13 +188,14 @@ bool MainWindow::isAccountLocked(const QString& username)
                                      .arg(seconds));
             return true;
         }
-        else
+        else //unlocks the account
         {
             QSqlQuery unlockQuery;
             unlockQuery.prepare("UPDATE users SET is_locked = 0, failed_attempts = 0 WHERE username = :username");
             unlockQuery.bindValue(":username", username);
 
-            if (!unlockQuery.exec()) {
+            if (!unlockQuery.exec())
+            {
                 QMessageBox::critical(this, "Database Error", "Failed to unlock account: " + unlockQuery.lastError().text());
             }
         }
@@ -202,7 +203,7 @@ bool MainWindow::isAccountLocked(const QString& username)
     return false;
 }
 
-
+//checks if username and password are correct
 bool MainWindow::validateLogin(const QString& username, const QString& password)
 {
     QSqlQuery query;
@@ -212,7 +213,9 @@ bool MainWindow::validateLogin(const QString& username, const QString& password)
 
     return query.exec() && query.next();
 }
-
+//logs the user in
+//resets failed attempts
+//changes to the next page
 void MainWindow::handleSuccessfulLogin(const QString& username)
 {
     loggedInUsername = username;
@@ -229,7 +232,8 @@ void MainWindow::handleSuccessfulLogin(const QString& username)
         QMessageBox::critical(this, "Database Error", "Failed to reset login attempts: " + resetQuery.lastError().text());
     }
 }
-
+//if the password is incorrect
+//increment failed attempts
 void MainWindow::handleFailedLogin(const QString& username)
 {
     QSqlQuery updateQuery;
@@ -256,6 +260,7 @@ void MainWindow::handleFailedLogin(const QString& username)
     }
 }
 
+//locks the account
 void MainWindow::lockAccount(const QString& username)
 {
     QSqlQuery lockQuery;
@@ -270,7 +275,7 @@ void MainWindow::lockAccount(const QString& username)
     }
 }
 
-
+//changees the page to dashboard and account
 void MainWindow::on_current_acc_button_clicked()
 {
 
@@ -278,14 +283,14 @@ void MainWindow::on_current_acc_button_clicked()
     currentAccountMode = Current;
     ui->stackedWidget->setCurrentWidget(ui->dashboard_Page);
 }
-
+//changes the page to dashboard and account
 void MainWindow::on_savings_acc_button_clicked()
 {
     ui->account_Label->setText("Savings Account");
     currentAccountMode = Savings;
     ui->stackedWidget->setCurrentWidget(ui->dashboard_Page);
 }
-
+//changes the page to dashboard and account
 void MainWindow::on_default_acc_button_clicked()
 {
     ui->account_Label->setText("Savings Account");
@@ -293,6 +298,8 @@ void MainWindow::on_default_acc_button_clicked()
     ui->stackedWidget->setCurrentWidget(ui->dashboard_Page);
 }
 
+// Allows the user to create a new account
+//by validating input and storing the details in the database.
 void MainWindow::on_submitApplication_Button_clicked()
 {
     QString newUsername = ui->newUser_Line->text();
@@ -328,12 +335,23 @@ void MainWindow::on_submitApplication_Button_clicked()
         QMessageBox::critical(this, "Database Error", "Failed to create account: " + query.lastError().text());
     }
 
+    //clears the textboexes
     ui->confirmPassword_Line->clear();
     ui->newPassword_Line->clear();
     ui->newUser_Line->clear();
 }
 
+//clears the text boxes and returns to login page
+void MainWindow::on_acc_Cancel_Button_clicked()
+{
+    ui->stackedWidget->setCurrentWidget(ui->login_Page);
+    ui->newPassword_Line->clear();
+    ui->newUser_Line->clear();
+    ui->confirmPassword_Line->clear();
+}
 
+
+//changes screen to account creation page
 void MainWindow::on_createAccount_Button_clicked()
 {
     ui->loginUser_Line->clear();
@@ -341,12 +359,13 @@ void MainWindow::on_createAccount_Button_clicked()
     ui->stackedWidget->setCurrentWidget(ui->createUser_Page);
 }
 
+//When enter is pressed while in the password text box, the login button is pressed
 void MainWindow::on_loginPass_Line_returnPressed()
 {
     ui->login_button->click();
 }
 
-
+//
 void MainWindow::on_deposit_Button_clicked()
 {
     ui->stackedWidget->setCurrentWidget(ui->numpad_Page);
@@ -381,7 +400,8 @@ void MainWindow::on_cancel_Button_clicked()
     ui->stackedWidget->setCurrentWidget(ui->dashboard_Page);
 }
 
-
+// Allows the user to check their account balance
+//    (for both savings and current account)
 void MainWindow::on_checkBalance_Button_clicked()
 {
     QString balanceColumn = (currentAccountMode == Savings) ? "savings_balance" : "current_balance";
@@ -398,6 +418,7 @@ void MainWindow::on_checkBalance_Button_clicked()
     }
 }
 
+// checks if the amount is a multiple of 500
 bool MainWindow::isAmountValid(double amount) {
     if (amount <= 0) {
         QMessageBox::warning(this, "Invalid Input", "Amount must be greater than zero.");
@@ -413,23 +434,26 @@ bool MainWindow::isAmountValid(double amount) {
 }
 
 
-
+// Processes a withdrawal request by validating the amount and updating the database.
 void MainWindow::processWithdrawal(double amount)
 {
+    // Ensure a user is logged in
     if (loggedInUsername.isEmpty())
     {
         QMessageBox::warning(this, "Error", "No user is logged in. Please log in to proceed.");
         return;
     }
-
+    // Ensure the amount is valid
     if (!isAmountValid(amount))
     {
         currentInput=0;
         return;
     }
 
+    //assign the balance colonm according to the account mode
     QString balanceColumn = (currentAccountMode == Savings) ? "savings_balance" : "current_balance";
 
+    // Retrieve the current balance from the database
     QSqlQuery query;
     query.prepare(QString("SELECT %1 FROM users WHERE username = :username").arg(balanceColumn));
     query.bindValue(":username", loggedInUsername);
@@ -440,12 +464,13 @@ void MainWindow::processWithdrawal(double amount)
     }
 
     double currentBalance = query.value(balanceColumn).toDouble();
-
+    // Ensure sufficient funds are available for withdrawal
     if (currentBalance < amount) {
         QMessageBox::warning(this, "Insufficient Funds", "You do not have enough balance for this withdrawal.");
         return;
     }
 
+    // Update the balance after withdrawal
     query.prepare(QString("UPDATE users SET %1 = %1 - :amount WHERE username = :username").arg(balanceColumn));
     query.bindValue(":amount", amount);
     query.bindValue(":username", loggedInUsername);
@@ -495,10 +520,12 @@ void MainWindow::on_otherAmount_Button_clicked()
     ui->stackedWidget->setCurrentWidget(ui->numpad_Page);
 }
 
-void MainWindow::on_depositEnter_Button_clicked()
+//processes custom amount withdrawal and deposits
+void MainWindow::on_numpadEnter_Button_clicked()
 {
     double amount = currentInput.toDouble();
 
+    //if withdrawal mode then withdraws moneyyy!!!
     if (currentMode == Withdrawal)
     {
         processWithdrawal(amount);
@@ -507,7 +534,7 @@ void MainWindow::on_depositEnter_Button_clicked()
         return;
     }
 
-    // For deposits, validate the amount
+    // if not in a multiple of 500 stawwpppp
     if (!isAmountValid(amount))
     {
         ui->lcdNumber->display(0);
@@ -523,6 +550,7 @@ void MainWindow::on_depositEnter_Button_clicked()
     query.bindValue(":amount", amount);
     query.bindValue(":username", loggedInUsername);
 
+    //notify the user
     if (query.exec()) {
         QMessageBox::information(this, "Deposit Successful",
                                  QString("Deposited Rs%1 to your %2 account.")
@@ -532,6 +560,7 @@ void MainWindow::on_depositEnter_Button_clicked()
         QMessageBox::critical(this, "Database Error", "Failed to update balance. Please try again.");
     }
 
+    //clear the numpad and go back to dashboard
     currentInput.clear();
     ui->lcdNumber->display(0);
     ui->stackedWidget->setCurrentWidget(ui->dashboard_Page);
@@ -547,7 +576,7 @@ void MainWindow::logoutAction()
     // Redirect to the login page
     ui->stackedWidget->setCurrentWidget(ui->login_Page);
     ui->loginUser_Line->setFocus();
-    // show a message
+    // notify the user
     QMessageBox::information(this, "Logout", "You have successfully logged out.");
 }
 
@@ -570,12 +599,8 @@ void MainWindow::setupSettingsButton()
     settingsButton->setMenu(settingsMenu);
     settingsButton->setPopupMode(QToolButton::MenuButtonPopup);
 }
-
-void MainWindow::on_settings_Button_triggered(QAction *)
-{
-
-}
-
+// checks if user has money, if yes then prompts to empty it.
+// if no then redirects the user to the account deletion page
 void MainWindow::on_deleteAccount_action()
 {
     if (loggedInUsername.isEmpty())
@@ -610,7 +635,9 @@ void MainWindow::on_deleteAccount_action()
     }
 }
 
-
+// checks if both pin match the user's pin
+//if yes then deletes account upon reach max slider value
+//
 void MainWindow::on_horizontalSlider_valueChanged(int value)
 {
 
@@ -662,15 +689,5 @@ void MainWindow::on_horizontalSlider_valueChanged(int value)
         ui->horizontalSlider->setValue(0);
         //qDebug() << "slider triggerred";
     }
-}
-
-
-void MainWindow::on_acc_Cancel_Button_clicked()
-{
-    ui->stackedWidget->setCurrentWidget(ui->login_Page);
-    ui->newPassword_Line->clear();
-    ui->newUser_Line->clear();
-    ui->confirmPassword_Line->clear();
-}
-
+}    
 
